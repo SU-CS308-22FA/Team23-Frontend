@@ -118,7 +118,7 @@ export default function Profile() {
     });
     var config = {
       method: "get",
-      url: "http://localhost:3000/users/profile/" + email,
+      url: "https://test23her.herokuapp.com/users/profile/" + email,
       headers: {
         "Content-Type": "application/json",
       },
