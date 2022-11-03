@@ -261,7 +261,7 @@ export default function Profile() {
                     New Password
                   </InputLabel>
                   <OutlinedInput
-                    name="oldPassword"
+                    name="newPassword"
                     id="new_password"
                     type={values.newShowPassword ? "text" : "password"}
                     value={values.newPassword}
