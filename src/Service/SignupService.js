@@ -16,7 +16,7 @@ export default async function SignupService(props) {
 
   var config = {
     method: "post",
-    url: "https://test23her.herokuapp.com/users/signup",
+    url: "https://team23-backend.herokuapp.com/users/signup",
     headers: {
       "Content-Type": "application/json",
     },

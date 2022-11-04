@@ -118,7 +118,7 @@ export default function Profile() {
     });
     var config = {
       method: "get",
-      url: "https://test23her.herokuapp.com/users/profile/" + email,
+      url: "https://team23-backend.herokuapp.com/users/profile/" + email,
       headers: {
         "Content-Type": "application/json",
       },

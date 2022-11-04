@@ -14,7 +14,7 @@ export default async function ProfileService(props) {
 
   var config = {
     method: "put",
-    url: "https://test23her.herokuapp.com/users/update",
+    url: "https://team23-backend.herokuapp.com/users/update",
     headers: {
       "Content-Type": "application/json",
     },
