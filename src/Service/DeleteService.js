@@ -10,7 +10,7 @@ export default async function ProfileService(props) {
 
   var config = {
     method: "delete",
-    url: "http://localhost:3000/users/delete",
+    url: "https://test23her.herokuapp.com/users/delete",
     headers: {
       "Content-Type": "application/json",
     },
