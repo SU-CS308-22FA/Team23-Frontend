@@ -1,6 +1,8 @@
 import axios, * as others from "axios";
+import serverURI from "../Constants/connection";
 
 export default async function SignupService(props) {
+  let uri = serverURI + "/users/signup";
   let userEmail = props[2];
   let userName = props[0];
   let userLastname = props[1];
@@ -16,7 +18,7 @@ export default async function SignupService(props) {
 
   var config = {
     method: "post",
-    url: "https://team23-backend.herokuapp.com/users/signup",
+    url: uri,
     headers: {
       "Content-Type": "application/json",
     },

@@ -1,7 +1,9 @@
 import axios, * as others from "axios";
+import serverURI from "../Constants/connection";
 
 export default async function ProfileService(props) {
   let { email } = props[0];
+  let uri = serverURI + "/users/delete";
 
   var data = JSON.stringify({
     email: email,
@@ -10,7 +12,7 @@ export default async function ProfileService(props) {
 
   var config = {
     method: "delete",
-    url: "https://team23-backend.herokuapp.com/users/delete",
+    url: uri,
     headers: {
       "Content-Type": "application/json",
     },

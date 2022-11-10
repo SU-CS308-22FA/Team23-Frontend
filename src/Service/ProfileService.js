@@ -1,9 +1,11 @@
 import axios, * as others from "axios";
+import serverURI from "../Constants/connection";
 
 export default async function ProfileService(props) {
   let newPassword = props[0];
   let oldPassword = props[1];
   let { email } = props[2];
+  let uri = serverURI + "/users/update";
 
   var data = JSON.stringify({
     newpassword: newPassword,
@@ -14,7 +16,7 @@ export default async function ProfileService(props) {
 
   var config = {
     method: "put",
-    url: "https://team23-backend.herokuapp.com/users/update",
+    url: uri,
     headers: {
       "Content-Type": "application/json",
     },

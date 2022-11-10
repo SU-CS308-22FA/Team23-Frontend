@@ -29,6 +29,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormHelperText from "@mui/material/FormHelperText";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import serverURI from "../Constants/connection";
 
 function Copyright(props) {
   return (
@@ -58,6 +59,7 @@ export default function Profile() {
   cookie.get("email");
   const email = cookie.cookies.email;
   let user1 = {};
+  let uri = serverURI + "/users/profile/";
 
   const [values, setValues] = React.useState({
     oldPassword: "",
@@ -118,7 +120,7 @@ export default function Profile() {
     });
     var config = {
       method: "get",
-      url: "https://team23-backend.herokuapp.com/users/profile/" + email,
+      url: uri + email,
       headers: {
         "Content-Type": "application/json",
       },

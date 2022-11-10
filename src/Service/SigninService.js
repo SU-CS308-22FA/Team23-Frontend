@@ -1,6 +1,8 @@
 import axios, * as others from "axios";
+import serverURI from "../Constants/connection";
 
 async function SigninService(props) {
+  let uri = serverURI + "/users/signin";
   let email = props[0];
   let password = props[1];
   let result = {};
@@ -11,7 +13,7 @@ async function SigninService(props) {
 
   var config = {
     method: "post",
-    url: "https://team23-backend.herokuapp.com/users/signin",
+    url: uri,
     headers: {
       "Content-Type": "application/json",
     },
