@@ -3,13 +3,9 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import FaceIcon from "@mui/icons-material/Face";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -19,35 +15,14 @@ import axios, * as others from "axios";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import ProfileService from "../Service/ProfileService";
-import DeleteService from "../Service/DeleteService";
+import { UpdateService } from "../Service/UserService";
+import { DeleteService } from "../Service/UserService";
 import { useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
-import Input from "@mui/material/Input";
-import FilledInput from "@mui/material/FilledInput";
 import InputAdornment from "@mui/material/InputAdornment";
-import FormHelperText from "@mui/material/FormHelperText";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import serverURI from "../Constants/connection";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const theme = createTheme();
 
@@ -58,7 +33,6 @@ export default function Profile() {
   const cookie = new Cookies();
   cookie.get("email");
   const email = cookie.cookies.email;
-  let user1 = {};
   let uri = serverURI + "/users/profile/";
 
   const [values, setValues] = React.useState({
@@ -94,7 +68,7 @@ export default function Profile() {
     let oldPassword = data.get("oldPassword");
     const obj = [newPassword, oldPassword, user];
 
-    ProfileService(obj).then((response) => {
+    UpdateService(obj).then((response) => {
       console.log(response, "asdasdasd");
     });
   };
@@ -108,7 +82,7 @@ export default function Profile() {
     event.preventDefault();
     const obj = [user];
     DeleteService(obj).then((response) => {
-      console.log(response, "asdasdasd");
+      console.log(response);
     });
     navigate("/signin");
   };
@@ -130,14 +104,12 @@ export default function Profile() {
     axios(config)
       .then((response) => {
         setUser(response.data.message[0]);
-
         setIsLoading(false);
-        user1 = response.data.message[0];
       })
       .catch((error) => {
         setUser(error);
-      }); // Your code here
-  }, []);
+      });
+  }, [cookie, uri]);
   if (isLoading) {
     return <div> Loading ... </div>;
   }
@@ -287,10 +259,7 @@ export default function Profile() {
                   />
                 </FormControl>
               </Grid>
-              {/* <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              /> */}
+
               <Button
                 type="submit"
                 fullWidth

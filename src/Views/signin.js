@@ -3,11 +3,9 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -16,51 +14,31 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import SigninService from "../Service/SigninService";
+import { SigninService } from "../Service/UserService";
 import Cookies from "universal-cookie";
 import IconButton from "@mui/material/IconButton";
-import Input from "@mui/material/Input";
-import FilledInput from "@mui/material/FilledInput";
 import InputAdornment from "@mui/material/InputAdornment";
-import FormHelperText from "@mui/material/FormHelperText";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { useState, useEffect } from "react";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import { useState } from "react";
 
 const theme = createTheme();
 
 export default function Signin() {
   const [flag, setFlag] = useState(false);
+  const [values, setValues] = React.useState({
+    password: "",
+    showPassword: false,
+  });
+
   const navigate = useNavigate();
+
   const handle = () => {
     navigate("/signup");
   };
   const navigateProfile = () => {
     navigate("/profile");
   };
-
-  const [values, setValues] = React.useState({
-    password: "",
-    showPassword: false,
-  });
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -166,10 +144,6 @@ export default function Signin() {
                 alignItems: "center",
               }}
             ></Box>
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
             {flag === true ? "Wrong email and password!" : ""}
             <Button
               type="submit"
@@ -180,11 +154,6 @@ export default function Signin() {
               Sign In
             </Button>
             <Grid container>
-              {/* <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid> */}
               <Grid item>
                 <Link onClick={handle} href="#" variant="body2">
                   {"Don't have an account? Sign Up"}
@@ -193,7 +162,6 @@ export default function Signin() {
             </Grid>
           </Box>
         </Box>
-        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
   );
