@@ -109,7 +109,7 @@ export default function Signin() {
               autoComplete="email"
               autoFocus
             />
-            <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+            <FormControl sx={{width : 1, mt:1.5}} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-password">
                 Password
               </InputLabel>
