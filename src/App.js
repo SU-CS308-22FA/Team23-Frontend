@@ -4,7 +4,7 @@ import Signup from "./Views/signup";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactDOM from "react-dom";
 import Profile from "./Views/profile";
-
+import Form from "./Views/test";
 function App() {
   return (
     <BrowserRouter>
@@ -13,6 +13,7 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/test" element={<Form />} />
       </Routes>
     </BrowserRouter>
   );
