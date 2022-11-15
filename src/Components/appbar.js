@@ -166,7 +166,7 @@ function ResponsiveAppBar(props) {
           <>{logedIn ? <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={email.toUpperCase()} src="/static/images/avatar/2.jpg" />
+                <Avatar alt={email} src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
