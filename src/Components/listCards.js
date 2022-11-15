@@ -25,6 +25,10 @@ export default function ListCards() {
             <Card></Card>
             <Card></Card>
             <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
         </Box>
         </Container>
         

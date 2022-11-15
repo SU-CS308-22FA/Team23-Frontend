@@ -31,39 +31,56 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function Cart() {
+export default function ProductCard(props) {
   const [expanded, setExpanded] = React.useState(false);
+  const size = props.size;
+  let size1 = {};
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  
+  size === 1 ? size1 = {
+    maxWidth: 300,
+    imgHeight: "220",
+    name: "h6",
+    itemType: "h10",
+    variant: "h10",
+    displayChip: "none"
+  } : size1 = {
+    maxWidth: 300,
+    imgHeight: "300",
+    name: "h5",
+    itemType: "h9",
+    variant: "h9",
+    displayChip: "flex"
+  }
 
   return (
-    <Card sx={{ maxWidth: 300 ,position: 'relative'}}>
-      <Box sx={{ display: 'flex', alignContent: 'space-between', position: 'absolute', bottom: '29%',
+    <Card sx={{ maxWidth: size1.maxWidth ,position: 'relative'}}>
+      <Box sx={{ display: size1.displayChip, alignContent: 'space-between', position: 'absolute', bottom: '29%',
           left: '5%',}}>
           <Chip icon={<AccessTimeIcon/>} color='primary' label="23:23:23 Bid:$5,000"  />
           </Box>
       <CardMedia
         component="img"
-        height="300"
+        height={size1.imgHeight}
         src='https://assets.adidas.com/images/w_600,f_auto,q_auto/49808757050946de8bedae29011926b5_9366/Manchester_United_22-23_Home_Jersey_Red_H13881_21_model.jpg'
         alt="Paella dish"
       />
-      
       <CardContent>
           <Box>
-          <Typography variant="h5" color="text.primary" sx={{ fontWeight: 700 }}>
+          <Typography variant={size1.name} color="text.primary" sx={{ fontWeight: 700 }}>
           Arda Güler
         </Typography>
           </Box>
           <Box>
-          <Typography variant="h9" color="text.primary" sx={{ fontWeight: 500}}>
+          <Typography variant={size1.itemType} color="text.primary" sx={{ fontWeight: 500}}>
           Forma
         </Typography>
           </Box>
           <Box>
-          <Typography variant="h9" color="text.primary" sx={{ fontWeight: 500 }}>
+          <Typography variant={size1.variant} color="text.primary" sx={{ fontWeight: 500 }}>
           Fenerbahçe
         </Typography>
           </Box>
