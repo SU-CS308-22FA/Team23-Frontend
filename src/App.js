@@ -4,6 +4,7 @@ import Signup from "./Views/signup";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactDOM from "react-dom";
 import Profile from "./Views/profile";
+// import Test from "./Views/test";
 
 import UploadProduct from "./Views/uploadProduct";
 import HomePage from "./Views/homepage";
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
+        {/* <Route path="/test" element={<Test />} /> */}
         <Route path="/upload" element={<UploadProduct />} />
       </Routes>
     </BrowserRouter>
