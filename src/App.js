@@ -7,7 +7,6 @@ import Profile from "./Views/profile";
 
 import UploadProduct from "./Views/uploadProduct";
 import HomePage from "./Views/homepage";
-import Form from "./Views/test";
 
 function App() {
   return (
