@@ -43,6 +43,10 @@ function ResponsiveAppBar(props) {
     setAnchorElUser(null);
   };
 
+  const handleProfile = () => {
+    navigate("/profile");
+  };
+
   const handleLogOut = () => {
     const cookie = new Cookies();
     cookie.remove("email", {path:"/"});
@@ -55,11 +59,12 @@ function ResponsiveAppBar(props) {
     navigate("/signin");
   };
 
-  const settingsFunctions = [, , ,handleLogOut];
+  const settingsFunctions = [handleProfile, , ,handleLogOut];
 
   React.useEffect(()=>{
-    if(email !== ""){
+    if(email !== undefined){
         setLogedIn(true);
+        console.log(email)
     }else{
         setLogedIn(false);
     }
