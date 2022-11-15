@@ -19,15 +19,15 @@ const pages = ['Teams', 'Open Auctions'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar(props) {
+  const cookie = new Cookies();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [logedIn, setLogedIn] = React.useState(false);
-  const [email, setEmail] = React.useState("");
-
+  const [email, setEmail] = React.useState(cookie.get("email"));
 
   const navigate = useNavigate();
   
-
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -57,22 +57,16 @@ function ResponsiveAppBar(props) {
 
   const settingsFunctions = [, , ,handleLogOut];
 
-  React.useEffect(()=> {
-    const checkCookie = async function(){
-        const cookie = new Cookies();
-        cookie.get("email");
-        setEmail(cookie.cookies.email);
-    }
-    
-    checkCookie();
+  React.useEffect(()=>{
     if(email !== ""){
         setLogedIn(true);
     }else{
         setLogedIn(false);
     }
-  }, [logedIn,email]);
+  }, [email]);
 
   return (
+    
     <AppBar position="static" color='transparent'>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -165,14 +159,14 @@ function ResponsiveAppBar(props) {
             ))}
           </Box>
 
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, }}>
-          <SearchBar></SearchBar>          
+          <Box sx={{ display: { xs: 'none', md: 'flex' , flexGrow: 1 }}}>
+            <SearchBar></SearchBar>          
           </Box>
 
           <>{logedIn ? <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={email.toUpperCase()} src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
