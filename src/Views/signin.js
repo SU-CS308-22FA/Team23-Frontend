@@ -21,6 +21,8 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
+import AppBar from "../Components/appbar";
+
 
 const theme = createTheme();
 
@@ -75,7 +77,9 @@ export default function Signin() {
   };
 
   return (
+    
     <ThemeProvider theme={theme}>
+      <AppBar></AppBar>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
