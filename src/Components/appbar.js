@@ -27,7 +27,7 @@ function ResponsiveAppBar(props) {
   const [email, setEmail] = React.useState(cookie.get("email"));
 
   const navigate = useNavigate();
-  
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -47,31 +47,31 @@ function ResponsiveAppBar(props) {
     navigate("/profile");
   };
 
-  const handleLogOut = () => {
+  const handleLogOut = () => {
     const cookie = new Cookies();
-    cookie.remove("email", {path:"/"});
+    cookie.remove("email", { path: "/" });
     setLogedIn(false);
     setEmail("");
     navigate("/");
   };
 
-  const handleSignIn = () => {
+  const handleSignIn = () => {
     navigate("/signin");
   };
 
-  const settingsFunctions = [handleProfile, , ,handleLogOut];
+  const settingsFunctions = [handleProfile, , , handleLogOut];
 
-  React.useEffect(()=>{
-    if(email !== undefined){
-        setLogedIn(true);
-        console.log(email)
-    }else{
-        setLogedIn(false);
+  React.useEffect(() => {
+    if (email !== undefined) {
+      setLogedIn(true);
+      console.log(email)
+    } else {
+      setLogedIn(false);
     }
   }, [email]);
 
   return (
-    
+
     <AppBar position="static" color='transparent'>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -93,7 +93,7 @@ function ResponsiveAppBar(props) {
             MAÇTAN
           </Typography>
 
-            {/* xs dropdown menu */}
+          {/* xs dropdown menu */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -130,8 +130,8 @@ function ResponsiveAppBar(props) {
               ))}
             </Menu>
           </Box>
-          
-          
+
+
           <Typography
             variant="h5"
             noWrap
@@ -151,7 +151,7 @@ function ResponsiveAppBar(props) {
             MAÇTAN
           </Typography>
 
-        
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -164,8 +164,8 @@ function ResponsiveAppBar(props) {
             ))}
           </Box>
 
-          <Box sx={{ display: { xs: 'none', md: 'flex' , flexGrow: 1 }}}>
-            <SearchBar></SearchBar>          
+          <Box sx={{ display: { xs: 'none', md: 'flex', flexGrow: 1 } }}>
+            <SearchBar></SearchBar>
           </Box>
 
           <>{logedIn ? <Box sx={{ flexGrow: 0 }}>
@@ -197,9 +197,9 @@ function ResponsiveAppBar(props) {
               ))}
             </Menu>
           </Box> : <Button variant="contained" onClick={handleSignIn}>Sign in</Button>}</>
-                
-          
-          
+
+
+
         </Toolbar>
       </Container>
     </AppBar>
