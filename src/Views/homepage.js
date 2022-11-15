@@ -3,6 +3,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import AppBar from "../Components/appbar";
+import ListCards from "../Components/listCards";
 import Cookies from "universal-cookie";
 
 
@@ -14,6 +15,7 @@ export default function HomePage() {
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
+      <ListCards></ListCards>
     </ThemeProvider>
   );
 }
