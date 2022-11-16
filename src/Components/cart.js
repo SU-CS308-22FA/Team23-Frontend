@@ -33,6 +33,11 @@ const ExpandMore = styled((props) => {
 
 export default function ProductCard(props) {
   const [expanded, setExpanded] = React.useState(false);
+  const type = props.type || "test";
+  const name = props.name || "test";
+  const owner = props.owner || "test";
+  const image = props.image || "test";
+
   const size = props.size;
   let size1 = {};
 
@@ -66,22 +71,23 @@ export default function ProductCard(props) {
         component="img"
         height={size1.imgHeight}
         src='https://assets.adidas.com/images/w_600,f_auto,q_auto/49808757050946de8bedae29011926b5_9366/Manchester_United_22-23_Home_Jersey_Red_H13881_21_model.jpg'
+        // {image}
         alt="Paella dish"
       />
       <CardContent>
           <Box>
           <Typography variant={size1.name} color="text.primary" sx={{ fontWeight: 700 }}>
-          Arda Güler
+          {name}
         </Typography>
           </Box>
           <Box>
           <Typography variant={size1.itemType} color="text.primary" sx={{ fontWeight: 500}}>
-          Forma
+          {type}
         </Typography>
           </Box>
           <Box>
           <Typography variant={size1.variant} color="text.primary" sx={{ fontWeight: 500 }}>
-          Fenerbahçe
+          {owner}
         </Typography>
           </Box>
       </CardContent>
@@ -89,3 +95,4 @@ export default function ProductCard(props) {
     </Card>
   );
 }
+

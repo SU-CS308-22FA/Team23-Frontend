@@ -37,12 +37,13 @@ export default function HotCards() {
     
     return (
         <Container sx={{height: 600}}>
-            <Box sx={{display: 'flex',  justifyContent: 'flex-start', height:600}}>
-                <IconButton>
-                    <ArrowBackIosIcon/>
-                </IconButton>
+            <Box sx={{display: 'flex',  justifyContent: 'flex-start', height:570}}>
+            <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                  <IconButton>
+                      <ArrowBackIosIcon/>
+                  </IconButton>
+                </Box>
             
-                
                 <Box sx={{ alignItems: 'center', display: 'flex', position: 'relative', height: 1, width:0.5}}>
                     <Box sx={{ alignItems: 'center', display: 'flex', position: 'absolute', left: '10%', zIndex:0}}>
                         <Card size={1}></Card>
@@ -54,12 +55,14 @@ export default function HotCards() {
                         <Card size={1}></Card>
                     </Box>
                 </Box>
+                <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                  <IconButton>
+                      <ArrowForwardIosIcon/>
+                  </IconButton>
+                </Box>
+                
 
-                <IconButton>
-                    <ArrowForwardIosIcon/>
-                </IconButton>
-
-                <Box sx={{ alignItems: 'start', display: 'flex', flexDirection:'column' , height: 1, mt:15, ml:4}}>
+                <Box sx={{ alignItems: 'start', display: 'flex', flexDirection:'column' , height: "auto", mt:15, ml:4}}>
                    <Typography variant="h4" color="text.primary" sx={{ fontWeight: 900 }}>
                     HOT AUCTIONS
                    </Typography>
@@ -74,6 +77,4 @@ export default function HotCards() {
         </Container>
        
     );
-
-
 }
