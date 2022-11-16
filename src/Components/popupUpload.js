@@ -6,18 +6,18 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import Cookies from "universal-cookie";
+import "../Style/styles.css"
 
-function Button({ handleLoginClick }) {
+function ButtonForm({ handleLoginClick }) {
   const handleClick = () => {
     handleLoginClick();
   };
   return (
-    <div>
-      <span onClick={handleClick} className="loginicon">
-        Upload
-      </span>
-    </div>
+    <Button onClick={handleClick}>
+      Upload
+    </Button>
   );
 }
 
@@ -114,4 +114,4 @@ const AddProduct = ({ isShowLogin }) => {
   );
 };
 
-export { AddProduct, Button };
+export { AddProduct, ButtonForm };

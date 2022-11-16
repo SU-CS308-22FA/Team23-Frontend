@@ -1,8 +1,16 @@
-import "../Style/styles.css";
+
 import React, { useState } from "react";
 import { AddProduct } from "../Components/popupUpload";
-import { Button } from "../Components/popupUpload";
+import { ButtonForm } from "../Components/popupUpload";
 import AppBar from "../Components/appbar";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Container from "@mui/material/Container";
+import { useNavigate } from "react-router-dom";
+import ListCards from "../Components/listCards";
+import HotCards from "../Components/hot";
+import Divider from "../Components/divider";
+
+const theme = createTheme();
 
 export default function UploadProduct() {
   const [isShowLogin, setIsShowLogin] = useState(true);
@@ -12,9 +20,19 @@ export default function UploadProduct() {
   };
 
   return (
-    <div className="UploadProduct">
-      <Button handleLoginClick={handleLoginClick} />
+    <ThemeProvider theme={theme}>
+      <AppBar></AppBar>
+      <Container sx={{width:1, height:45}}>
+
+        <ButtonForm handleLoginClick={handleLoginClick} />
+      </Container>
+      
       <AddProduct isShowLogin={isShowLogin} />
-    </div>
+      
+    </ThemeProvider>
+    
+      
+      
+  
   );
 }
