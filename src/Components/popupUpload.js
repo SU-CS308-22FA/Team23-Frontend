@@ -5,6 +5,8 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import TextField from "@mui/material/TextField";
+import Cookies from "universal-cookie";
 
 function Button({ handleLoginClick }) {
   const handleClick = () => {
@@ -13,13 +15,17 @@ function Button({ handleLoginClick }) {
   return (
     <div>
       <span onClick={handleClick} className="loginicon">
-        Sign In
+        Upload
       </span>
     </div>
   );
 }
 
 const AddProduct = ({ isShowLogin }) => {
+  const cookie = new Cookies();
+  cookie.get("email");
+  const email = cookie.cookies.email;
+
   const history = useNavigate();
   const [data, setData] = useState({
     name: "",
@@ -38,6 +44,7 @@ const AddProduct = ({ isShowLogin }) => {
       formData.append("name", data.name);
       formData.append("owner", data.owner);
       formData.append("type", data.type);
+      formData.append("email", email);
       const res = await fetch(`http://localhost:3000/products/upload`, {
         method: "POST",
         body: formData,
@@ -53,47 +60,49 @@ const AddProduct = ({ isShowLogin }) => {
 
   return (
     <div className={`${isShowLogin ? "active" : ""} show`}>
-      <Box sx={{ position: "absolute", left: "40%", top: "40%", zIndex: 1 }}>
-        <div className="login-form">
-          <div className="form-box solid">
-            <input
-              className="form-control"
-              placeholder="Type"
-              type="text"
-              name="type"
-              value={data.type}
-              onChange={handleChange("type")}
-            />
-          </div>
-          <div className="form-box solid">
-            <input
-              className="form-control"
-              placeholder="Enter name"
-              type="text"
-              name="name"
-              value={data.name}
-              onChange={handleChange("name")}
-            />
-          </div>
-          <div className="form-box solid">
-            <input
-              className="form-control"
-              placeholder="Owner"
-              type="text"
-              name="owner"
-              value={data.owner}
-              onChange={handleChange("owner")}
-            />
-          </div>
-          <div className="form-box solid">
-            <input
-              className="form-control"
-              type="file"
-              accept="image/*"
-              name="image"
-              onChange={handleChange("image")}
-            />
-          </div>
+      <Box sx={{ alignItems: 'center', position: "absolute", left: "39%", top: "30%", zIndex: 1, height: 100, width: 400 }}>
+        <div className="form-boxx">
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="type"
+            label="Enter type"
+            name="type"
+            placeholder="Type"
+            value={data.type}
+            onChange={handleChange("type")}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="name"
+            label="Enter name"
+            placeholder="Name"
+            name="name"
+            value={data.name}
+            onChange={handleChange("name")}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="owner"
+            label="Enter owner"
+            placeholder="Owner"
+            name="owner"
+            value={data.owner}
+            onChange={handleChange("owner")}
+          />
+          <input
+            className="form-control"
+            type="file"
+            accept="image/*"
+            name="image"
+            onChange={handleChange("image")}
+          />
+
           <div className="text-center">
             <button className="btn btn-primary" onClick={handleSubmit}>
               Submit
@@ -101,7 +110,7 @@ const AddProduct = ({ isShowLogin }) => {
           </div>
         </div>
       </Box>
-    </div>
+    </div >
   );
 };
 
