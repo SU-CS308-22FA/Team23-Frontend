@@ -41,10 +41,10 @@
   min-height: 100vh;
 }
 
-.form-box-ashasdhasdashdasdha {
+.form-box {
   margin-top: 7vh;
   opacity: 80%;
-  background: black;
+  background: rgb(241, 235, 235);
   padding-right: 100px;
   padding-left: 80px;
   border-radius: 20px;
