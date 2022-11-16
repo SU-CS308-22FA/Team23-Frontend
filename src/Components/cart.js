@@ -36,7 +36,7 @@ export default function ProductCard(props) {
   const type = props.type || "test";
   const name = props.name || "test";
   const owner = props.owner || "test";
-  const image = props.image || "test";
+  const image = props.image || 'https://assets.adidas.com/images/w_600,f_auto,q_auto/49808757050946de8bedae29011926b5_9366/Manchester_United_22-23_Home_Jersey_Red_H13881_21_model.jpg';
 
   const size = props.size;
   let size1 = {};
@@ -70,8 +70,7 @@ export default function ProductCard(props) {
       <CardMedia
         component="img"
         height={size1.imgHeight}
-        src='https://assets.adidas.com/images/w_600,f_auto,q_auto/49808757050946de8bedae29011926b5_9366/Manchester_United_22-23_Home_Jersey_Red_H13881_21_model.jpg'
-        // {image}
+        src={image}
         alt="Paella dish"
       />
       <CardContent>
