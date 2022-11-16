@@ -5,6 +5,7 @@ import { useState } from "react";
 import AppBar from "../Components/appbar";
 import ListCards from "../Components/listCards";
 import HotCards from "../Components/hot";
+import Divider from "../Components/divider";
 
 
 const theme = createTheme();
@@ -14,6 +15,7 @@ export default function HomePage() {
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
       <HotCards></HotCards>
+      <Divider></Divider>
       <ListCards></ListCards>
       
     </ThemeProvider>
