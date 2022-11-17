@@ -13,7 +13,6 @@ import Product from "./Views/product";
 
 import AdminPage from "./Views/adminpage";
 
-
 function App() {
   return (
     <BrowserRouter>
@@ -25,15 +24,10 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         {/* <Route path="/test" element={<Test />} /> */}
         <Route path="/upload" element={<UploadProduct />} />
-        <Route path="/product" element={<Product />} />
+        <Route path="/product/:id" element={<Product />} />
       </Routes>
     </BrowserRouter>
   );
 }
 
 export default App;
-
-
-
-
-
