@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactDOM from "react-dom";
 import Profile from "./Views/profile";
 // import Test from "./Views/test";
+import Search from "./Views/search";
 
 import UploadProduct from "./Views/uploadProduct";
 import HomePage from "./Views/homepage";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         {/* <Route path="/test" element={<Test />} /> */}
         <Route path="/upload" element={<UploadProduct />} />
+        <Route path="/search/:searchQuery" element={<Search />} />
       </Routes>
     </BrowserRouter>
   );
