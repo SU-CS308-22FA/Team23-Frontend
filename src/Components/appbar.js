@@ -32,6 +32,7 @@ function ResponsiveAppBar(props) {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event) => {
+    console.log(event.currentTarget);
     setAnchorElUser(event.currentTarget);
   };
 
@@ -48,11 +49,13 @@ function ResponsiveAppBar(props) {
   };
 
   const handleLogOut = () => {
-    const cookie = new Cookies();
-    cookie.remove("email", { path: "/" });
+    setAnchorElUser(null);
     setLogedIn(false);
-    setEmail("");
-    navigate("/");
+    
+    cookie.remove("email", { path: "/" });
+    
+    
+    
   };
 
   const handleSignIn = () => {
@@ -136,7 +139,7 @@ function ResponsiveAppBar(props) {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
