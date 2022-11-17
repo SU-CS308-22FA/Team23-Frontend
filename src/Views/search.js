@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 
 const theme = createTheme();
 
-export default function HomePage() {
+export default function SearchPage() {
     const { searchQuery } = useParams();
     return (
         <ThemeProvider theme={theme}>

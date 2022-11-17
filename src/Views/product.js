@@ -12,7 +12,7 @@ const theme = createTheme();
 export default function HomePage() {
   const { id } = useParams();
   let uri = serverURI + "/products/productPage/";
-  const [products, setProducts] = React.useState([]);
+  const [products, setProducts] = React.useState([{}]);
 
   React.useEffect(() => {
     var config = {
@@ -25,20 +25,39 @@ export default function HomePage() {
 
     axios(config)
       .then((response) => {
-        //console.log(response.data.message);
         setProducts(response.data.message);
-        console.log(products[0]["owner"]);
+        console.log(response.data.message);
+        // console.log(products[0]["image"]);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
+  const image = products[0]["image"];
+  const player = products[0]["name"];
+  const owner = products[0]["owner"];
+  const type = products[0]["type"];
+  const sold = products[0]["sold"];
+  const price = products[0]["price"];
+  const duration = products[0]["duration"];
+  const start_date = products[0]["start_date"];
+
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
-      <ProductHeader></ProductHeader>
-      <ProductBody></ProductBody>
+      <ProductHeader
+        image={image}
+        price={price}
+        duration={duration}
+        start_date={start_date}
+      ></ProductHeader>
+      <ProductBody
+        player={player}
+        owner={owner}
+        type={type}
+        sold={sold}
+      ></ProductBody>
     </ThemeProvider>
   );
 }

@@ -12,10 +12,12 @@ import { Link } from 'react-router-dom'
 export default function ListCards(props) {
   let uri;
 
-  if( typeof props.searchQuery !== "undefined"){
-    uri = serverURI + "/products/search/" + props.searchQuery
-  }else{
-    uri = serverURI + "/products/test"
+  if (typeof props.searchQuery === "undefined") {
+    uri = serverURI + "/products/test";
+  }
+  else {
+    uri = serverURI + "/products/search/" + props.searchQuery;
+
   }
   const [products, setProducts] = React.useState([]);
 
@@ -37,33 +39,33 @@ export default function ListCards(props) {
       .catch((error) => {
         console.log(error);
       });
-    }, []);
+  }, []);
 
 
-    return(
-        <Container sx={{mt:5, mb:5}}>
-        {/* <Divider></Divider> */}
-        <Box
-            sx={{
-                display: 'grid',
-                columnGap: 3,
-                rowGap: 2,
-                gridTemplateColumns: 'repeat(4, 1fr)'
-                
-            }}
-        >
+  return (
+    <Container sx={{ mt: 5, mb: 5 }}>
+      {/* <Divider></Divider> */}
+      <Box
+        sx={{
+          display: 'grid',
+          columnGap: 3,
+          rowGap: 2,
+          gridTemplateColumns: 'repeat(4, 1fr)'
 
-          
-            {products.map((product)=>(
-                <Card key={product._id} id={product._id} type={product.type} name={product.name} owner={product.owner} image={product.image}>
-                  
-                </Card>
-            ))}
-     
-        </Box>
-        </Container>
-        
-    );
+        }}
+      >
+
+
+        {products.map((product) => (
+          <Card key={product._id} id={product._id} type={product.type} name={product.name} owner={product.owner} image={product.image}>
+
+          </Card>
+        ))}
+
+      </Box>
+    </Container>
+
+  );
 
 
 }
