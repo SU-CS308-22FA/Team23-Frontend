@@ -8,17 +8,18 @@ import ListCards from "../Components/listCards";
 import HotCards from "../Components/hot";
 import Divider from "../Components/divider";
 import TeamHeader from "../Components/teamHeader";
-
+import { useParams } from "react-router-dom";
 
 const theme = createTheme();
 
 export default function AdminPage() {
+  const { email } = useParams();
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
-      <TeamHeader></TeamHeader>
+      <TeamHeader email={email}></TeamHeader>
       <Divider></Divider>
-      <ListCards></ListCards>
+      <ListCards email={email}></ListCards>
     </ThemeProvider>
   );
 }

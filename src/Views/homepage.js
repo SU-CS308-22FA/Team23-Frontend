@@ -18,7 +18,6 @@ export default function HomePage() {
       <HotCards></HotCards>
       <Divider></Divider>
       <ListCards></ListCards>
-      
     </ThemeProvider>
   );
 }

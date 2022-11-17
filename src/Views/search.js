@@ -15,7 +15,7 @@ export default function HomePage() {
     return (
         <ThemeProvider theme={theme}>
             <AppBar></AppBar>
-            <ListCards uri={searchQuery}></ListCards>
+            <ListCards searchQuery={searchQuery}></ListCards>
 
         </ThemeProvider>
     );
