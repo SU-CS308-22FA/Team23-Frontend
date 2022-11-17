@@ -1,38 +1,18 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import Chip from '@mui/material/Chip';
-import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { grey } from '@mui/material/colors';
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+import { CardActionArea } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductCard(props) {
-  const [expanded, setExpanded] = React.useState(false);
+  const id = props.id;
   const type = props.type || "test";
   const name = props.name || "test";
   const owner = props.owner || "test";
@@ -41,8 +21,11 @@ export default function ProductCard(props) {
   const size = props.size;
   let size1 = {};
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/product/${id}`)
+    
   };
   
   size === 1 ? size1 = {
@@ -63,6 +46,7 @@ export default function ProductCard(props) {
 
   return (
     <Card sx={{ maxWidth: size1.maxWidth ,position: 'relative'}}>
+      <CardActionArea onClick={handleClick}>
       <Box sx={{ display: size1.displayChip, alignContent: 'space-between', position: 'absolute', bottom: '29%',
           left: '5%',}}>
           <Chip icon={<AccessTimeIcon/>} color='primary' label="23:23:23 Bid:$5,000"  />
@@ -90,7 +74,9 @@ export default function ProductCard(props) {
         </Typography>
           </Box>
       </CardContent>
-
+      
+      </CardActionArea>
+    
     </Card>
   );
 }

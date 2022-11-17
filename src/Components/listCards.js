@@ -7,6 +7,7 @@ import serverURI from "../Constants/connection";
 import axios, * as others from "axios";
 import { set } from "mongoose";
 import Divider from "./divider";
+import { Link } from 'react-router-dom'
 
 export default function ListCards(props) {
   let uri = serverURI + "/products/search/" + props.searchQuery || serverURI + "/products/test";
@@ -30,27 +31,33 @@ export default function ListCards(props) {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
-  return (
-    <Container sx={{ mt: 5, mb: 5 }}>
-      {/* <Divider></Divider> */}
-      <Box
-        sx={{
-          display: 'grid',
-          columnGap: 3,
-          rowGap: 2,
-          gridTemplateColumns: 'repeat(4, 1fr)'
+    }, []);
 
-        }}
-      >
-        {products.map((product) => (
-          <Card key={product._id} type={product.type} name={product.name} owner={product.owner} image={product.image}></Card>
-        ))}
 
-      </Box>
-    </Container>
+    return(
+        <Container sx={{mt:5, mb:5}}>
+        {/* <Divider></Divider> */}
+        <Box
+            sx={{
+                display: 'grid',
+                columnGap: 3,
+                rowGap: 2,
+                gridTemplateColumns: 'repeat(4, 1fr)'
+                
+            }}
+        >
 
-  );
+          
+            {products.map((product)=>(
+                <Card key={product._id} id={product._id} type={product.type} name={product.name} owner={product.owner} image={product.image}>
+                  
+                </Card>
+            ))}
+     
+        </Box>
+        </Container>
+        
+    );
 
 
 }
