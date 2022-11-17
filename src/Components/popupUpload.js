@@ -8,17 +8,13 @@ import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Cookies from "universal-cookie";
-import "../Style/styles.css"
+import "../Style/styles.css";
 
 function ButtonForm({ handleLoginClick }) {
   const handleClick = () => {
     handleLoginClick();
   };
-  return (
-    <Button onClick={handleClick}>
-      Upload
-    </Button>
-  );
+  return <Button onClick={handleClick}>Upload</Button>;
 }
 
 const AddProduct = ({ isShowLogin }) => {
@@ -32,6 +28,7 @@ const AddProduct = ({ isShowLogin }) => {
     image: "",
     type: "",
     owner: "",
+    price: "",
   });
   const handleChange = (name) => (e) => {
     const value = name === "image" ? e.target.files[0] : e.target.value;
@@ -44,13 +41,14 @@ const AddProduct = ({ isShowLogin }) => {
       formData.append("name", data.name);
       formData.append("owner", data.owner);
       formData.append("type", data.type);
+      formData.append("price", data.price);
       formData.append("email", email);
       const res = await fetch(`http://localhost:3000/products/upload`, {
         method: "POST",
         body: formData,
       });
       if (res.ok) {
-        setData({ name: "", owner: "", type: "", image: "" });
+        setData({ name: "", owner: "", type: "", image: "", price: "" });
         history.replace("/");
       }
     } catch (error) {
@@ -60,7 +58,18 @@ const AddProduct = ({ isShowLogin }) => {
 
   return (
     <div className={`${isShowLogin ? "active" : ""} show`}>
-      <Box sx={{bgcolor: 'primary', alignItems: 'center', position: "absolute", left: "39%", top: "30%", zIndex: 1, height: 300, width: 400 }}>
+      <Box
+        sx={{
+          bgcolor: "primary",
+          alignItems: "center",
+          position: "absolute",
+          left: "39%",
+          top: "30%",
+          zIndex: 1,
+          height: 300,
+          width: 400,
+        }}
+      >
         <div className="form-boxx">
           <TextField
             margin="normal"
@@ -95,6 +104,17 @@ const AddProduct = ({ isShowLogin }) => {
             value={data.owner}
             onChange={handleChange("owner")}
           />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="price"
+            label="Enter price"
+            placeholder="price"
+            name="price"
+            value={data.price}
+            onChange={handleChange("price")}
+          />
           <input
             className="form-control"
             type="file"
@@ -110,7 +130,7 @@ const AddProduct = ({ isShowLogin }) => {
           </div>
         </div>
       </Box>
-    </div >
+    </div>
   );
 };
 
