@@ -9,7 +9,6 @@ import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import serverURI from "../Constants/connection";
 import axios, * as others from "axios";
-import { SearchService } from "../Service/ProductService";
 
 
 export default function SearchBar() {
