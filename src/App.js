@@ -8,6 +8,7 @@ import Profile from "./Views/profile";
 
 import UploadProduct from "./Views/uploadProduct";
 import HomePage from "./Views/homepage";
+import Product from "./Views/product";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         {/* <Route path="/test" element={<Test />} /> */}
         <Route path="/upload" element={<UploadProduct />} />
+        <Route path="/product" element={<Product />} />
       </Routes>
     </BrowserRouter>
   );
