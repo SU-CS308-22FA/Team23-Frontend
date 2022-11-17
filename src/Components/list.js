@@ -4,7 +4,11 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import { ListSubheader, Typography } from "@mui/material";
-export default function FolderList() {
+export default function Lists(props) {
+  const player = props.player || "";
+  const owner = props.owner || "";
+  const type = props.type || "";
+  const sold = props.sold || "";
   return (
     <List
       sx={{
@@ -26,28 +30,28 @@ export default function FolderList() {
       <ListItem>
         <ListItemText>Team</ListItemText>
         <Divider variant="middle" />
-        <ListItemText primary="Fenerbahçe" />
+        <ListItemText>{owner}</ListItemText>
       </ListItem>
       <Divider />
 
       <ListItem>
         <ListItemText>Player</ListItemText>
         <Divider variant="middle" />
-        <ListItemText primary="Emre Mor" />
+        <ListItemText>{player}</ListItemText>
       </ListItem>
       <Divider />
 
       <ListItem>
         <ListItemText>Type</ListItemText>
         <Divider variant="middle" />
-        <ListItemText primary="Jersey" />
+        <ListItemText>{type}</ListItemText>
       </ListItem>
       <Divider />
 
       <ListItem>
         <ListItemText>Status</ListItemText>
         <Divider variant="middle" />
-        <ListItemText primary="Open Auction" />
+        <ListItemText>{sold ? "Closed" : "Open"}</ListItemText>
       </ListItem>
       <Divider />
     </List>

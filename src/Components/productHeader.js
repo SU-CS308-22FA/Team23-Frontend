@@ -2,9 +2,17 @@ import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import Auction from "../Components/auctionData";
+import Auction from "./auction";
+import { CardMedia } from "@mui/material";
 
-export default function SimpleContainer() {
+export default function ProductHeader(props) {
+  //image
+  const image = props.image || "";
+  const price = props.price || "";
+  const duration = props.duration || "";
+  const start_date = props.start_date || "";
+  // console.log(owner, type, player, status);
+
   return (
     <Container maxWidth="xl" sx={{ height: 500 }}>
       <Box
@@ -27,11 +35,7 @@ export default function SimpleContainer() {
           }}
         >
           {/* <Item></Item>{" "} */}
-          <img
-            src="https://www.celebsfacts.com/wp-content/uploads/2021/06/Emre-Mor.jpg"
-            // width="500"
-            // height="500"
-          />
+          <CardMedia component="img" src={image} />
         </Box>
         <Box
           sx={{
@@ -44,9 +48,19 @@ export default function SimpleContainer() {
             justifyContent: "center",
           }}
         >
-          <Auction></Auction>{" "}
+          <Auction
+            price={price}
+            duration={duration}
+            start_date={start_date}
+          ></Auction>{" "}
         </Box>
       </Box>
     </Container>
   );
 }
+
+// const image = props.image || "";
+// const player = props.player || "";
+// const owner = props.owner || "";
+// const type = props.type || "";
+// const status = props.status || "";
