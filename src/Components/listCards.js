@@ -9,23 +9,18 @@ import { set } from "mongoose";
 import Divider from "./divider";
 import { Link } from 'react-router-dom'
 
-export default function ListCards() {
-    let uri = serverURI + "/products/test";
-    const [products, setProducts] = React.useState([]);
+export default function ListCards(props) {
+  let uri = serverURI + "/products/search/" + props.searchQuery || serverURI + "/products/test";
+  const [products, setProducts] = React.useState([]);
 
 
-    React.useEffect(()=>{
-    
-    var data = JSON.stringify({
-      x: 30,
-    });
+  React.useEffect(() => {
     var config = {
       method: "get",
       url: uri,
       headers: {
         "Content-Type": "application/json",
       },
-      data: data,
     };
 
     axios(config)
@@ -34,7 +29,7 @@ export default function ListCards() {
         setProducts(response.data.message)
       })
       .catch((error) => {
-       console.log(error);
+        console.log(error);
       });
     }, []);
 
