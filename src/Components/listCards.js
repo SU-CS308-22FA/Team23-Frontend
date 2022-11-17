@@ -11,11 +11,13 @@ import { Link } from 'react-router-dom'
 
 export default function ListCards(props) {
   let uri;
+
   if (typeof props.searchQuery === "undefined") {
     uri = serverURI + "/products/test";
   }
   else {
     uri = serverURI + "/products/search/" + props.searchQuery;
+
   }
   const [products, setProducts] = React.useState([]);
 

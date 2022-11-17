@@ -9,16 +9,48 @@ import '../Styles/hot.css'
 import { Button, Typography } from "@mui/material";
 import { AddProduct, ButtonForm } from "./popupUpload";
 import { useState } from "react";
-
+import axios, * as others from "axios";
+import serverURI from "../Constants/connection";
+import Cookies from "universal-cookie";
 
 // https://upload.wikimedia.org/wikipedia/commons/a/a3/Fenerbah%C3%A7elogo.png
 
-export default function TeamHeader() {
+export default function TeamHeader(props) {
+    const cookie = new Cookies();
+    const email = props.email;
+
     const [isShowLogin, setIsShowLogin] = useState(true);
+    const [logo, setLogo] = useState("");
+    const [teamName, setTeamName] = useState("");
+   
 
   const handleLoginClick = () => {
     setIsShowLogin((isShowLogin) => !isShowLogin);
   };
+
+  React.useEffect(()=>{
+    let uri = serverURI + "/users/team/";
+    const email = cookie.get("email");
+
+    var config = {
+      method: "get",
+      url: uri + email,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios(config)
+      .then((response) => {
+        setLogo(response.data.message.team[0].logo);
+        setTeamName(response.data.message.user[0].name);
+        console.log(response.data.message.user[0]);
+      })
+      .catch((error) => {
+        
+      });
+  }, []);
+
 
     return (
         <Container sx={{height: 500}}>
@@ -26,11 +58,11 @@ export default function TeamHeader() {
 
                 <Box sx={{display: "flex", flexDirection: "column", justifyContent: "end", mb:10, ml:10}}>
 
-                    <img width="250"src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Fenerbah%C3%A7elogo.png"/>
+                    <img width="250"src={logo}/>
                 </Box>
                 <Box sx={{display: "flex", flexDirection: "column", justifyContent: "spaceAround", mt:13, ml:10}}>
                     <Typography variant="h3" color="text.primary" sx={{ fontWeight: 900 }}>
-                        Fenerbahçe
+                        {teamName}
                     </Typography>
                     <Box sx={{mt:5}}>
                     <Typography variant="h5" color="text.primary" sx={{ fontWeight: 40 }}>

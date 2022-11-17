@@ -14,9 +14,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import SearchBar from './searchBar';
+import { useEffect } from 'react';
+import axios, * as others from "axios";
+import serverURI from "../Constants/connection";
 
 const pages = ['Teams', 'Open Auctions'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Logout'];
 
 function ResponsiveAppBar(props) {
   const cookie = new Cookies();
@@ -24,15 +27,36 @@ function ResponsiveAppBar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [logedIn, setLogedIn] = React.useState(false);
+  const [isAdmin, setIsAdmin] = React.useState(false);
   const [email, setEmail] = React.useState(cookie.get("email"));
 
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    let uri = serverURI + "/users/team/";
+    const email = cookie.get("email");
+
+    var config = {
+      method: "get",
+      url: uri + email,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios(config)
+      .then((response) => {
+        setIsAdmin(response.data.message.res);
+      })
+      .catch((error) => {
+        setIsAdmin(false);
+      });
+  }, []);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event) => {
-    console.log(event.currentTarget);
     setAnchorElUser(event.currentTarget);
   };
 
@@ -51,18 +75,20 @@ function ResponsiveAppBar(props) {
   const handleLogOut = () => {
     setAnchorElUser(null);
     setLogedIn(false);
-    
+    setIsAdmin(false);
     cookie.remove("email", { path: "/" });
-    
-    
-    
+    navigate("/");
   };
 
   const handleSignIn = () => {
     navigate("/signin");
   };
 
-  const settingsFunctions = [handleProfile, , , handleLogOut];
+  const handleAdmin = () => {
+    navigate(`/team/${email}`);
+  };
+
+  const settingsFunctions = [handleProfile, handleLogOut];
 
   React.useEffect(() => {
     if (email !== undefined) {
@@ -134,7 +160,6 @@ function ResponsiveAppBar(props) {
             </Menu>
           </Box>
 
-
           <Typography
             variant="h5"
             noWrap
@@ -154,7 +179,6 @@ function ResponsiveAppBar(props) {
             MAÇTAN
           </Typography>
 
-
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -170,6 +194,10 @@ function ResponsiveAppBar(props) {
           <Box sx={{ display: { xs: 'none', md: 'flex', flexGrow: 1 } }}>
             <SearchBar></SearchBar>
           </Box>
+          
+          {isAdmin ? <Box sx={{ display: { xs: 'none', md: 'flex'} , mr:3}}>
+            <Button variant="contained" onClick={handleAdmin}>Admin</Button>
+          </Box> : ""}
 
           <>{logedIn ? <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -201,8 +229,7 @@ function ResponsiveAppBar(props) {
             </Menu>
           </Box> : <Button variant="contained" onClick={handleSignIn}>Sign in</Button>}</>
 
-
-
+          
         </Toolbar>
       </Container>
     </AppBar>
