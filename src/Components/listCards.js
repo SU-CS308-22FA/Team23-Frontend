@@ -10,19 +10,21 @@ import Divider from "./divider";
 import { Link } from 'react-router-dom'
 
 export default function ListCards(props) {
-  let uri;
+  let uri = props.uri;
+  
 
-  if (typeof props.searchQuery === "undefined") {
-    uri = serverURI + "/products/test";
-  }
-  else {
-    uri = serverURI + "/products/search/" + props.searchQuery;
+  // if (typeof props.searchQuery === "undefined") {
+  //   uri = serverURI + "/products/test";
+  // }
+  // else {
+  //   uri = serverURI + "/products/search/" + props.searchQuery;
 
-  }
+  // }
   const [products, setProducts] = React.useState([]);
 
 
   React.useEffect(() => {
+    console.log(uri);
     var config = {
       method: "get",
       url: uri,
