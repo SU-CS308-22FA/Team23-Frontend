@@ -7,6 +7,7 @@ import serverURI from "../Constants/connection";
 import axios, * as others from "axios";
 import { set } from "mongoose";
 import Divider from "./divider";
+import { Link } from 'react-router-dom'
 
 export default function ListCards() {
     let uri = serverURI + "/products/test";
@@ -36,6 +37,8 @@ export default function ListCards() {
        console.log(error);
       });
     }, []);
+
+
     return(
         <Container sx={{mt:5, mb:5}}>
         {/* <Divider></Divider> */}
@@ -48,8 +51,12 @@ export default function ListCards() {
                 
             }}
         >
+
+          
             {products.map((product)=>(
-                <Card key={product._id} type={product.type} name={product.name} owner={product.owner} image={product.image}></Card>
+                <Card key={product._id} id={product._id} type={product.type} name={product.name} owner={product.owner} image={product.image}>
+                  
+                </Card>
             ))}
      
         </Box>
