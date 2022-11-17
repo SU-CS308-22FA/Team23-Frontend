@@ -9,28 +9,6 @@ import '../Styles/hot.css'
 import { Carousel } from 'react-responsive-carousel';
 import { Typography } from "@mui/material";
 
-const carouselData = [
-    {
-      'id': '1',
-      'src': 'http://fakeimg.pl/300/?text=1',
-    },
-    {
-      'id': '2',
-      'src': 'http://fakeimg.pl/300/?text=2',
-    },
-    {
-      'id': '3',
-      'src': 'http://fakeimg.pl/300/?text=3',
-    },
-    {
-      'id': '4',
-      'src': 'http://fakeimg.pl/300/?text=4',
-    },
-    {
-      'id': '5',
-      'src': 'http://fakeimg.pl/300/?text=5',
-    }
-  ];
 
 export default function HotCards() {
     

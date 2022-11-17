@@ -60,7 +60,7 @@ const AddProduct = ({ isShowLogin }) => {
 
   return (
     <div className={`${isShowLogin ? "active" : ""} show`}>
-      <Box sx={{ alignItems: 'center', position: "absolute", left: "39%", top: "30%", zIndex: 1, height: 100, width: 400 }}>
+      <Box sx={{bgcolor: 'primary', alignItems: 'center', position: "absolute", left: "39%", top: "30%", zIndex: 1, height: 300, width: 400 }}>
         <div className="form-boxx">
           <TextField
             margin="normal"
