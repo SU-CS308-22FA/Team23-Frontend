@@ -27,6 +27,7 @@ import AppBar from "../Components/appbar";
 const theme = createTheme();
 
 export default function Signin() {
+  const cookies = new Cookies();
   const [flag, setFlag] = useState(false);
   const [values, setValues] = React.useState({
     password: "",
@@ -39,7 +40,7 @@ export default function Signin() {
     navigate("/signup");
   };
   const navigateProfile = () => {
-    navigate("/profile");
+    navigate("/");
   };
 
   const handleChange = (prop) => (event) => {
@@ -63,6 +64,7 @@ export default function Signin() {
     SigninService(obj)
       .then((response) => {
         console.log(response);
+        cookies.set("email", email, { path: "/" });
         navigateProfile();
       })
       .catch((err) => {
@@ -72,8 +74,8 @@ export default function Signin() {
     setFlag(true);
     // if respone true
 
-    const cookies = new Cookies();
-    cookies.set("email", email, { path: "/" });
+    
+    
   };
 
   return (
