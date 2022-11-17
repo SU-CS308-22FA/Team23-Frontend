@@ -10,12 +10,12 @@ import { useParams } from "react-router-dom";
 
 const theme = createTheme();
 
-export default function HomePage() {
+export default function SearchPage() {
     const { searchQuery } = useParams();
     return (
         <ThemeProvider theme={theme}>
             <AppBar></AppBar>
-            <ListCards uri={searchQuery}></ListCards>
+            <ListCards searchQuery={searchQuery}></ListCards>
 
         </ThemeProvider>
     );
