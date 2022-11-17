@@ -8,7 +8,11 @@ import Profile from "./Views/profile";
 
 import UploadProduct from "./Views/uploadProduct";
 import HomePage from "./Views/homepage";
+
 import Product from "./Views/product";
+
+import AdminPage from "./Views/adminpage";
+
 
 function App() {
   return (
@@ -16,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signin" element={<Signin />} />
+        <Route path="/team" element={<AdminPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
         {/* <Route path="/test" element={<Test />} /> */}
@@ -27,3 +32,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
