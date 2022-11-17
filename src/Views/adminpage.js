@@ -9,17 +9,20 @@ import HotCards from "../Components/hot";
 import Divider from "../Components/divider";
 import TeamHeader from "../Components/teamHeader";
 import { useParams } from "react-router-dom";
+import serverURI from "../Constants/connection";
 
 const theme = createTheme();
 
 export default function AdminPage() {
-  const { email } = useParams();
+  const { id } = useParams();
+  console.log(id);
+  let uri = serverURI + `/products/team/${id}`;
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
-      <TeamHeader email={email}></TeamHeader>
+      <TeamHeader email={id}></TeamHeader>
       <Divider></Divider>
-      <ListCards email={email}></ListCards>
+      <ListCards uri={uri}></ListCards>
     </ThemeProvider>
   );
 }

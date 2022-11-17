@@ -7,15 +7,18 @@ import ListCards from "../Components/listCards";
 import HotCards from "../Components/hot";
 import Divider from "../Components/divider";
 import { useParams } from "react-router-dom";
+import serverURI from "../Constants/connection";
 
 const theme = createTheme();
 
 export default function SearchPage() {
     const { searchQuery } = useParams();
+    let uri = serverURI + "/products/search/" + searchQuery;
+    
     return (
         <ThemeProvider theme={theme}>
             <AppBar></AppBar>
-            <ListCards searchQuery={searchQuery}></ListCards>
+            <ListCards uri={uri}></ListCards>
 
         </ThemeProvider>
     );
