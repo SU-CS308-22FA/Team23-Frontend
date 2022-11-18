@@ -59,16 +59,8 @@ export default function ListCards(props) {
         }}
       >
         {products.map((product) => (
-          <Card
-            key={product._id}
-            id={product._id}
-            type={product.type}
-            name={product.name}
-            owner={product.owner}
-            image={product.image}
-            func={func2}
-            admin={isAdmin}
-          ></Card>
+          <Card key={product._id} id={product._id} price={product.price} start_date={product.start_date} duration={product.duration} type={product.type} name={product.name} owner={product.owner} image={product.image}>
+          </Card>
         ))}
       </Box>
     </Container>
