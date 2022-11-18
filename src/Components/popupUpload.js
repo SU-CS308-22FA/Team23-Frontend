@@ -57,7 +57,9 @@ const AddProduct = ({ isShowLogin }) => {
   };
 
   return (
-    <div className={`${isShowLogin ? "active" : ""} show`}>
+  <Box>
+      {isShowLogin?  <div className="active show"/> : 
+      <div className="show">
       <Box
         sx={{
           bgcolor: "primary",
@@ -129,8 +131,9 @@ const AddProduct = ({ isShowLogin }) => {
             </button>
           </div>
         </div>
+      </Box></div>}
       </Box>
-    </div>
+
   );
 };
 
