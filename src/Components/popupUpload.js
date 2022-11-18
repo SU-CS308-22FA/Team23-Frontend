@@ -9,6 +9,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Cookies from "universal-cookie";
 import "../Style/styles.css";
+import serverURI from "../Constants/connection";
 
 function ButtonForm({ handleLoginClick }) {
   const handleClick = () => {
@@ -16,6 +17,127 @@ function ButtonForm({ handleLoginClick }) {
   };
   return <Button onClick={handleClick}>Upload</Button>;
 }
+
+const UpdateProduct = (props) => {
+  const id = props.id;
+  // console.log(id);
+
+  const history = useNavigate();
+  const [data, setData] = useState({
+    name: "",
+    image: "",
+    type: "",
+    owner: "",
+    price: "",
+  });
+  const handleChange = (name) => (e) => {
+    const value = name === "image" ? e.target.files[0] : e.target.value;
+    setData({ ...data, [name]: value });
+  };
+
+  const handleSubmitUpdate = async () => {
+    try {
+      let formData = new FormData();
+      formData.append("image", data.image);
+      formData.append("name", data.name);
+      formData.append("owner", data.owner);
+      formData.append("type", data.type);
+      formData.append("price", data.price);
+      const path = serverURI + "/products/update/" + id;
+
+      const res = await fetch(`${path}`, {
+        method: "PUT",
+        body: formData,
+      });
+      if (res.ok) {
+        setData({ name: "", owner: "", type: "", image: "", price: "" });
+        history.replace("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <Box>
+      <div className="show">
+        <Box
+          sx={{
+            bgcolor: "primary",
+            alignItems: "center",
+            position: "absolute",
+            left: "39%",
+            top: "30%",
+            zIndex: 1,
+            height: 300,
+            width: 400,
+          }}
+        >
+          <div className="form-boxx">
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="type"
+              label="Enter type"
+              name="type"
+              placeholder="Type"
+              value={data.type}
+              onChange={handleChange("type")}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="Enter name"
+              placeholder="Name"
+              name="name"
+              value={data.name}
+              onChange={handleChange("name")}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="owner"
+              label="Enter owner"
+              placeholder="Owner"
+              name="owner"
+              value={data.owner}
+              onChange={handleChange("owner")}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="price"
+              label="Enter price"
+              placeholder="price"
+              name="price"
+              value={data.price}
+              onChange={handleChange("price")}
+            />
+            <input
+              className="form-control"
+              type="file"
+              accept="image/*"
+              name="image"
+              onChange={handleChange("image")}
+            />
+
+            <div className="text-center">
+              <button className="btn btn-primary" onClick={handleSubmitUpdate}>
+                Submit
+              </button>
+            </div>
+          </div>
+        </Box>
+      </div>
+      )}
+    </Box>
+  );
+};
 
 const AddProduct = ({ isShowLogin }) => {
   const cookie = new Cookies();
@@ -34,7 +156,7 @@ const AddProduct = ({ isShowLogin }) => {
     const value = name === "image" ? e.target.files[0] : e.target.value;
     setData({ ...data, [name]: value });
   };
-  const handleSubmit = async () => {
+  const handleSubmitUpload = async () => {
     try {
       let formData = new FormData();
       formData.append("image", data.image);
@@ -57,84 +179,90 @@ const AddProduct = ({ isShowLogin }) => {
   };
 
   return (
-  <Box>
-      {isShowLogin?  <div className="active show"/> : 
-      <div className="show">
-      <Box
-        sx={{
-          bgcolor: "primary",
-          alignItems: "center",
-          position: "absolute",
-          left: "39%",
-          top: "30%",
-          zIndex: 1,
-          height: 300,
-          width: 400,
-        }}
-      >
-        <div className="form-boxx">
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="type"
-            label="Enter type"
-            name="type"
-            placeholder="Type"
-            value={data.type}
-            onChange={handleChange("type")}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="name"
-            label="Enter name"
-            placeholder="Name"
-            name="name"
-            value={data.name}
-            onChange={handleChange("name")}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="owner"
-            label="Enter owner"
-            placeholder="Owner"
-            name="owner"
-            value={data.owner}
-            onChange={handleChange("owner")}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="price"
-            label="Enter price"
-            placeholder="price"
-            name="price"
-            value={data.price}
-            onChange={handleChange("price")}
-          />
-          <input
-            className="form-control"
-            type="file"
-            accept="image/*"
-            name="image"
-            onChange={handleChange("image")}
-          />
+    <Box>
+      {isShowLogin ? (
+        <div className="active show" />
+      ) : (
+        <div className="show">
+          <Box
+            sx={{
+              bgcolor: "primary",
+              alignItems: "center",
+              position: "absolute",
+              left: "39%",
+              top: "30%",
+              zIndex: 1,
+              height: 300,
+              width: 400,
+            }}
+          >
+            <div className="form-boxx">
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="type"
+                label="Enter type"
+                name="type"
+                placeholder="Type"
+                value={data.type}
+                onChange={handleChange("type")}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="name"
+                label="Enter name"
+                placeholder="Name"
+                name="name"
+                value={data.name}
+                onChange={handleChange("name")}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="owner"
+                label="Enter owner"
+                placeholder="Owner"
+                name="owner"
+                value={data.owner}
+                onChange={handleChange("owner")}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="price"
+                label="Enter price"
+                placeholder="price"
+                name="price"
+                value={data.price}
+                onChange={handleChange("price")}
+              />
+              <input
+                className="form-control"
+                type="file"
+                accept="image/*"
+                name="image"
+                onChange={handleChange("image")}
+              />
 
-          <div className="text-center">
-            <button className="btn btn-primary" onClick={handleSubmit}>
-              Submit
-            </button>
-          </div>
+              <div className="text-center">
+                <button
+                  className="btn btn-primary"
+                  onClick={handleSubmitUpload}
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </Box>
         </div>
-      </Box></div>}
-      </Box>
-
+      )}
+    </Box>
   );
 };
 
-export { AddProduct, ButtonForm };
+export { AddProduct, ButtonForm, UpdateProduct };
