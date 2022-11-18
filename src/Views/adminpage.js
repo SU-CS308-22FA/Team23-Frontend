@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
@@ -10,19 +9,32 @@ import Divider from "../Components/divider";
 import TeamHeader from "../Components/teamHeader";
 import { useParams } from "react-router-dom";
 import serverURI from "../Constants/connection";
+import { UpdateProduct } from "../Components/popupUpload";
 
 const theme = createTheme();
 
 export default function AdminPage() {
+  const [showForm, setshowForm] = React.useState(false);
+  const [myid, setId] = React.useState("");
+  function isShowForm(data) {
+    if (showForm === false) {
+      setshowForm(true);
+    } else {
+      setshowForm(false);
+      setId(data);
+      console.log(myid);
+    }
+  }
+
   const { id } = useParams();
-  console.log(id);
   let uri = serverURI + `/products/team/${id}`;
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
       <TeamHeader email={id}></TeamHeader>
       <Divider></Divider>
-      <ListCards uri={uri}></ListCards>
+      {showForm ? <UpdateProduct id={myid}></UpdateProduct> : ""}
+      <ListCards admin={true} uri={uri} func={isShowForm}></ListCards>
     </ThemeProvider>
   );
 }

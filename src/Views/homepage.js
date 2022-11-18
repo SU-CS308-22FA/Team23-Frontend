@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useInRouterContext, useNavigate } from "react-router-dom";
@@ -19,7 +18,7 @@ export default function HomePage() {
       <AppBar></AppBar>
       <HotCards></HotCards>
       <Divider></Divider>
-      <ListCards uri={uri}></ListCards>
+      <ListCards admin={false} uri={uri}></ListCards>
     </ThemeProvider>
   );
 }
