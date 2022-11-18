@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { CardActionArea } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import secondsToDhms from '../Utils/countDown';
 
 export default function ProductCard(props) {
   const id = props.id;
@@ -17,10 +18,24 @@ export default function ProductCard(props) {
   const name = props.name || "test";
   const owner = props.owner || "test";
   const image = props.image || 'https://assets.adidas.com/images/w_600,f_auto,q_auto/49808757050946de8bedae29011926b5_9366/Manchester_United_22-23_Home_Jersey_Red_H13881_21_model.jpg';
+  const price = props.price;
+  const duration = Number(props.duration) / 1000;
+  const start_date = Number(props.start_date) / 1000;
+  const currentDate = Math.floor(Date.now() / 1000);
+  const remainingTime = duration - (currentDate - start_date);
+  const [currentRemaningTime, setRemainingTime] = React.useState(remainingTime);
 
   const size = props.size;
   let size1 = {};
 
+  React.useEffect(() => {
+    const intervalId = setInterval(() => {
+      setRemainingTime((prev) => prev - 1);
+    }, 1000);
+    
+    return () => clearInterval(intervalId);
+  }, []);
+  
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -49,7 +64,7 @@ export default function ProductCard(props) {
       <CardActionArea onClick={handleClick}>
       <Box sx={{ display: size1.displayChip, alignContent: 'space-between', position: 'absolute', bottom: '29%',
           left: '5%',}}>
-          <Chip icon={<AccessTimeIcon/>} color='primary' label="23:23:23 Bid:$5,000"  />
+          <Chip icon={<AccessTimeIcon/>} color='primary' label={`${secondsToDhms(currentRemaningTime)} Bid: $${price}`}  />
           </Box>
       <CardMedia
         component="img"
