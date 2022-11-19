@@ -52,7 +52,7 @@ export default function ProductHeader(props) {
             price={price}
             duration={duration}
             start_date={start_date}
-          ></Auction>{" "}
+          ></Auction>
         </Box>
       </Box>
     </Container>

@@ -34,15 +34,23 @@ export default function HomePage() {
       });
   }, []);
 
-  const image = products[0]["image"];
-  const player = products[0]["name"];
-  const owner = products[0]["owner"];
-  const type = products[0]["type"];
-  const sold = products[0]["sold"];
-  const price = products[0]["price"];
-  const duration = products[0]["duration"];
-  const start_date = products[0]["start_date"];
-
+  // const image = products[0]["image"];
+  // const player = products[0]["name"];
+  // const owner = products[0]["owner"];
+  // const type = products[0]["type"];
+  // const sold = products[0]["sold"];
+  // const price = products[0]["price"];
+  // const duration = products[0]["duration"];
+  // const start_date = products[0]["start_date"];
+  const image = products[0].image;
+  const player = products[0].name;
+  const owner = products[0].owner;
+  const type = products[0].type;
+  const sold = products[0].sold;
+  const price = products[0].price;
+  const duration = products[0].duration;
+  const start_date = products[0].start_date;
+  console.log(products[0], ":", start_date);
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
