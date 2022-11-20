@@ -7,11 +7,11 @@ import { CardMedia } from "@mui/material";
 
 export default function ProductHeader(props) {
   //image
-  const image = props.image || "";
-  const price = props.price || "";
-  const duration = props.duration || "";
-  const start_date = props.start_date || "";
-  // console.log(owner, type, player, status);
+  const image = props.image;
+  const price = props.price;
+  const duration = props.duration || 0;
+  const start_date = props.start_date || 0;
+  console.log(start_date, duration, price);
 
   return (
     <Container maxWidth="xl" sx={{ height: 500 }}>
@@ -49,8 +49,8 @@ export default function ProductHeader(props) {
           }}
         >
           <Auction
-            price={price}
             duration={duration}
+            price={price}
             start_date={start_date}
           ></Auction>
         </Box>

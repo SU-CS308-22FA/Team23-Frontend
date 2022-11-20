@@ -14,7 +14,7 @@ import Box from "@mui/material/Box";
 import secondsToDhms from "../Utils/countDown";
 export default function AuctionData(props) {
   const price = props.price;
-  const duration = 604800;
+  const duration = Number(props.duration) / 1000;
   const start_date = Number(props.start_date) / 1000;
   const currentDate = Math.floor(Date.now() / 1000);
   const remainingTime = duration - (currentDate - start_date);
@@ -35,8 +35,11 @@ export default function AuctionData(props) {
           primary="The item closes in:"
           secondary={
             <React.Fragment>
-              `{secondsToDhms(currentRemaningTime)}
+              {secondsToDhms(remainingTime, true)}
             </React.Fragment>
+            //  <React.Fragment>
+            //   `{secondsToDhms(currentRemaningTime)}
+            // </React.Fragment>
           }
 
           // secondary={<React.Fragment>{secondsToDhms(number)}</React.Fragment>}
