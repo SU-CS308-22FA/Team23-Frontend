@@ -19,13 +19,13 @@ export default function AdminPage() {
   function isShowForm(data) {
     if (showForm === false) {
       setshowForm(true);
-    } else {
+      setId(data);
+    }
+    if (showForm === true) {
       setshowForm(false);
       setId(data);
-      console.log(myid);
     }
   }
-
   const { id } = useParams();
   let uri = serverURI + `/products/team/${id}`;
   return (
@@ -33,7 +33,7 @@ export default function AdminPage() {
       <AppBar></AppBar>
       <TeamHeader email={id}></TeamHeader>
       <Divider></Divider>
-      {showForm ? <UpdateProduct id={myid}></UpdateProduct> : ""}
+      {showForm ? <UpdateProduct id={myid} func={isShowForm}></UpdateProduct> : ""}
       <ListCards admin={true} uri={uri} func={isShowForm}></ListCards>
     </ThemeProvider>
   );

@@ -10,6 +10,8 @@ import Button from "@mui/material/Button";
 import Cookies from "universal-cookie";
 import "../Style/styles.css";
 import serverURI from "../Constants/connection";
+import { WindowSharp } from "@mui/icons-material";
+import IconButton from '@mui/material/IconButton';
 
 function ButtonForm({ handleLoginClick }) {
   const handleClick = () => {
@@ -20,7 +22,6 @@ function ButtonForm({ handleLoginClick }) {
 
 const UpdateProduct = (props) => {
   const id = props.id;
-  // console.log(id);
 
   const history = useNavigate();
   const [data, setData] = useState({
@@ -57,6 +58,10 @@ const UpdateProduct = (props) => {
       console.log(error);
     }
   };
+
+  const handleCancel = () => {
+    props.func();
+  }
 
   return (
     <Box sx={{ position: "fixed", top: "30%", left: "40%", zIndex: 1 }}>
@@ -127,9 +132,18 @@ const UpdateProduct = (props) => {
             />
 
             <div className="text-center">
-              <button className="btn btn-primary" onClick={handleSubmitUpdate}>
-                Submit
-              </button>
+              <Box sx={{ mt: 1, ml: 20, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <button className="btn btn-primary" onClick={handleSubmitUpdate}>
+                  Submit
+                </button>
+              </Box>
+              <Box sx={{ mt: 1, ml: 20, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <button className="btn btn-primary" onClick={handleCancel}>
+                  Cancel
+                </button>
+              </Box>
+
+
             </div>
           </div>
         </Box>
