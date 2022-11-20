@@ -12,6 +12,7 @@ import "../Style/styles.css";
 import serverURI from "../Constants/connection";
 import { WindowSharp } from "@mui/icons-material";
 import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 function ButtonForm({ handleLoginClick }) {
   const handleClick = () => {
@@ -137,12 +138,18 @@ const UpdateProduct = (props) => {
                   Submit
                 </button>
               </Box>
-              <Box sx={{ mt: 1, ml: 20, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                <button className="btn btn-primary" onClick={handleCancel}>
-                  Cancel
-                </button>
-              </Box>
-
+              <IconButton
+                aria-label="close"
+                onClick={handleCancel}
+                sx={{
+                  position: 'absolute',
+                  right: 8,
+                  top: 8,
+                  color: (theme) => theme.palette.grey[500],
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
 
             </div>
           </div>
