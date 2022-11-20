@@ -30,6 +30,7 @@ export default function ProductCard(props) {
   const admin = props.admin;
   function func3() {
     props.func(id);
+    console.log(id);
   }
 
   React.useEffect(() => {
@@ -51,21 +52,21 @@ export default function ProductCard(props) {
 
   size === 1
     ? (size1 = {
-        maxWidth: 300,
-        imgHeight: "220",
-        name: "h6",
-        itemType: "h10",
-        variant: "h10",
-        displayChip: "none",
-      })
+      maxWidth: 300,
+      imgHeight: "220",
+      name: "h6",
+      itemType: "h10",
+      variant: "h10",
+      displayChip: "none",
+    })
     : (size1 = {
-        maxWidth: 300,
-        imgHeight: "300",
-        name: "h5",
-        itemType: "h9",
-        variant: "h9",
-        displayChip: "flex",
-      });
+      maxWidth: 300,
+      imgHeight: "300",
+      name: "h5",
+      itemType: "h9",
+      variant: "h9",
+      displayChip: "flex",
+    });
 
   return (
     <Card sx={{ maxWidth: size1.maxWidth, position: "relative" }}>

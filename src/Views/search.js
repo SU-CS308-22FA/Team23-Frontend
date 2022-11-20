@@ -14,7 +14,13 @@ const theme = createTheme();
 export default function SearchPage() {
     const { searchQuery } = useParams();
     let uri = serverURI + "/products/search/" + searchQuery;
-    
+
+    const navigate = useNavigate();
+
+    React.useEffect(() => {
+        console.log(searchQuery)
+    }, [searchQuery]);
+
     return (
         <ThemeProvider theme={theme}>
             <AppBar></AppBar>
