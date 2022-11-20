@@ -42,11 +42,11 @@
 }
 
 .form-box {
-  margin-top: 7vh;
-  opacity: 80%;
+  opacity: 100%;
   background: rgb(241, 235, 235);
   padding-right: 100px;
   padding-left: 80px;
+  padding-bottom: 20px;
   border-radius: 20px;
   box-shadow: 10px 10px 10px 1px rgba(0, 0, 0, 0.2);
 }

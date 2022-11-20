@@ -59,7 +59,7 @@ const UpdateProduct = (props) => {
   };
 
   return (
-    <Box>
+    <Box sx={{ position: "fixed", top: "30%", left: "40%", zIndex: 1 }}>
       <div className="show">
         <Box
           sx={{
@@ -73,7 +73,7 @@ const UpdateProduct = (props) => {
             width: 400,
           }}
         >
-          <div className="form-boxx">
+          <div className="form-box">
             <TextField
               margin="normal"
               required
@@ -134,7 +134,6 @@ const UpdateProduct = (props) => {
           </div>
         </Box>
       </div>
-      )}
     </Box>
   );
 };
@@ -158,6 +157,8 @@ const AddProduct = ({ isShowLogin }) => {
   };
   const handleSubmitUpload = async () => {
     try {
+      let currentDate = Date.now();
+      let duration = 604800000;
       let formData = new FormData();
       formData.append("image", data.image);
       formData.append("name", data.name);
@@ -165,6 +166,8 @@ const AddProduct = ({ isShowLogin }) => {
       formData.append("type", data.type);
       formData.append("price", data.price);
       formData.append("email", email);
+      formData.append("currentDate", currentDate);
+      formData.append("duration", duration);
       const res = await fetch(`http://localhost:3000/products/upload`, {
         method: "POST",
         body: formData,

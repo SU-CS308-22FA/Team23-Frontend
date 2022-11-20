@@ -27,44 +27,26 @@ export default function HomePage() {
       .then((response) => {
         setProducts(response.data.message);
         console.log(response.data.message);
-        // console.log(products[0]["image"]);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  // const image = products[0]["image"];
-  // const player = products[0]["name"];
-  // const owner = products[0]["owner"];
-  // const type = products[0]["type"];
-  // const sold = products[0]["sold"];
-  // const price = products[0]["price"];
-  // const duration = products[0]["duration"];
-  // const start_date = products[0]["start_date"];
-  const image = products[0].image;
-  const player = products[0].name;
-  const owner = products[0].owner;
-  const type = products[0].type;
-  const sold = products[0].sold;
-  const price = products[0].price;
-  const duration = products[0].duration;
-  const start_date = products[0].start_date;
-  console.log(products[0], ":", start_date);
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
       <ProductHeader
-        image={image}
-        price={price}
-        duration={duration}
-        start_date={start_date}
+        image={products[0].image}
+        price={products[0].price}
+        duration={products[0].duration}
+        start_date={products[0].start_date}
       ></ProductHeader>
       <ProductBody
-        player={player}
-        owner={owner}
-        type={type}
-        sold={sold}
+        player={products[0].name}
+        owner={products[0].owner}
+        type={products[0].type}
+        sold={products[0].sold}
       ></ProductBody>
     </ThemeProvider>
   );
