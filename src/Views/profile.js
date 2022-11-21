@@ -23,6 +23,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import serverURI from "../Constants/connection";
+import AppBar from "../Components/appbar";
 
 const theme = createTheme();
 
@@ -109,12 +110,13 @@ export default function Profile() {
       .catch((error) => {
         setUser(error);
       });
-  }, [cookie, uri]);
+  }, []);
   if (isLoading) {
     return <div> Loading ... </div>;
   }
   return (
     <ThemeProvider theme={theme}>
+      <AppBar></AppBar>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         {
