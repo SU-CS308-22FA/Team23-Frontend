@@ -11,8 +11,8 @@ import Cookies from "universal-cookie";
 import "../Style/styles.css";
 import serverURI from "../Constants/connection";
 import { WindowSharp } from "@mui/icons-material";
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 function ButtonForm({ handleLoginClick }) {
   const handleClick = () => {
@@ -29,7 +29,6 @@ const UpdateProduct = (props) => {
     name: "",
     image: "",
     type: "",
-    owner: "",
     price: "",
   });
   const handleChange = (name) => (e) => {
@@ -42,7 +41,6 @@ const UpdateProduct = (props) => {
       let formData = new FormData();
       formData.append("image", data.image);
       formData.append("name", data.name);
-      formData.append("owner", data.owner);
       formData.append("type", data.type);
       formData.append("price", data.price);
       const path = serverURI + "/products/update/" + id;
@@ -52,7 +50,7 @@ const UpdateProduct = (props) => {
         body: formData,
       });
       if (res.ok) {
-        setData({ name: "", owner: "", type: "", image: "", price: "" });
+        setData({ name: "", type: "", image: "", price: "" });
         history.replace("/");
       }
     } catch (error) {
@@ -62,7 +60,7 @@ const UpdateProduct = (props) => {
 
   const handleCancel = () => {
     props.func();
-  }
+  };
 
   return (
     <Box sx={{ position: "fixed", top: "30%", left: "40%", zIndex: 1 }}>
@@ -106,17 +104,6 @@ const UpdateProduct = (props) => {
               margin="normal"
               required
               fullWidth
-              id="owner"
-              label="Enter owner"
-              placeholder="Owner"
-              name="owner"
-              value={data.owner}
-              onChange={handleChange("owner")}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
               id="price"
               label="Enter price"
               placeholder="price"
@@ -133,8 +120,19 @@ const UpdateProduct = (props) => {
             />
 
             <div className="text-center">
-              <Box sx={{ mt: 1, ml: 20, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                <button className="btn btn-primary" onClick={handleSubmitUpdate}>
+              <Box
+                sx={{
+                  mt: 1,
+                  ml: 20,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
+              >
+                <button
+                  className="btn btn-primary"
+                  onClick={handleSubmitUpdate}
+                >
                   Submit
                 </button>
               </Box>
@@ -142,7 +140,7 @@ const UpdateProduct = (props) => {
                 aria-label="close"
                 onClick={handleCancel}
                 sx={{
-                  position: 'absolute',
+                  position: "absolute",
                   right: 8,
                   top: 8,
                   color: (theme) => theme.palette.grey[500],
@@ -150,7 +148,6 @@ const UpdateProduct = (props) => {
               >
                 <CloseIcon />
               </IconButton>
-
             </div>
           </div>
         </Box>
