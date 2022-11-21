@@ -8,9 +8,34 @@ import Card from "./cart";
 import "../Styles/hot.css";
 import { Carousel } from "react-responsive-carousel";
 import { Typography } from "@mui/material";
+import axios, * as others from "axios";
 
+export default function HotCards(props) {
+  let uri = props.uri;
 
-export default function HotCards() {
+  const [products, setProducts] = React.useState([{}, {}, {}]);
+
+  React.useEffect(() => {
+    console.log(uri);
+    var config = {
+      method: "get",
+      url: uri,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log(response.data.message);
+        setProducts(response.data.message);
+        console.log(products);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <Container sx={{ height: 600 }}>
       <Box sx={{ display: "flex", justifyContent: "flex-start", height: 570 }}>
@@ -44,7 +69,17 @@ export default function HotCards() {
               zIndex: 0,
             }}
           >
-            <Card size={1}></Card>
+            <Card size={1}
+            key={products[2]._id}
+            id={products[2]._id}
+            price={products[2].price}
+            start_date={products[2].start_date}
+            duration={products[2].duration}
+            type={products[2].type}
+            name={products[2].name}
+            owner={products[2].owner}
+            image={products[2].image}
+            ></Card>
           </Box>
           <Box
             sx={{
@@ -55,7 +90,17 @@ export default function HotCards() {
               zIndex: 1,
             }}
           >
-            <Card></Card>
+            <Card
+            key={products[0]._id}
+            id={products[0]._id}
+            price={products[0].price}
+            start_date={products[0].start_date}
+            duration={products[0].duration}
+            type={products[0].type}
+            name={products[0].name}
+            owner={products[0].owner}
+            image={products[0].image}
+            ></Card>
           </Box>
           <Box
             sx={{
@@ -66,7 +111,17 @@ export default function HotCards() {
               zIndex: 0,
             }}
           >
-            <Card size={1}></Card>
+            <Card size={1}
+            key={products[1]._id}
+            id={products[1]._id}
+            price={products[1].price}
+            start_date={products[1].start_date}
+            duration={products[1].duration}
+            type={products[1].type}
+            name={products[1].name}
+            owner={products[1].owner}
+            image={products[1].image}
+            ></Card>
           </Box>
         </Box>
         <Box

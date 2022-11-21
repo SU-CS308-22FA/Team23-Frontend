@@ -7,7 +7,7 @@ import Profile from "./Views/profile";
 // import Test from "./Views/test";
 import Search from "./Views/search";
 
-import UploadProduct from "./Views/uploadProduct";
+
 import HomePage from "./Views/homepage";
 
 import Product from "./Views/product";
@@ -24,7 +24,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
         {/* <Route path="/test" element={<Test />} /> */}
-        <Route path="/upload" element={<UploadProduct />} />
+      
         <Route path="/search/:searchQuery" element={<Search />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/team/:id" element={<AdminPage />} />
