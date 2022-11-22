@@ -16,7 +16,7 @@ export default function HomePage() {
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
-      <HotCards></HotCards>
+      <HotCards uri={uri}></HotCards>
       <Divider></Divider>
       <ListCards admin={false} uri={uri}></ListCards>
     </ThemeProvider>

@@ -11,8 +11,8 @@ import Cookies from "universal-cookie";
 import "../Style/styles.css";
 import serverURI from "../Constants/connection";
 import { WindowSharp } from "@mui/icons-material";
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 function ButtonForm({ handleLoginClick }) {
   const handleClick = () => {
@@ -29,7 +29,6 @@ const UpdateProduct = (props) => {
     name: "",
     image: "",
     type: "",
-    owner: "",
     price: "",
   });
   const handleChange = (name) => (e) => {
@@ -37,12 +36,12 @@ const UpdateProduct = (props) => {
     setData({ ...data, [name]: value });
   };
 
+
   const handleSubmitUpdate = async () => {
     try {
       let formData = new FormData();
       formData.append("image", data.image);
       formData.append("name", data.name);
-      formData.append("owner", data.owner);
       formData.append("type", data.type);
       formData.append("price", data.price);
       const path = serverURI + "/products/update/" + id;
@@ -52,7 +51,7 @@ const UpdateProduct = (props) => {
         body: formData,
       });
       if (res.ok) {
-        setData({ name: "", owner: "", type: "", image: "", price: "" });
+        setData({ name: "", type: "", image: "", price: "" });
         history.replace("/");
       }
     } catch (error) {
@@ -62,7 +61,7 @@ const UpdateProduct = (props) => {
 
   const handleCancel = () => {
     props.func();
-  }
+  };
 
   return (
     <Box sx={{ position: "fixed", top: "30%", left: "40%", zIndex: 1 }}>
@@ -106,17 +105,6 @@ const UpdateProduct = (props) => {
               margin="normal"
               required
               fullWidth
-              id="owner"
-              label="Enter owner"
-              placeholder="Owner"
-              name="owner"
-              value={data.owner}
-              onChange={handleChange("owner")}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
               id="price"
               label="Enter price"
               placeholder="price"
@@ -133,8 +121,19 @@ const UpdateProduct = (props) => {
             />
 
             <div className="text-center">
-              <Box sx={{ mt: 1, ml: 20, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                <button className="btn btn-primary" onClick={handleSubmitUpdate}>
+              <Box
+                sx={{
+                  mt: 1,
+                  ml: 20,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
+              >
+                <button
+                  className="btn btn-primary"
+                  onClick={handleSubmitUpdate}
+                >
                   Submit
                 </button>
               </Box>
@@ -142,7 +141,7 @@ const UpdateProduct = (props) => {
                 aria-label="close"
                 onClick={handleCancel}
                 sx={{
-                  position: 'absolute',
+                  position: "absolute",
                   right: 8,
                   top: 8,
                   color: (theme) => theme.palette.grey[500],
@@ -150,7 +149,6 @@ const UpdateProduct = (props) => {
               >
                 <CloseIcon />
               </IconButton>
-
             </div>
           </div>
         </Box>
@@ -159,7 +157,7 @@ const UpdateProduct = (props) => {
   );
 };
 
-const AddProduct = ({ isShowLogin }) => {
+const AddProduct = (props) => {
   const cookie = new Cookies();
   cookie.get("email");
   const email = cookie.cookies.email;
@@ -200,91 +198,114 @@ const AddProduct = ({ isShowLogin }) => {
     } catch (error) {
       console.log(error);
     }
+    props.func2();
+  };
+
+  const handleCancel = () => {
+    props.func();
   };
 
   return (
-    <Box>
-      {isShowLogin ? (
-        <div className="active show" />
-      ) : (
-        <div className="show">
-          <Box
-            sx={{
-              bgcolor: "primary",
-              alignItems: "center",
-              position: "absolute",
-              left: "39%",
-              top: "30%",
-              zIndex: 1,
-              height: 300,
-              width: 400,
-            }}
-          >
-            <div className="form-boxx">
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="type"
-                label="Enter type"
-                name="type"
-                placeholder="Type"
-                value={data.type}
-                onChange={handleChange("type")}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="name"
-                label="Enter name"
-                placeholder="Name"
-                name="name"
-                value={data.name}
-                onChange={handleChange("name")}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="owner"
-                label="Enter owner"
-                placeholder="Owner"
-                name="owner"
-                value={data.owner}
-                onChange={handleChange("owner")}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="price"
-                label="Enter price"
-                placeholder="price"
-                name="price"
-                value={data.price}
-                onChange={handleChange("price")}
-              />
-              <input
-                className="form-control"
-                type="file"
-                accept="image/*"
-                name="image"
-                onChange={handleChange("image")}
-              />
+    <Box sx={{ position: "fixed", top: "30%", left: "40%", zIndex: 1 }}>
+      <div className="show">
+        <Box
+          sx={{
+            bgcolor: "primary",
+            alignItems: "center",
+            position: "absolute",
+            left: "39%",
+            top: "30%",
+            zIndex: 1,
+            height: 300,
+            width: 400,
+          }}
+        >
+          <div className="form-box">
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="owner"
+              label="Enter Owner"
+              name="owner"
+              placeholder="Owner"
+              value={data.owner}
+              onChange={handleChange("owner")}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="type"
+              label="Enter type"
+              name="type"
+              placeholder="Type"
+              value={data.type}
+              onChange={handleChange("type")}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="Enter name"
+              placeholder="Name"
+              name="name"
+              value={data.name}
+              onChange={handleChange("name")}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="price"
+              label="Enter price"
+              placeholder="price"
+              name="price"
+              value={data.price}
+              onChange={handleChange("price")}
+            />
+            <input
+              className="form-control"
+              type="file"
+              accept="image/*"
+              name="image"
+              onChange={handleChange("image")}
+            />
 
-              <div className="text-center">
+            <div className="text-center">
+              <Box
+                sx={{
+                  mt: 1,
+                  ml: 20,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
+              >
                 <button
                   className="btn btn-primary"
                   onClick={handleSubmitUpload}
                 >
                   Submit
                 </button>
-              </div>
+              </Box>
+              <IconButton
+                aria-label="close"
+                onClick={handleCancel}
+                sx={{
+                  position: "absolute",
+                  right: 8,
+                  top: 8,
+                  color: (theme) => theme.palette.grey[500],
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
             </div>
-          </Box>
-        </div>
-      )}
+          </div>
+        </Box>
+      </div>
     </Box>
   );
 };

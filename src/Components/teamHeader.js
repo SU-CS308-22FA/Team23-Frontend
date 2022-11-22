@@ -22,6 +22,11 @@ export default function TeamHeader(props) {
     const [isShowLogin, setIsShowLogin] = useState(true);
     const [logo, setLogo] = useState("");
     const [teamName, setTeamName] = useState("");
+
+    function func2() {
+
+      props.func();
+    }
    
 
   const handleLoginClick = () => {
@@ -71,7 +76,7 @@ export default function TeamHeader(props) {
                     </Box>
                 </Box>
                 <Box sx={{display: "flex", flexDirection: "column", justifyContent: "end", ml:35, mb:10}}>
-                <ButtonForm handleLoginClick={handleLoginClick} />
+                <Button onClick={func2}>Upload</Button>
       
       
       
@@ -82,7 +87,7 @@ export default function TeamHeader(props) {
 
       
       
-      <AddProduct isShowLogin={isShowLogin} />
+
         </Container>    
     );
 }
