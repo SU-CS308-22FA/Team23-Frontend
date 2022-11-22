@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -32,13 +33,13 @@ export default function Profile() {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({});
   const cookie = new Cookies();
-  cookie.get("email");
+  cookie.get('email');
   const email = cookie.cookies.email;
-  let uri = serverURI + "/users/profile/";
+  let uri = serverURI + '/users/profile/';
 
   const [values, setValues] = React.useState({
-    oldPassword: "",
-    newPassword: "",
+    oldPassword: '',
+    newPassword: '',
 
     oldShowPassword: false,
     newShowPassword: false,
@@ -65,18 +66,18 @@ export default function Profile() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    let newPassword = data.get("newPassword");
-    let oldPassword = data.get("oldPassword");
+    let newPassword = data.get('newPassword');
+    let oldPassword = data.get('oldPassword');
     const obj = [newPassword, oldPassword, user];
 
     UpdateService(obj).then((response) => {
-      console.log(response, "asdasdasd");
+      console.log(response, 'asdasdasd');
     });
   };
 
   const handleLogout = (event) => {
     event.preventDefault();
-    navigate("/signin");
+    navigate('/signin');
   };
 
   const handleDelete = (event) => {
@@ -85,19 +86,18 @@ export default function Profile() {
     DeleteService(obj).then((response) => {
       console.log(response);
     });
-    navigate("/signin");
+    navigate('/signin');
   };
-
   useEffect(() => {
-    const email = cookie.get("email");
+    const email = cookie.get('email');
     var data = JSON.stringify({
       email: email,
     });
     var config = {
-      method: "get",
+      method: 'get',
       url: uri + email,
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       data: data,
     };
@@ -116,8 +116,10 @@ export default function Profile() {
   }
   return (
     <ThemeProvider theme={theme}>
+
       <AppBar></AppBar>
       <Grid container component="main" sx={{ height: "100vh" }}>
+
         <CssBaseline />
         {
           <Grid
@@ -127,14 +129,14 @@ export default function Profile() {
             md={7}
             sx={{
               backgroundImage:
-                "url(https://sortitoutsi.net/uploads/images/whrQXkyE74x0gSePdWBh40Dt7uvgypjO.png)",
-              backgroundRepeat: "no-repeat",
+                'url(https://sortitoutsi.net/uploads/images/whrQXkyE74x0gSePdWBh40Dt7uvgypjO.png)',
+              backgroundRepeat: 'no-repeat',
               backgroundColor: (t) =>
-                t.palette.mode === "light"
+                t.palette.mode === 'light'
                   ? t.palette.grey[50]
                   : t.palette.grey[900],
-              backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
             }}
           />
         }
@@ -143,12 +145,12 @@ export default function Profile() {
             sx={{
               my: 8,
               mx: 4,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               <FaceIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
@@ -192,9 +194,9 @@ export default function Profile() {
                 sx={{
                   my: 1,
                   mx: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
                 }}
               ></Box>
               <Grid
@@ -204,16 +206,16 @@ export default function Profile() {
                 alignItems="center"
                 justifyContent="center"
               >
-                <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+                <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
                   <InputLabel htmlFor="outlined-adornment-password">
                     Old Password
                   </InputLabel>
                   <OutlinedInput
                     name="oldPassword"
                     id="old_password"
-                    type={values.oldShowPassword ? "text" : "password"}
+                    type={values.oldShowPassword ? 'text' : 'password'}
                     value={values.oldPassword}
-                    onChange={handleChange("oldPassword")}
+                    onChange={handleChange('oldPassword')}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
@@ -232,16 +234,16 @@ export default function Profile() {
                     label="Old Password"
                   />
                 </FormControl>
-                <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+                <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
                   <InputLabel htmlFor="outlined-adornment-password">
                     New Password
                   </InputLabel>
                   <OutlinedInput
                     name="newPassword"
                     id="new_password"
-                    type={values.newShowPassword ? "text" : "password"}
+                    type={values.newShowPassword ? 'text' : 'password'}
                     value={values.newPassword}
-                    onChange={handleChange("newPassword")}
+                    onChange={handleChange('newPassword')}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
