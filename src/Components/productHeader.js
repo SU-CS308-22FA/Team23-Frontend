@@ -10,7 +10,7 @@ export default function ProductHeader(props) {
   const price = props.price;
   const duration = props.duration || 0;
   const start_date = props.start_date || 0;
-  console.log(start_date, duration, price);
+  
 
   return (
     <Container maxWidth="xl" sx={{ height: 500 }}>

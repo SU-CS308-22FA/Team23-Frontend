@@ -39,7 +39,7 @@ export default function TeamHeader(props) {
       .then((response) => {
         setLogo(response.data.message.team[0].logo);
         setTeamName(response.data.message.user[0].name);
-        console.log(response.data.message.user[0]);
+
       })
       .catch((error) => {
         

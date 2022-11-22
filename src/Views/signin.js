@@ -69,7 +69,7 @@ export default function Signin() {
       })
       .catch((err) => {
         setFlag(true);
-        console.log(flag);
+    
       });
     setFlag(true);
     // if respone true

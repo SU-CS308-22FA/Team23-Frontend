@@ -10,7 +10,7 @@ export default function ListCards(props) {
   let uri = props.uri;
   const isAdmin = props.admin;
   function func2(data) {
-    console.log(data);
+
     props.func(data);
   }
 
@@ -24,7 +24,7 @@ export default function ListCards(props) {
   const [products, setProducts] = React.useState([]);
 
   React.useEffect(() => {
-    console.log(uri);
+
     var config = {
       method: "get",
       url: uri,
@@ -35,7 +35,7 @@ export default function ListCards(props) {
 
     axios(config)
       .then((response) => {
-        console.log(response.data.message);
+      
         setProducts(response.data.message);
       })
       .catch((error) => {

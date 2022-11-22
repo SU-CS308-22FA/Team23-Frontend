@@ -92,7 +92,6 @@ function ResponsiveAppBar(props) {
   React.useEffect(() => {
     if (email !== undefined) {
       setLogedIn(true);
-      console.log(email)
     } else {
       setLogedIn(false);
     }

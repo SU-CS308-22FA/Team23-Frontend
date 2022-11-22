@@ -25,7 +25,6 @@ export default function HotCards(props) {
 
     axios(config)
       .then((response) => {
-        console.log(response.data.message);
         setProducts(response.data.message);
 
       })

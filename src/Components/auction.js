@@ -16,8 +16,6 @@ export default function AuctionData(props) {
   const currentDate = Math.floor(Date.now() / 1000);
   const remainingTime = duration - (currentDate - start_date);
   const [currentRemaningTime, setRemainingTime] = React.useState(remainingTime);
-  // console.log("e", duration, start_date, currentDate, remainingTime);
-  console.log(currentRemaningTime);
   React.useEffect(() => {
     const intervalId = setInterval(() => {
       setRemainingTime((prev) => prev - 1);

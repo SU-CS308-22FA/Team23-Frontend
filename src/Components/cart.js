@@ -31,7 +31,7 @@ export default function ProductCard(props) {
 
   function func3() {
     props.func(id);
-    console.log(id);
+    
   }
 
   const handleDeleteProduct = async () => {
@@ -41,21 +41,21 @@ export default function ProductCard(props) {
 
       const path = serverURI +"/product/delete/" + productid;
 
-      console.log(productid);
-      console.log(path);
+
+
 
       DeleteServiceProduct(productid)
       .then((response) => {
-        console.log(response);
+   
 
       })
       .catch((err) => {
   
-        console.log(err);
+    
       });
 
     } catch (error) {
-      console.log(error);
+
     }
 
   };

@@ -69,7 +69,7 @@ export default function Profile() {
     const obj = [newPassword, oldPassword, user];
 
     UpdateService(obj).then((response) => {
-      console.log(response, 'asdasdasd');
+
     });
   };
 
@@ -82,7 +82,7 @@ export default function Profile() {
     event.preventDefault();
     const obj = [user];
     DeleteService(obj).then((response) => {
-      console.log(response);
+
     });
     navigate('/signin');
   };

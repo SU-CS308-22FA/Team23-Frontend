@@ -8,7 +8,7 @@ async function DeleteService(props) {
   var data = JSON.stringify({
     email: email,
   });
-  console.log(email);
+
 
   var config = {
     method: "delete",
@@ -21,8 +21,8 @@ async function DeleteService(props) {
 
   axios(config)
     .then(function (response) {
-      console.log(JSON.stringify(response.data));
-      console.log("success");
+
+
     })
     .catch(function (error) {
       console.log(error);
@@ -40,7 +40,7 @@ async function UpdateService(props) {
     oldpassword: oldPassword,
     email: email,
   });
-  console.log(data);
+
 
   var config = {
     method: "put",
@@ -53,8 +53,7 @@ async function UpdateService(props) {
 
   axios(config)
     .then(function (response) {
-      console.log(JSON.stringify(response.data));
-      console.log("success");
+   
     })
     .catch(function (error) {
       console.log(error);
@@ -82,7 +81,7 @@ async function SigninService(props) {
 
   await axios(config)
     .then(function (response) {
-      console.log(response);
+
 
       result = response.data;
     })
@@ -98,7 +97,7 @@ async function SignupService(props) {
   let userName = props[0];
   let userLastname = props[1];
   let userPassword = props[3];
-  console.log(props[0], userPassword);
+
   var data = JSON.stringify({
     name: userName,
     lastname: userLastname,
@@ -118,8 +117,8 @@ async function SignupService(props) {
 
   axios(config)
     .then(function (response) {
-      console.log(JSON.stringify(response.data));
-      console.log("success");
+  
+
     })
     .catch(function (error) {
       console.log(error);

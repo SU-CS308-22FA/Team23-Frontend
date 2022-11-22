@@ -28,7 +28,7 @@ export default function HomePage() {
     axios(config)
       .then((response) => {
         setProducts(response.data.message);
-        console.log(response.data.message);
+
       })
       .catch((error) => {
         console.log(error);
