@@ -4,7 +4,7 @@ import List from "./list";
 export default function ProductBody(props) {
 
   return (
-    <Container maxWidth="xl" sx={{ height: 600, m: 5 }}>
+    <Container maxWidth="xl" sx={{ height: 250, m: 5 }}>
       <List
         player={props.player}
         owner={props.owner}

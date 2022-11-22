@@ -13,10 +13,10 @@ export default function ProductHeader(props) {
   
 
   return (
-    <Container maxWidth="xl" sx={{ height: 500 }}>
+    <Container maxWidth="xl" sx={{ height: 400 }}>
       <Box
         sx={{
-          mt: 10,
+          mt: 5,
           display: "grid",
           gap: 1,
           gridTemplateColumns: "repeat(2, 1fr)",

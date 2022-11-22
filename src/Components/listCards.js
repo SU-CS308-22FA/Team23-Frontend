@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Card from "./cart";
 import axios from "axios";
+import { CircularProgress } from "@mui/material";
 
 
 export default function ListCards(props) {
@@ -23,6 +24,10 @@ export default function ListCards(props) {
   // }
   const [products, setProducts] = React.useState([]);
 
+  const [isLoading, setIsLoading] = React.useState(true);
+ 
+  
+
   React.useEffect(() => {
 
     var config = {
@@ -37,12 +42,14 @@ export default function ListCards(props) {
       .then((response) => {
       
         setProducts(response.data.message);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [uri]);
 
+  if (isLoading) return <Box sx={{position: "absolute", top:"50%", left:"50%"}}><CircularProgress /></Box>;
   return (
     <Container sx={{ mt: 5, mb: 5 }}>
       {/* <Divider></Divider> */}
@@ -54,7 +61,7 @@ export default function ListCards(props) {
           gridTemplateColumns: "repeat(4, 1fr)",
         }}
       >
-        {products.map((product) => (
+        {products.length !== 0 ? products.map((product) => (
           <Card
             func={func2}
             admin={isAdmin}
@@ -68,7 +75,7 @@ export default function ListCards(props) {
             owner={product.owner}
             image={product.image}
           ></Card>
-        ))}
+        )) : "Not found!"}
       </Box>
     </Container>
   );

@@ -7,6 +7,8 @@ import { useParams } from "react-router-dom";
 import serverURI from "../Constants/connection";
 import axios from "axios";
 import ArrowDown from "../Components/arrowDown";
+import { CircularProgress } from "@mui/material";
+import {Box} from "@mui/material";
 
 const theme = createTheme();
 
@@ -15,6 +17,7 @@ export default function HomePage() {
   let uri = serverURI + "/products/productPage/";
   const [products, setProducts] = React.useState([{}]);
   const [showList, setshowList] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     var config = {
@@ -28,7 +31,7 @@ export default function HomePage() {
     axios(config)
       .then((response) => {
         setProducts(response.data.message);
-
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -40,9 +43,10 @@ export default function HomePage() {
       setshowList(false);
     } else {
       setshowList(true);
+      
     }
   }
-
+  if (isLoading) return <Box sx={{position: "absolute", top:"50%", left:"50%"}}><CircularProgress /></Box>;
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>

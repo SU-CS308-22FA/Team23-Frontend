@@ -12,6 +12,8 @@ import Button from '@mui/material/Button';
 import secondsToDhms from '../Utils/countDown';
 import serverURI from "../Constants/connection";
 import { DeleteServiceProduct } from '../Service/ProductService';
+// import {DeleteIcon} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function ProductCard(props) {
   const id = props.id;
@@ -38,14 +40,7 @@ export default function ProductCard(props) {
     //navigate(`/products/delete`);
     try {
       let productid = id;
-
-      // const path = serverURI +"/product/delete/" + productid;
-
-
-
-
       DeleteServiceProduct(productid);
-
     } catch (error) {
 
     }
@@ -141,8 +136,8 @@ export default function ProductCard(props) {
           </Box>
         </CardContent>
       </CardActionArea>
-      <Box sx={{ zIndex: 1 }}>
-        {admin ? <Button onClick={func3}>Update</Button> : ''}
+      <Box sx={{ mt:1, mb:1, zIndex: 1, display:"flex" , flexDirection:"row", justifyContent:"center"}}>
+        {admin ? <Button onClick={func3} >Update</Button> : ''}
         {admin ? <Button onClick={handleDeleteProduct}>Delete</Button> : ''}
       </Box>
     </Card>

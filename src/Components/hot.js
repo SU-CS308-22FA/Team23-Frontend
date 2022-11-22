@@ -8,11 +8,15 @@ import Card from "./cart";
 import "../Styles/hot.css";
 import { Typography } from "@mui/material";
 import axios from "axios";
+import { CircularProgress } from "@mui/material";
+import Divider from "../Components/divider";
 
 export default function HotCards(props) {
   let uri = props.uri;
 
   const [products, setProducts] = React.useState([{}, {}, {}]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  
 
   React.useEffect(() => {
     var config = {
@@ -26,13 +30,14 @@ export default function HotCards(props) {
     axios(config)
       .then((response) => {
         setProducts(response.data.message);
-
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [uri]);
 
+  if (isLoading) return <Box sx={{position: "absolute", top:"50%", left:"50%"}}><CircularProgress /></Box>;
   return (
     <Container sx={{ height: 600 }}>
       <Box sx={{ display: "flex", justifyContent: "flex-start", height: 570 }}>
@@ -161,6 +166,8 @@ export default function HotCards(props) {
           </Box>
         </Box>
       </Box>
+      <Divider></Divider>
     </Container>
+     
   );
 }

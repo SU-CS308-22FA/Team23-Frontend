@@ -40,6 +40,7 @@ export default function AdminPage() {
   function isShowFormUpload(data) {
     if (showFormUpload === false) {
       setshowFormUpload(true);
+      
       // setId(data);
     }
     if (showFormUpload === true) {

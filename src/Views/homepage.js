@@ -3,7 +3,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AppBar from "../Components/appbar";
 import ListCards from "../Components/listCards";
 import HotCards from "../Components/hot";
-import Divider from "../Components/divider";
+
 import serverURI from "../Constants/connection";
 
 const theme = createTheme();
@@ -15,7 +15,7 @@ export default function HomePage() {
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
       <HotCards uri={uri}></HotCards>
-      <Divider></Divider>
+
       <ListCards admin={false} uri={uri}></ListCards>
     </ThemeProvider>
   );

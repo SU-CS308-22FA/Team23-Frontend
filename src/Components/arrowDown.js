@@ -12,8 +12,8 @@ export default function ArrowDown(props) {
     props.func();
   }
   return (
-    <Container maxWidth="m">
-      <ListItem sx={{ alignItems: "center", ml: 55, mt: 20 }}>
+    <Container maxWidth="s">
+      <ListItem sx={{ alignItems: "center", pl: 55, mt: 20 }}>
         {" "}
         <Typography variant="h6" color="text.primary" sx={{ fontWeight: 400 }}>
           About the product
