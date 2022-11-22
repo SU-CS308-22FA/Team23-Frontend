@@ -1,4 +1,4 @@
-let serverURI = "http://localhost:3000";
+let serverURI = "https://team23-backend.herokuapp.com";
 
 // connect to heroku server
 // https://team23-backend.herokuapp.com

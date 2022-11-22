@@ -41,8 +41,13 @@ const UpdateProduct = (props) => {
     setData({ ...data, [name]: value });
   };
 
+  const handleCancel = () => {
+    props.func();
+  };
+
   const handleSubmitUpdate = async () => {
     try {
+      handleCancel();
       let formData = new FormData();
       formData.append("image", data.image);
       formData.append("name", data.name);
@@ -61,10 +66,6 @@ const UpdateProduct = (props) => {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleCancel = () => {
-    props.func();
   };
 
   return (
@@ -186,8 +187,14 @@ const AddProduct = (props) => {
     const value = name === "image" ? e.target.files[0] : e.target.value;
     setData({ ...data, [name]: value });
   };
+
+  const handleCancel = () => {
+    props.func();
+  };
+
   const handleSubmitUpload = async () => {
     try {
+      handleCancel();
       let currentDate = Date.now();
       let duration = 604800000;
       let formData = new FormData();
@@ -213,9 +220,7 @@ const AddProduct = (props) => {
     props.func2();
   };
 
-  const handleCancel = () => {
-    props.func();
-  };
+  
 
   return (
     <Box sx={{ position: "fixed", top: "30%", left: "40%", zIndex: 1 }}>
