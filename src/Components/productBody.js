@@ -1,9 +1,6 @@
 import * as React from "react";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import List from "./list";
-import { ListSubheader, Typography } from "@mui/material";
 export default function ProductBody(props) {
   // let player = props.player;
   // let owner = props.owner;

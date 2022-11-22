@@ -1,13 +1,8 @@
 import * as React from "react";
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import Card from './cart';
 import '../Styles/hot.css'
 import { Button, Typography } from "@mui/material";
-import { AddProduct, ButtonForm } from "./popupUpload";
 import { useState } from "react";
 import axios, * as others from "axios";
 import serverURI from "../Constants/connection";
@@ -17,9 +12,7 @@ import Cookies from "universal-cookie";
 
 export default function TeamHeader(props) {
     const cookie = new Cookies();
-    const email = props.email;
 
-    const [isShowLogin, setIsShowLogin] = useState(true);
     const [logo, setLogo] = useState("");
     const [teamName, setTeamName] = useState("");
 
@@ -27,11 +20,7 @@ export default function TeamHeader(props) {
 
       props.func();
     }
-   
 
-  const handleLoginClick = () => {
-    setIsShowLogin((isShowLogin) => !isShowLogin);
-  };
 
   React.useEffect(()=>{
     let uri = serverURI + "/users/team/";
@@ -54,7 +43,7 @@ export default function TeamHeader(props) {
       .catch((error) => {
         
       });
-  }, []);
+  }, [cookie]);
 
 
     return (

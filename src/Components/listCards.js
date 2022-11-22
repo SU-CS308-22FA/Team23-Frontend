@@ -3,12 +3,8 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Card from "./cart";
-import serverURI from "../Constants/connection";
 import axios, * as others from "axios";
-import { set } from "mongoose";
-import Divider from "./divider";
-import { Link } from "react-router-dom";
-import AdminPage from "../Views/adminpage";
+
 
 export default function ListCards(props) {
   let uri = props.uri;
@@ -45,7 +41,7 @@ export default function ListCards(props) {
       .catch((error) => {
         console.log(error);
       });
-  }, [products]);
+  }, [uri]);
 
   return (
     <Container sx={{ mt: 5, mb: 5 }}>

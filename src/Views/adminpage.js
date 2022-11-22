@@ -1,10 +1,7 @@
 import * as React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import AppBar from "../Components/appbar";
 import ListCards from "../Components/listCards";
-import HotCards from "../Components/hot";
 import Divider from "../Components/divider";
 import TeamHeader from "../Components/teamHeader";
 import { useParams } from "react-router-dom";
@@ -17,7 +14,6 @@ export default function AdminPage() {
   const [showFormUpdate, setshowFormUpdate] = React.useState(false);
   const [showFormUpload, setshowFormUpload] = React.useState(false);
   const [uploadChange, setUploadChange] = React.useState(false);
-  const [updateChange, setUpdateChange] = React.useState(false);
 
   const [myid, setId] = React.useState("");
 

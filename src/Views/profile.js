@@ -34,7 +34,6 @@ export default function Profile() {
   const [user, setUser] = useState({});
   const cookie = new Cookies();
   cookie.get('email');
-  const email = cookie.cookies.email;
   let uri = serverURI + '/users/profile/';
 
   const [values, setValues] = React.useState({
@@ -110,7 +109,7 @@ export default function Profile() {
       .catch((error) => {
         setUser(error);
       });
-  }, []);
+  }, [cookie,uri]);
   if (isLoading) {
     return <div> Loading ... </div>;
   }
