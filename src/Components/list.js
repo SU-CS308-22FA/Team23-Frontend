@@ -4,6 +4,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import { ListSubheader, Typography } from "@mui/material";
+
 export default function Lists(props) {
   const player = props.player || "";
   const owner = props.owner || "";
@@ -16,18 +17,11 @@ export default function Lists(props) {
         width: "200%",
         maxWidth: 900,
         bgcolor: "background.paper",
+        border: 1,
       }}
     >
-      <Typography
-        variant="h5"
-        color="text.primary"
-        align="center"
-        sx={{ fontWeight: 400 }}
-      >
-        About the product
-      </Typography>
       <Divider />
-      <ListItem>
+      <ListItem sx={{ backgroundColor: "gray" }}>
         <ListItemText>Team</ListItemText>
         <Divider variant="middle" />
         <ListItemText>{owner}</ListItemText>
@@ -41,7 +35,7 @@ export default function Lists(props) {
       </ListItem>
       <Divider />
 
-      <ListItem>
+      <ListItem sx={{ backgroundColor: "gray" }}>
         <ListItemText>Type</ListItemText>
         <Divider variant="middle" />
         <ListItemText>{type}</ListItemText>

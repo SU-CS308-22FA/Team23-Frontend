@@ -35,7 +35,11 @@ export default function ProductHeader(props) {
           }}
         >
           {/* <Item></Item>{" "} */}
-          <CardMedia component="img" src={image} />
+          <CardMedia
+            component="img"
+            src={image}
+            style={{ width: 400, height: 500 }}
+          />
         </Box>
         <Box
           sx={{
