@@ -22,7 +22,8 @@ const UpdateProduct = (props) => {
   const cookie = new Cookies();
   cookie.get("email");
   const email = cookie.cookies.email;
-  const owner = email.substr(0, email.indexOf("@"));
+  const owner = email.substr(0, email.indexOf("@")).charAt(0).toUpperCase() + email.substr(0, email.indexOf("@")).slice(1);
+
 
   const history = useNavigate();
   const [data, setData] = useState({
@@ -169,7 +170,7 @@ const AddProduct = (props) => {
   const cookie = new Cookies();
   cookie.get("email");
   const email = cookie.cookies.email;
-  const owner = email.substr(0, email.indexOf("@"));
+  const owner = email.substr(0, email.indexOf("@")).charAt(0).toUpperCase() + email.substr(0, email.indexOf("@")).slice(1);
 
   const history = useNavigate();
   const [data, setData] = useState({
