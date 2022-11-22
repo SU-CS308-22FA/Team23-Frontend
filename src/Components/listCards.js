@@ -41,7 +41,7 @@ export default function ListCards(props) {
       .catch((error) => {
         console.log(error);
       });
-  }, [uri]);
+  }, [products]);
 
   return (
     <Container sx={{ mt: 5, mb: 5 }}>

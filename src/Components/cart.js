@@ -10,6 +10,7 @@ import { CardActionArea } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import secondsToDhms from '../Utils/countDown';
+import serverURI from "../Constants/connection";
 import { DeleteServiceProduct } from '../Service/ProductService';
 
 export default function ProductCard(props) {
@@ -38,7 +39,7 @@ export default function ProductCard(props) {
     try {
       let productid = id;
 
-      const path = 'http://localhost:3000/product/delete/' + productid;
+      const path = serverURI +"/product/delete/" + productid;
 
       console.log(productid);
       console.log(path);

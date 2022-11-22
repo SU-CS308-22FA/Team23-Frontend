@@ -201,7 +201,7 @@ const AddProduct = (props) => {
       formData.append("email", email);
       formData.append("currentDate", currentDate);
       formData.append("duration", duration);
-      const res = await fetch(`http://localhost:3000/products/upload`, {
+      const res = await fetch(serverURI + "/products/upload", {
         method: "POST",
         body: formData,
       });
