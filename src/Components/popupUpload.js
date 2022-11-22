@@ -27,8 +27,7 @@ const UpdateProduct = (props) => {
   const cookie = new Cookies();
   cookie.get("email");
   const email = cookie.cookies.email;
-  const owner = email.substr(0, email.indexOf('@'));
-
+  const owner = email.substr(0, email.indexOf("@"));
 
   const history = useNavigate();
   const [data, setData] = useState({
@@ -41,7 +40,6 @@ const UpdateProduct = (props) => {
     const value = name === "image" ? e.target.files[0] : e.target.value;
     setData({ ...data, [name]: value });
   };
-
 
   const handleSubmitUpdate = async () => {
     try {
@@ -175,12 +173,12 @@ const AddProduct = (props) => {
   const cookie = new Cookies();
   cookie.get("email");
   const email = cookie.cookies.email;
+  const owner = email.substr(0, email.indexOf("@"));
 
   const history = useNavigate();
   const [data, setData] = useState({
     name: "",
     image: "",
-    owner: "",
     type: "",
     price: "",
   });
@@ -195,7 +193,7 @@ const AddProduct = (props) => {
       let formData = new FormData();
       formData.append("image", data.image);
       formData.append("name", data.name);
-      formData.append("owner", data.owner);
+      formData.append("owner", owner);
       formData.append("type", data.type);
       formData.append("price", data.price);
       formData.append("email", email);
@@ -237,14 +235,12 @@ const AddProduct = (props) => {
           <div className="form-box">
             <TextField
               margin="normal"
-              required
               fullWidth
               id="owner"
-              label="Enter type"
+              disabled
+              label={owner}
               name="owner"
               placeholder="Owner"
-              value={data.owner}
-              onChange={handleChange("owner")}
             />
             <TextField
               margin="normal"
