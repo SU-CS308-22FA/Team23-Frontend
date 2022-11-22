@@ -33,7 +33,7 @@ export default function HotCards(props) {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [products,uri]);
 
   return (
     <Container sx={{ height: 600 }}>
