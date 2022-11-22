@@ -14,11 +14,14 @@ import Product from "./Views/product";
 
 import AdminPage from "./Views/adminpage";
 
+import Empty from "./Views/empty";
+
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Empty />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/team" element={<AdminPage />} />
         <Route path="/signup" element={<Signup />} />
