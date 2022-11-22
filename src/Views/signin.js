@@ -123,7 +123,7 @@ export default function Signin() {
                 error={flag}
                 name="password"
                 label="Password"
-                type="password"
+                type={values.showPassword ? "text" : "password"}
                 id="password"
                 autoComplete="current-password"
               

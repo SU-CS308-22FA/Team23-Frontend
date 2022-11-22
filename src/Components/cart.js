@@ -39,20 +39,12 @@ export default function ProductCard(props) {
     try {
       let productid = id;
 
-      const path = serverURI +"/product/delete/" + productid;
+      // const path = serverURI +"/product/delete/" + productid;
 
 
 
 
-      DeleteServiceProduct(productid)
-      .then((response) => {
-   
-
-      })
-      .catch((err) => {
-  
-    
-      });
+      DeleteServiceProduct(productid);
 
     } catch (error) {
 
