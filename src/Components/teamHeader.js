@@ -4,14 +4,14 @@ import Container from '@mui/material/Container';
 import '../Styles/hot.css'
 import { Button, Typography } from "@mui/material";
 import { useState } from "react";
-import axios, * as others from "axios";
+import axios from "axios";
 import serverURI from "../Constants/connection";
 import Cookies from "universal-cookie";
 
 // https://upload.wikimedia.org/wikipedia/commons/a/a3/Fenerbah%C3%A7elogo.png
 
 export default function TeamHeader(props) {
-    const cookie = new Cookies();
+    
 
     const [logo, setLogo] = useState("");
     const [teamName, setTeamName] = useState("");
@@ -23,6 +23,7 @@ export default function TeamHeader(props) {
 
 
   React.useEffect(()=>{
+    const cookie = new Cookies();
     let uri = serverURI + "/users/team/";
     const email = cookie.get("email");
 
@@ -43,7 +44,7 @@ export default function TeamHeader(props) {
       .catch((error) => {
         
       });
-  }, [cookie]);
+  }, []);
 
 
     return (
@@ -52,7 +53,7 @@ export default function TeamHeader(props) {
 
                 <Box sx={{display: "flex", flexDirection: "column", justifyContent: "end", mb:10, ml:10}}>
 
-                    <img width="250"src={logo}/>
+                    <img width="250"src={logo} alt="Team Logo"/>
                 </Box>
                 <Box sx={{display: "flex", flexDirection: "column", justifyContent: "spaceAround", mt:13, ml:10}}>
                     <Typography variant="h3" color="text.primary" sx={{ fontWeight: 900 }}>

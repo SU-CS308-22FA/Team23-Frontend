@@ -8,6 +8,7 @@ import { Button, TextField } from "@mui/material";
 
 import Box from "@mui/material/Box";
 import secondsToDhms from "../Utils/countDown";
+
 export default function AuctionData(props) {
   const price = props.price;
   const duration = Number(props.duration) / 1000;
@@ -16,6 +17,7 @@ export default function AuctionData(props) {
   const remainingTime = duration - (currentDate - start_date);
   const [currentRemaningTime, setRemainingTime] = React.useState(remainingTime);
   // console.log("e", duration, start_date, currentDate, remainingTime);
+  console.log(currentRemaningTime);
   React.useEffect(() => {
     const intervalId = setInterval(() => {
       setRemainingTime((prev) => prev - 1);
@@ -39,12 +41,7 @@ export default function AuctionData(props) {
             <React.Fragment>
               {secondsToDhms(remainingTime, true)}
             </React.Fragment>
-            //  <React.Fragment>
-            //   `{secondsToDhms(currentRemaningTime)}
-            // </React.Fragment>
-          }
-
-          // secondary={<React.Fragment>{secondsToDhms(number)}</React.Fragment>}
+          }          
         />
       </ListItem>
       <Divider variant="inset" component="li" />

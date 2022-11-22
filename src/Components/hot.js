@@ -7,7 +7,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Card from "./cart";
 import "../Styles/hot.css";
 import { Typography } from "@mui/material";
-import axios, * as others from "axios";
+import axios from "axios";
 
 export default function HotCards(props) {
   let uri = props.uri;

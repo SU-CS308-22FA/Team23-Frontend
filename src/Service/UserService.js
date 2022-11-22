@@ -1,4 +1,4 @@
-import axios, * as others from "axios";
+import axios from "axios";
 import serverURI from "../Constants/connection";
 
 async function DeleteService(props) {

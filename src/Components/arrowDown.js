@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { ListItem, ListSubheader, Typography } from "@mui/material";
+import { ListItem, Typography } from "@mui/material";
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 

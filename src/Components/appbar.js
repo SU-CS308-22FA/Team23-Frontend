@@ -15,7 +15,7 @@ import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import SearchBar from './searchBar';
 import { useEffect } from 'react';
-import axios, * as others from "axios";
+import axios from "axios";
 import serverURI from "../Constants/connection";
 
 const pages = ['Teams', 'Open Auctions'];
@@ -23,19 +23,18 @@ const settings = ['Profile', 'Logout'];
 
 function ResponsiveAppBar(props) {
   const cookie = new Cookies();
+  const email = cookie.get("email");
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [logedIn, setLogedIn] = React.useState(false);
   const [isAdmin, setIsAdmin] = React.useState(false);
-  const [email, setEmail] = React.useState(cookie.get("email"));
+
 
   const navigate = useNavigate();
 
   useEffect(()=>{
     let uri = serverURI + "/users/team/";
-    const email = cookie.get("email");
-
     var config = {
       method: "get",
       url: uri + email,
@@ -51,7 +50,7 @@ function ResponsiveAppBar(props) {
       .catch((error) => {
         setIsAdmin(false);
       });
-  }, []);
+  }, [email]);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

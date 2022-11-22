@@ -3,7 +3,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Card from "./cart";
-import axios, * as others from "axios";
+import axios from "axios";
 
 
 export default function ListCards(props) {

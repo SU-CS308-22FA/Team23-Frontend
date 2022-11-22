@@ -5,7 +5,7 @@ import ProductHeader from "../Components/productHeader";
 import ProductBody from "../Components/productBody";
 import { useParams } from "react-router-dom";
 import serverURI from "../Constants/connection";
-import axios, * as others from "axios";
+import axios from "axios";
 import ArrowDown from "../Components/arrowDown";
 
 const theme = createTheme();

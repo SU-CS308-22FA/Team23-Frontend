@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState, useEffect } from "react";
 import Cookies from "universal-cookie";
-import axios, * as others from "axios";
+import axios from "axios";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -32,8 +32,7 @@ export default function Profile() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({});
-  const cookie = new Cookies();
-  cookie.get('email');
+  
   let uri = serverURI + '/users/profile/';
 
   const [values, setValues] = React.useState({
@@ -88,6 +87,7 @@ export default function Profile() {
     navigate('/signin');
   };
   useEffect(() => {
+    const cookie = new Cookies();
     const email = cookie.get('email');
     var data = JSON.stringify({
       email: email,
@@ -109,7 +109,7 @@ export default function Profile() {
       .catch((error) => {
         setUser(error);
       });
-  }, [cookie,uri]);
+  }, [uri]);
   if (isLoading) {
     return <div> Loading ... </div>;
   }

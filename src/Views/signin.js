@@ -126,7 +126,7 @@ export default function Signin() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                type={values.showPassword ? "text" : "password"}
+              
                 value={values.password}
                 onChange={handleChange("password")}
                 endAdornment={
