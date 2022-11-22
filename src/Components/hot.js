@@ -15,7 +15,6 @@ export default function HotCards(props) {
   const [products, setProducts] = React.useState([{}, {}, {}]);
 
   React.useEffect(() => {
-    console.log(uri);
     var config = {
       method: "get",
       url: uri,
@@ -28,12 +27,12 @@ export default function HotCards(props) {
       .then((response) => {
         console.log(response.data.message);
         setProducts(response.data.message);
-        console.log(products);
+
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [products,uri]);
+  }, [uri]);
 
   return (
     <Container sx={{ height: 600 }}>

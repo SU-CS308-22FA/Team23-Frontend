@@ -19,12 +19,13 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { SignupService } from "../Service/UserService";
-import { useState } from "react";
 
 const theme = createTheme();
 
 export default function SignUp() {
-  const [flag, setFlag] = useState(false);
+  // const [flag, setFlag] = useState(false);
+
+  let flag = false;
   
   const [values, setValues] = React.useState({
     password: "",
@@ -126,7 +127,7 @@ export default function SignUp() {
                 error={flag}
                 name="password"
                 label="Password"
-                type="password"
+                
                 id="password"
                 autoComplete="current-password"
                 type={values.showPassword ? "text" : "password"}
