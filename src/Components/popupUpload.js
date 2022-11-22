@@ -24,6 +24,12 @@ function ButtonForm({ handleLoginClick }) {
 const UpdateProduct = (props) => {
   const id = props.id;
 
+  const cookie = new Cookies();
+  cookie.get("email");
+  const email = cookie.cookies.email;
+  const owner = email.substr(0, email.indexOf('@'));
+
+
   const history = useNavigate();
   const [data, setData] = useState({
     name: "",
@@ -81,7 +87,15 @@ const UpdateProduct = (props) => {
           <div className="form-box">
             <TextField
               margin="normal"
-              required
+              fullWidth
+              id="owner"
+              label={owner}
+              disabled
+              name="owner"
+              placeholder="Owner"
+            />
+            <TextField
+              margin="normal"
               fullWidth
               id="type"
               label="Enter type"
@@ -166,8 +180,8 @@ const AddProduct = (props) => {
   const [data, setData] = useState({
     name: "",
     image: "",
-    type: "",
     owner: "",
+    type: "",
     price: "",
   });
   const handleChange = (name) => (e) => {
@@ -226,7 +240,7 @@ const AddProduct = (props) => {
               required
               fullWidth
               id="owner"
-              label="Enter Owner"
+              label="Enter type"
               name="owner"
               placeholder="Owner"
               value={data.owner}
