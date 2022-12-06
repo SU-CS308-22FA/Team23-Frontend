@@ -4,13 +4,13 @@ import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import Card from "./cart";
-import "../Styles/hot.css";
-import { Carousel } from "react-responsive-carousel";
+import Card from "../Card/productCard";
 import { Typography } from "@mui/material";
-import axios, * as others from "axios";
+import axios from "axios";
 
-export default function HotCards(props) {
+import "../../Style/hotAuctions.css";
+
+export default function HotAuctions(props) {
   let uri = props.uri;
 
   const [products, setProducts] = React.useState([{}, {}, {}]);

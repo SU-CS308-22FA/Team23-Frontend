@@ -1,8 +1,7 @@
 import * as React from "react";
-import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import Auction from "./auction";
+import Auction from "./auctionData";
 import { CardMedia } from "@mui/material";
 
 export default function ProductHeader(props) {

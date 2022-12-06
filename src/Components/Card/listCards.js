@@ -1,14 +1,9 @@
 import * as React from "react";
-
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import Card from "./cart";
-import serverURI from "../Constants/connection";
-import axios, * as others from "axios";
-import { set } from "mongoose";
-import Divider from "./divider";
-import { Link } from "react-router-dom";
-import AdminPage from "../Views/adminpage";
+import Card from "./productCard";
+import axios from "axios";
+
 
 export default function ListCards(props) {
   let uri = props.uri;
@@ -17,14 +12,6 @@ export default function ListCards(props) {
     console.log(data);
     props.func(data);
   }
-
-  // if (typeof props.searchQuery === "undefined") {
-  //   uri = serverURI + "/products/test";
-  // }
-  // else {
-  //   uri = serverURI + "/products/search/" + props.searchQuery;
-
-  // }
   const [products, setProducts] = React.useState([]);
 
   React.useEffect(() => {

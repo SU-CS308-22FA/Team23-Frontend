@@ -15,8 +15,8 @@ import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import SearchBar from './searchBar';
 import { useEffect } from 'react';
-import axios, * as others from "axios";
-import serverURI from "../Constants/connection";
+import axios from "axios";
+import serverURI from "../../Constants/connection";
 
 const pages = ['Teams', 'Open Auctions'];
 const settings = ['Profile', 'Logout'];

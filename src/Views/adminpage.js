@@ -1,15 +1,12 @@
 import * as React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import AppBar from "../Components/appbar";
-import ListCards from "../Components/listCards";
-import HotCards from "../Components/hot";
-import Divider from "../Components/divider";
-import TeamHeader from "../Components/teamHeader";
+import AppBar from "../Components/Navbar/appbar";
+import ListCards from "../Components/Card/listCards";
+import Divider from "../Components/Utils/divider";
+import TeamHeader from "../Components/Team/teamHeader";
 import { useParams } from "react-router-dom";
 import serverURI from "../Constants/connection";
-import { UpdateProduct, AddProduct } from "../Components/popupUpload";
+import { UpdateProduct, AddProduct } from "../Components/Team/popupForm";
 
 const theme = createTheme();
 
@@ -17,7 +14,6 @@ export default function AdminPage() {
   const [showFormUpdate, setshowFormUpdate] = React.useState(false);
   const [showFormUpload, setshowFormUpload] = React.useState(false);
   const [uploadChange, setUploadChange] = React.useState(false);
-  const [updateChange, setUpdateChange] = React.useState(false);
 
   const [myid, setId] = React.useState("");
 

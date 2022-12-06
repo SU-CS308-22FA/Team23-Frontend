@@ -2,7 +2,6 @@ import "./App.css";
 import Signin from "./Views/signin";
 import Signup from "./Views/signup";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ReactDOM from "react-dom";
 import Profile from "./Views/profile";
 // import Test from "./Views/test";
 import Search from "./Views/search";

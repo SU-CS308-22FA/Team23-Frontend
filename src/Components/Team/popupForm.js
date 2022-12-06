@@ -1,18 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Cookies from "universal-cookie";
-import "../Style/styles.css";
-import serverURI from "../Constants/connection";
-import { WindowSharp } from "@mui/icons-material";
+import serverURI from "../../Constants/connection";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+
+import "../../Style/popupForm.css";
 
 function ButtonForm({ handleLoginClick }) {
   const handleClick = () => {

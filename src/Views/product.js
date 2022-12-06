@@ -1,17 +1,12 @@
 import * as React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import AppBar from "../Components/appbar";
-import ProductHeader from "../Components/productHeader";
-import ProductBody from "../Components/productBody";
+import AppBar from "../Components/Navbar/appbar";
+import ProductHeader from "../Components/Product/productHeader";
+import ProductBody from "../Components/Product/productBody";
 import { useParams } from "react-router-dom";
 import serverURI from "../Constants/connection";
-import axios, * as others from "axios";
-import { ListItem, ListSubheader, Typography } from "@mui/material";
-import Button from "@mui/material/Button";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import ArrowDown from "../Components/arrowDown";
+import axios from "axios";
+import ArrowDown from "../Components/Product/arrowDown";
 
 const theme = createTheme();
 

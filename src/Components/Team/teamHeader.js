@@ -1,16 +1,10 @@
 import * as React from "react";
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import Card from './cart';
-import '../Styles/hot.css'
 import { Button, Typography } from "@mui/material";
-import { AddProduct, ButtonForm } from "./popupUpload";
 import { useState } from "react";
-import axios, * as others from "axios";
-import serverURI from "../Constants/connection";
+import axios from "axios";
+import serverURI from "../../Constants/connection";
 import Cookies from "universal-cookie";
 
 // https://upload.wikimedia.org/wikipedia/commons/a/a3/Fenerbah%C3%A7elogo.png

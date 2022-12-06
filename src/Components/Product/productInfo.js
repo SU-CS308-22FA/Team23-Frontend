@@ -3,9 +3,8 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import { ListSubheader, Typography } from "@mui/material";
 
-export default function Lists(props) {
+export default function ProductInfo(props) {
   const player = props.player || "";
   const owner = props.owner || "";
   const type = props.type || "";

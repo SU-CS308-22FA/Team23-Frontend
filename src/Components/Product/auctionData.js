@@ -3,15 +3,10 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
 import { Button, TextField } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
-import secondsToDhms from "../Utils/countDown";
+import secondsToDhms from "../../Utils/countDown";
+
 export default function AuctionData(props) {
   const price = props.price;
   const duration = Number(props.duration) / 1000;
