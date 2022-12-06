@@ -2,6 +2,10 @@ import * as React from "react";
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import Card from './cart';
+import serverURI from "../Constants/connection";
+import axios, * as others from "axios";
+import { set } from "mongoose";
 import { Typography } from "@mui/material";
 
 export default function Divider() {

@@ -1,16 +1,22 @@
 import * as React from 'react';
+import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import CardContent from '@mui/material/CardContent';
+import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { CardActionArea } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import secondsToDhms from '../Utils/countDown';
+import { DeleteService } from '../Service/UserService';
 import { DeleteServiceProduct } from '../Service/ProductService';
+import serverURI from '../Constants/connection';
+import mongoose from 'mongoose';
+import axios, * as others from 'axios';
 
 export default function ProductCard(props) {
   const id = props.id;
@@ -52,11 +58,28 @@ export default function ProductCard(props) {
   
         console.log(err);
       });
-
+    // if respone true
+      /*const res = await fetch(`${path}`, {
+        method: 'DELETE',
+        url: path,
+        data: productid,
+      });
+      
+      if (res.ok) {
+        console.log(productid);
+      console.log(path);
+      console.log(productid);
+      console.log(path);
+      console.log(productid);
+      console.log(path);
+      }*/
     } catch (error) {
       console.log(error);
     }
 
+    /* DeleteServiceProduct(productid).then((respose) => {
+      console.log(respose);
+    });*/
   };
 
   React.useEffect(() => {
