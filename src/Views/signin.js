@@ -1,28 +1,29 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
-import { SigninService } from "../Service/UserService";
-import Cookies from "universal-cookie";
-import IconButton from "@mui/material/IconButton";
-import InputAdornment from "@mui/material/InputAdornment";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
-import AppBar from "../Components/Navbar/appbar";
+import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
+import {
+  Link,
+  Grid,
+  Box,
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  Typography,
+  Container,
+  IconButton,
+  InputAdornment,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+import { SigninService } from "../Service/UserService";
+import AppBar from "../Components/Navbar/appbar";
 
 const theme = createTheme();
 
@@ -73,13 +74,9 @@ export default function Signin() {
       });
     setFlag(true);
     // if respone true
-
-    
-    
   };
 
   return (
-    
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
       <Container component="main" maxWidth="xs">
@@ -98,12 +95,7 @@ export default function Signin() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               error={flag}
               margin="normal"
@@ -115,10 +107,8 @@ export default function Signin() {
               autoComplete="email"
               autoFocus
             />
-            <FormControl sx={{width : 1, mt:1.5}} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">
-                Password
-              </InputLabel>
+            <FormControl sx={{ width: 1, mt: 1.5 }} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
               <OutlinedInput
                 error={flag}
                 name="password"
@@ -131,11 +121,7 @@ export default function Signin() {
                 onChange={handleChange("password")}
                 endAdornment={
                   <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      edge="end"
-                    >
+                    <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} edge="end">
                       {values.showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
@@ -151,12 +137,7 @@ export default function Signin() {
               }}
             ></Box>
             {flag === true ? "Wrong email and password!" : ""}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               Sign In
             </Button>
             <Grid container>

@@ -1,10 +1,11 @@
 import * as React from "react";
+import { useParams } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import AppBar from "../Components/Navbar/appbar";
 import ListCards from "../Components/Card/listCards";
 import Divider from "../Components/Utils/divider";
 import TeamHeader from "../Components/Team/teamHeader";
-import { useParams } from "react-router-dom";
 import serverURI from "../Constants/connection";
 import { UpdateProduct, AddProduct } from "../Components/Team/popupForm";
 
@@ -36,7 +37,7 @@ export default function AdminPage() {
       setId(data);
     }
   }
-  
+
   function isShowFormUpload(data) {
     if (showFormUpload === false) {
       setshowFormUpload(true);
@@ -48,9 +49,7 @@ export default function AdminPage() {
     }
   }
 
-  React.useEffect(() => {
-    
-}, [uploadChange]);
+  React.useEffect(() => {}, [uploadChange]);
 
   const { id } = useParams();
   let uri = serverURI + `/products/team/${id}`;

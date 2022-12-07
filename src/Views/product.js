@@ -1,11 +1,12 @@
 import * as React from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import AppBar from "../Components/Navbar/appbar";
 import ProductHeader from "../Components/Product/productHeader";
 import ProductBody from "../Components/Product/productBody";
-import { useParams } from "react-router-dom";
 import serverURI from "../Constants/connection";
-import axios from "axios";
 import ArrowDown from "../Components/Product/arrowDown";
 
 const theme = createTheme();

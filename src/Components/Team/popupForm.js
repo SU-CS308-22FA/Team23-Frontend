@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
-import {Box, TextField, Button, IconButton} from "@mui/material";
+import { Box, TextField, Button, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 import serverURI from "../../Constants/connection";
@@ -77,15 +77,7 @@ const UpdateProduct = (props) => {
           }}
         >
           <div className="form-box">
-            <TextField
-              margin="normal"
-              fullWidth
-              id="owner"
-              label={owner}
-              disabled
-              name="owner"
-              placeholder="Owner"
-            />
+            <TextField margin="normal" fullWidth id="owner" label={owner} disabled name="owner" placeholder="Owner" />
             <TextField
               margin="normal"
               fullWidth
@@ -136,10 +128,7 @@ const UpdateProduct = (props) => {
                   justifyContent: "space-between",
                 }}
               >
-                <button
-                  className="btn btn-primary"
-                  onClick={handleSubmitUpdate}
-                >
+                <button className="btn btn-primary" onClick={handleSubmitUpdate}>
                   Submit
                 </button>
               </Box>
@@ -204,7 +193,13 @@ const AddProduct = (props) => {
         body: formData,
       });
       if (res.ok) {
-        setData({ name: "", owner: "", type: "", image: "", price: "" });
+        setData({
+          name: "",
+          owner: "",
+          type: "",
+          image: "",
+          price: "",
+        });
         history.replace("/");
       }
     } catch (error) {
@@ -212,8 +207,6 @@ const AddProduct = (props) => {
     }
     props.func2();
   };
-
-  
 
   return (
     <Box sx={{ position: "fixed", top: "30%", left: "40%", zIndex: 1 }}>
@@ -231,15 +224,7 @@ const AddProduct = (props) => {
           }}
         >
           <div className="form-box">
-            <TextField
-              margin="normal"
-              fullWidth
-              id="owner"
-              disabled
-              label={owner}
-              name="owner"
-              placeholder="Owner"
-            />
+            <TextField margin="normal" fullWidth id="owner" disabled label={owner} name="owner" placeholder="Owner" />
             <TextField
               margin="normal"
               required
@@ -291,10 +276,7 @@ const AddProduct = (props) => {
                   justifyContent: "space-between",
                 }}
               >
-                <button
-                  className="btn btn-primary"
-                  onClick={handleSubmitUpload}
-                >
+                <button className="btn btn-primary" onClick={handleSubmitUpload}>
                   Submit
                 </button>
               </Box>
