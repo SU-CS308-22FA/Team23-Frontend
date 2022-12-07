@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Box, Container} from "@mui/material/Box";
+import {Box, Container} from "@mui/material";
 import Card from "./productCard";
 import axios from "axios";
 

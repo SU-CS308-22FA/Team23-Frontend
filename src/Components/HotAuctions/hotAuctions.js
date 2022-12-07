@@ -1,7 +1,8 @@
 import * as React from "react";
 import axios from "axios";
 import {Box, Container, IconButton, Typography} from "@mui/material";
-import {ArrowBackIosIcon, ArrowForwardIosIcon } from "@mui/icons-material";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import Card from "../Card/productCard";
 import "../../Style/hotAuctions.css";
