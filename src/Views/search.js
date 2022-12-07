@@ -4,6 +4,7 @@ import AppBar from "../Components/Navbar/appbar";
 import ListCards from "../Components/Card/listCards";
 import { useParams } from "react-router-dom";
 import serverURI from "../Constants/connection";
+import SortProduct from "../Components/sort";
 
 const theme = createTheme();
 
@@ -19,6 +20,7 @@ export default function SearchPage() {
         <ThemeProvider theme={theme}>
             <AppBar></AppBar>
             <ListCards uri={uri}></ListCards>
+            <SortProduct></SortProduct>
 
         </ThemeProvider>
     );

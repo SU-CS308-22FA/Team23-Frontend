@@ -50,30 +50,24 @@ export default function SearchBar() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
-  // const handleSubmit = (event) => {
-  //   navigate(`/search/${searchQuery}`);
-  // };
   const _handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       navigate(`/search/${searchQuery}`);
+    }
   }
-}
-
-
   return (
     <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-//           name="search"
-              placeholder="Search…"
-              onInput={(e) => {
-                setSearchQuery(e.target.value);
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-              onKeyDown={_handleKeyDown}
-            />
-          </Search>
+      <SearchIconWrapper>
+        <SearchIcon />
+      </SearchIconWrapper>
+      <StyledInputBase
+        placeholder="Search…"
+        onInput={(e) => {
+          setSearchQuery(e.target.value);
+        }}
+        inputProps={{ 'aria-label': 'search' }}
+        onKeyDown={_handleKeyDown}
+      />
+    </Search>
   );
 }
