@@ -1,13 +1,9 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import IconButton from "@mui/material/IconButton";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import Card from "../Card/productCard";
-import { Typography } from "@mui/material";
 import axios from "axios";
+import {Box, Container, IconButton, Typography} from "@mui/material";
+import {ArrowBackIosIcon, ArrowForwardIosIcon } from "@mui/icons-material";
 
+import Card from "../Card/productCard";
 import "../../Style/hotAuctions.css";
 
 export default function HotAuctions(props) {

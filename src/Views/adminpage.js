@@ -52,11 +52,8 @@ export default function AdminPage() {
     
 }, [uploadChange]);
 
-
   const { id } = useParams();
   let uri = serverURI + `/products/team/${id}`;
-
-
 
   return (
     <ThemeProvider theme={theme}>

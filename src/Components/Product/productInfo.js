@@ -1,8 +1,5 @@
 import * as React from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
+import {List, ListItem, ListItemText, Divider} from "@mui/material";
 
 export default function ProductInfo(props) {
   const player = props.player || "";

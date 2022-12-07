@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import Cookies from "universal-cookie";
-import serverURI from "../../Constants/connection";
-import IconButton from "@mui/material/IconButton";
+import {Box, TextField, Button, IconButton} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
+import serverURI from "../../Constants/connection";
 import "../../Style/popupForm.css";
 
 function ButtonForm({ handleLoginClick }) {

@@ -1,10 +1,5 @@
 import * as React from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import Divider from "@mui/material/Divider";
-import ListItemText from "@mui/material/ListItemText";
-import { Button, TextField } from "@mui/material";
-import Box from "@mui/material/Box";
+import { Button, TextField, List, ListItem, Divider, ListItemText, Box } from "@mui/material";
 import secondsToDhms from "../../Utils/countDown";
 
 export default function AuctionData(props) {

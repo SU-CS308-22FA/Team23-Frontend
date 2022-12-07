@@ -1,14 +1,8 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import Chip from '@mui/material/Chip';
-import Box from '@mui/material/Box';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { CardActionArea } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import Button from '@mui/material/Button';
+import {Box, CardContent, Typography, Chip, CardMedia, Card, CardActionArea, Button} from "@mui/material";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+
 import secondsToDhms from '../../Utils/countDown';
 import { DeleteServiceProduct } from '../../Service/ProductService';
 
