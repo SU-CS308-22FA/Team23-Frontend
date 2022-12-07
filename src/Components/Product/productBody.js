@@ -1,5 +1,5 @@
 import * as React from "react";
-import Container from "@mui/material/Container";
+import {Container} from "@mui/material";
 import List from "./productInfo";
 
 export default function ProductBody(props) {

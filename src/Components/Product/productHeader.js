@@ -1,8 +1,6 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
+import {Container, Box, CardMedia} from "@mui/material";
 import Auction from "./auctionData";
-import { CardMedia } from "@mui/material";
 
 export default function ProductHeader(props) {
   //image
