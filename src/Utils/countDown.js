@@ -16,8 +16,16 @@ export default function secondsToDhms(seconds, full) {
   var fsDisplay = s >= 0 && s < 10 ? "0" + s : s;
 
   if (full === true) {
-    return fdDisplay + fhDisplay + fmDisplay + fsDisplay;
+    if (s < 0) {
+      return "Auction Closed";
+    } else {
+      return fdDisplay + fhDisplay + fmDisplay + fsDisplay;
+    }
   } else {
-    return d > 1 ? dDisplay : hDisplay + mDisplay + sDisplay;
+    if (s < 0) {
+      return "Closed -";
+    } else {
+      return d > 1 ? dDisplay : hDisplay + mDisplay + sDisplay;
+    }
   }
 }
