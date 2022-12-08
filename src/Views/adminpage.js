@@ -15,6 +15,7 @@ export default function AdminPage() {
   const [showFormUpdate, setshowFormUpdate] = React.useState(false);
   const [showFormUpload, setshowFormUpload] = React.useState(false);
   const [uploadChange, setUploadChange] = React.useState(false);
+  const [myOption, setOption] = React.useState(0);
 
   const [myid, setId] = React.useState("");
 
@@ -49,17 +50,27 @@ export default function AdminPage() {
     }
   }
 
-  React.useEffect(() => {}, [uploadChange]);
+
+  function func1(data) {
+    console.log(data);
+    setOption(data);
+  }
+
+  React.useEffect(() => {
+
+  }, [uploadChange]);
+
 
   const { id } = useParams();
-  let uri = serverURI + `/products/team/${id}`;
+  let uri = serverURI + `/products/team/${id}`; //option ekle
+
 
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
       {showFormUpload ? <AddProduct func2={isUploadChange} func={isShowFormUpload}></AddProduct> : ""}
       <TeamHeader email={id} func={isShowFormUpload}></TeamHeader>
-      <Divider></Divider>
+      <Divider func={func1}></Divider>
       {showFormUpdate ? <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct> : ""}
       <ListCards admin={true} uri={uri} func={isShowFormUpdate}></ListCards>
     </ThemeProvider>

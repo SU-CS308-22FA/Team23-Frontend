@@ -23,7 +23,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
         {/* <Route path="/test" element={<Test />} /> */}
-      
+
         <Route path="/search/:searchQuery" element={<Search />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/team/:id" element={<AdminPage />} />

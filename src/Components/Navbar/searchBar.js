@@ -49,9 +49,6 @@ export default function SearchBar() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
-  // const handleSubmit = (event) => {
-  //   navigate(`/search/${searchQuery}`);
-  // };
   const _handleKeyDown = (e) => {
     if (e.key === "Enter") {
       navigate(`/search/${searchQuery}`);
@@ -64,7 +61,6 @@ export default function SearchBar() {
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
-        //           name="search"
         placeholder="Search…"
         onInput={(e) => {
           setSearchQuery(e.target.value);
