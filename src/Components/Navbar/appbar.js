@@ -203,6 +203,7 @@ function ResponsiveAppBar(props) {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "black", display: "block" }}
               >
+              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: "black", display: "block" }}>
                 {page}
               </Button>
             ))}

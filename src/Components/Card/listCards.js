@@ -1,8 +1,7 @@
 import * as React from "react";
-import {Box, Container} from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Card from "./productCard";
 import axios from "axios";
-
 
 export default function ListCards(props) {
   let uri = props.uri;

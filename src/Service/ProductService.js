@@ -1,9 +1,9 @@
-import axios from 'axios';
-import serverURI from '../Constants/connection';
+import axios from "axios";
+import serverURI from "../Constants/connection";
 
 async function DeleteServiceProduct(prop) {
   let _id = prop;
-  let uri = serverURI + '/products/delete/' + _id;
+  let uri = serverURI + "/products/delete/" + _id;
   //let uri = "http://localhost:3001/deleteProduct";
 
   var data = JSON.stringify({
@@ -11,10 +11,10 @@ async function DeleteServiceProduct(prop) {
   });
 
   var config = {
-    method: 'delete',
+    method: "delete",
     url: uri,
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     data: data,
   };
@@ -22,7 +22,7 @@ async function DeleteServiceProduct(prop) {
   axios(config)
     .then(function (response) {
       console.log(JSON.stringify(response.data));
-      console.log('success');
+      console.log("success");
     })
     .catch(function (error) {
       console.log(error);
