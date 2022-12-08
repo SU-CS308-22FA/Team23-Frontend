@@ -30,9 +30,7 @@ export default function AuctionData(props) {
         <ListItemText
           primary="The item closes in:"
           secondary={
-            <React.Fragment>
-              {secondsToDhms(remainingTime, true)}
-            </React.Fragment>
+            <React.Fragment>{secondsToDhms(remainingTime, true)}</React.Fragment>
             //  <React.Fragment>
             //   `{secondsToDhms(currentRemaningTime)}
             // </React.Fragment>
@@ -43,22 +41,11 @@ export default function AuctionData(props) {
       </ListItem>
       <Divider variant="inset" component="li" />
       <ListItem alignItems="flex-start">
-        <ListItemText
-          primary="Current Bid"
-          secondary={<React.Fragment>{price}</React.Fragment>}
-        />
+        <ListItemText primary="Current Bid" secondary={<React.Fragment>{price}</React.Fragment>} />
       </ListItem>
       <Divider variant="inset" component="li" />
       <Box sx={{ display: "flex", flexDirection: "row" }}>
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="bid"
-          label="Enter bid"
-          name="bid"
-          autoFocus
-        />
+        <TextField margin="normal" required fullWidth id="bid" label="Enter bid" name="bid" autoFocus />
         <Button>Enter Bid</Button>
       </Box>
     </List>

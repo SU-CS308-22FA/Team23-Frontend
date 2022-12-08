@@ -1,8 +1,9 @@
 import * as React from "react";
+import { useParams } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import AppBar from "../Components/Navbar/appbar";
 import ListCards from "../Components/Card/listCards";
-import { useParams } from "react-router-dom";
 import serverURI from "../Constants/connection";
 import SortProduct from "../Components/sort";
 

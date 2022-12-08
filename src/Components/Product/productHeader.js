@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Container, Box, CardMedia} from "@mui/material";
+import { Container, Box, CardMedia } from "@mui/material";
 import Auction from "./auctionData";
 
 export default function ProductHeader(props) {
@@ -32,11 +32,7 @@ export default function ProductHeader(props) {
           }}
         >
           {/* <Item></Item>{" "} */}
-          <CardMedia
-            component="img"
-            src={image}
-            style={{ width: 400, height: 500 }}
-          />
+          <CardMedia component="img" src={image} style={{ width: 400, height: 500 }} />
         </Box>
         <Box
           sx={{
@@ -49,11 +45,7 @@ export default function ProductHeader(props) {
             justifyContent: "center",
           }}
         >
-          <Auction
-            duration={duration}
-            price={price}
-            start_date={start_date}
-          ></Auction>
+          <Auction duration={duration} price={price} start_date={start_date}></Auction>
         </Box>
       </Box>
     </Container>

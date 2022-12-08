@@ -1,5 +1,6 @@
 import * as React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import AppBar from "../Components/Navbar/appbar";
 import ListCards from "../Components/Card/listCards";
 import HotAuctions from "../Components/HotAuctions/hotAuctions";
