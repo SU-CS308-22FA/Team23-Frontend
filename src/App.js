@@ -6,12 +6,12 @@ import Profile from "./Views/profile";
 // import Test from "./Views/test";
 import Search from "./Views/search";
 
-
 import HomePage from "./Views/homepage";
 
 import Product from "./Views/product";
 
 import AdminPage from "./Views/adminpage";
+import ActiveBids from "./Views/activebid";
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
         <Route path="/team" element={<AdminPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/activebids/:email" element={<ActiveBids />} />
         {/* <Route path="/test" element={<Test />} /> */}
 
         <Route path="/search/:searchQuery" element={<Search />} />

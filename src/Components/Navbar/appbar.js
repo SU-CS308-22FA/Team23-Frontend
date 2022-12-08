@@ -54,7 +54,18 @@ function ResponsiveAppBar(props) {
       .catch((error) => {
         setIsAdmin(false);
       });
-  }, []);
+  });
+
+  if (isAdmin === false) {
+    if (settings.includes("Active Bids") === false) {
+      settings.push("Active Bids");
+      // settings.splice(1, 0, "Active Bids");
+    }
+  } else {
+    if (settings.includes("Active Bids") === true) {
+      settings.pop("Active Bids");
+    }
+  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -91,7 +102,11 @@ function ResponsiveAppBar(props) {
     navigate(`/team/${email}`);
   };
 
-  const settingsFunctions = [handleProfile, handleLogOut];
+  const handleActiveBids = () => {
+    navigate(`/activebids/${email}`);
+  };
+
+  const settingsFunctions = [handleProfile, handleLogOut, handleActiveBids];
 
   React.useEffect(() => {
     if (email !== undefined) {
@@ -183,6 +198,11 @@ function ResponsiveAppBar(props) {
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "black", display: "block" }}
+              >
               <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: "black", display: "block" }}>
                 {page}
               </Button>

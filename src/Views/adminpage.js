@@ -8,6 +8,7 @@ import Divider from "../Components/Utils/divider";
 import TeamHeader from "../Components/Team/teamHeader";
 import serverURI from "../Constants/connection";
 import { UpdateProduct, AddProduct } from "../Components/Team/popupForm";
+import Calender from "../Components/calender";
 
 const theme = createTheme();
 
@@ -68,10 +69,19 @@ export default function AdminPage() {
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
-      {showFormUpload ? <AddProduct func2={isUploadChange} func={isShowFormUpload}></AddProduct> : ""}
+      {showFormUpload ? (
+        <AddProduct func2={isUploadChange} func={isShowFormUpload}></AddProduct>
+      ) : (
+        ""
+      )}
       <TeamHeader email={id} func={isShowFormUpload}></TeamHeader>
-      <Divider func={func1}></Divider>
-      {showFormUpdate ? <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct> : ""}
+      <Calender email={id}></Calender>
+      <Divider></Divider>
+      {showFormUpdate ? (
+        <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct>
+      ) : (
+        ""
+      )}
       <ListCards admin={true} uri={uri} func={isShowFormUpdate}></ListCards>
     </ThemeProvider>
   );
