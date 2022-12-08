@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
-import { Box, TextField, Button, IconButton } from "@mui/material";
+import { Box, TextField, Button, IconButton, ownerWindow } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 import serverURI from "../../Constants/connection";
@@ -21,7 +21,7 @@ const UpdateProduct = (props) => {
   cookie.get("email");
   const email = cookie.cookies.email;
   const owner = email.substr(0, email.indexOf("@"));
-
+  // owner = owner[0].toUpperCase() + owner.substr(1, owner.length);
   const history = useNavigate();
   const [data, setData] = useState({
     name: "",

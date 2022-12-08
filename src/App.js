@@ -6,7 +6,6 @@ import Profile from "./Views/profile";
 // import Test from "./Views/test";
 import Search from "./Views/search";
 
-
 import HomePage from "./Views/homepage";
 
 import Product from "./Views/product";
@@ -23,7 +22,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
         {/* <Route path="/test" element={<Test />} /> */}
-      
+
         <Route path="/search/:searchQuery" element={<Search />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/team/:id" element={<AdminPage />} />
