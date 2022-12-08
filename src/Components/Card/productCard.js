@@ -104,7 +104,15 @@ export default function ProductCard(props) {
       });
 
   return (
-    <Card sx={{ maxWidth: size1.maxWidth, position: "relative" }}>
+    <Card
+      sx={{
+        maxWidth: size1.maxWidth,
+        position: "relative",
+        border: 1,
+        borderColor: "#F2F2F2",
+        borderRadius: "10px",
+      }}
+    >
       <CardActionArea onClick={handleClick}>
         <Box
           sx={{
