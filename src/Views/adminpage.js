@@ -51,37 +51,24 @@ export default function AdminPage() {
     }
   }
 
-
   function func1(data) {
     console.log(data);
     setOption(data);
   }
 
-  React.useEffect(() => {
-
-  }, [uploadChange]);
-
+  React.useEffect(() => {}, [uploadChange]);
 
   const { id } = useParams();
   let uri = serverURI + `/products/team/${id}`; //option ekle
 
-
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
-      {showFormUpload ? (
-        <AddProduct func2={isUploadChange} func={isShowFormUpload}></AddProduct>
-      ) : (
-        ""
-      )}
+      {showFormUpload ? <AddProduct func2={isUploadChange} func={isShowFormUpload}></AddProduct> : ""}
       <TeamHeader email={id} func={isShowFormUpload}></TeamHeader>
       <Calender email={id}></Calender>
-      <Divider></Divider>
-      {showFormUpdate ? (
-        <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct>
-      ) : (
-        ""
-      )}
+      <Divider func={func1}></Divider>
+      {showFormUpdate ? <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct> : ""}
       <ListCards admin={true} uri={uri} func={isShowFormUpdate}></ListCards>
     </ThemeProvider>
   );
