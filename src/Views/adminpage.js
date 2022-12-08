@@ -7,6 +7,7 @@ import TeamHeader from "../Components/Team/teamHeader";
 import { useParams } from "react-router-dom";
 import serverURI from "../Constants/connection";
 import { UpdateProduct, AddProduct } from "../Components/Team/popupForm";
+import Calender from "../Components/calender";
 
 const theme = createTheme();
 
@@ -36,7 +37,7 @@ export default function AdminPage() {
       setId(data);
     }
   }
-  
+
   function isShowFormUpload(data) {
     if (showFormUpload === false) {
       setshowFormUpload(true);
@@ -48,9 +49,7 @@ export default function AdminPage() {
     }
   }
 
-  React.useEffect(() => {
-    
-}, [uploadChange]);
+  React.useEffect(() => {}, [uploadChange]);
 
   const { id } = useParams();
   let uri = serverURI + `/products/team/${id}`;
@@ -58,10 +57,19 @@ export default function AdminPage() {
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
-      {showFormUpload ? <AddProduct func2={isUploadChange} func={isShowFormUpload}></AddProduct> : ""}
+      {showFormUpload ? (
+        <AddProduct func2={isUploadChange} func={isShowFormUpload}></AddProduct>
+      ) : (
+        ""
+      )}
       <TeamHeader email={id} func={isShowFormUpload}></TeamHeader>
+      <Calender email={id}></Calender>
       <Divider></Divider>
-      {showFormUpdate ? <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct> : ""}
+      {showFormUpdate ? (
+        <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct>
+      ) : (
+        ""
+      )}
       <ListCards admin={true} uri={uri} func={isShowFormUpdate}></ListCards>
     </ThemeProvider>
   );
