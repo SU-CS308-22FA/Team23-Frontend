@@ -87,7 +87,6 @@ export default function ProductCard(props) {
 
   size === 1
     ? (size1 = {
-        maxWidth: 300,
         imgHeight: "220",
         name: "h6",
         itemType: "h10",
@@ -95,7 +94,6 @@ export default function ProductCard(props) {
         displayChip: "none",
       })
     : (size1 = {
-        maxWidth: 300,
         imgHeight: "300",
         name: "h5",
         itemType: "h9",
@@ -106,7 +104,7 @@ export default function ProductCard(props) {
   return (
     <Card
       sx={{
-        maxWidth: size1.maxWidth,
+        maxWidth: 300,
         position: "relative",
         border: 1,
         borderColor: "#F2F2F2",
