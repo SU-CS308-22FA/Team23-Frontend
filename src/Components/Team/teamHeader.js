@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { Button, Typography, Container, Box } from "@mui/material";
+import Calendar from "../calender";
 
 import serverURI from "../../Constants/connection";
 
@@ -74,13 +75,24 @@ export default function TeamHeader(props) {
             ml: 10,
           }}
         >
-          <Typography variant="h3" color="text.primary" sx={{ fontWeight: 900 }}>
+          <Typography
+            variant="h3"
+            color="text.primary"
+            sx={{ fontWeight: 900 }}
+          >
             {teamName}
           </Typography>
           <Box sx={{ mt: 5 }}>
-            <Typography variant="h5" color="text.primary" sx={{ fontWeight: 40 }}>
+            <Typography
+              variant="h5"
+              color="text.primary"
+              sx={{ fontWeight: 40 }}
+            >
               Stats
             </Typography>
+          </Box>
+          <Box>
+            <Calendar email={email}></Calendar>
           </Box>
         </Box>
         <Box
