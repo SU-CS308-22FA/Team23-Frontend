@@ -13,6 +13,7 @@ const styles = {
 };
 
 export default function FilterCard(props) {
+  let getOptions = props.getFilterOptions;
   const [filterOps, setFilterOps] = React.useState([{ teams: [], types: [] }]);
   const [status, setStatus] = React.useState([false, false]);
 
@@ -100,7 +101,7 @@ export default function FilterCard(props) {
         });
       }
     }
-    console.log(filterStatus);
+    getOptions(filterStatus);
   };
 
   React.useEffect(() => {

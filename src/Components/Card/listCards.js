@@ -13,6 +13,10 @@ export default function ListCards(props) {
   }
   const [products, setProducts] = React.useState([]);
 
+  const getFilterOptions = (options) => {
+    console.log(options);
+  };
+
   React.useEffect(() => {
     console.log(uri);
     var config = {
@@ -37,8 +41,8 @@ export default function ListCards(props) {
     <Container sx={{ mt: 5, mb: 5 }}>
       {/* <Divider></Divider> */}
       <Box sx={{ display: "flex" }}>
-        <Box sx={{ width: "20%" }}>
-          <FilterCard></FilterCard>
+        <Box sx={{ width: "20%", pl: 2 }}>
+          <FilterCard getFilterOptions={getFilterOptions}></FilterCard>
         </Box>
         <Box
           sx={{
