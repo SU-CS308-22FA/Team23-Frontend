@@ -10,19 +10,17 @@ import SortProduct from "../Components/sort";
 const theme = createTheme();
 
 export default function SearchPage() {
-    const { searchQuery } = useParams();
-    let uri = serverURI + "/products/search/" + searchQuery;
+  const { searchQuery } = useParams();
+  let uri = serverURI + "/products/search/" + searchQuery;
 
-    React.useEffect(() => {
-        console.log(searchQuery)
-    }, [searchQuery]);
+  React.useEffect(() => {
+    console.log(searchQuery);
+  }, [searchQuery]);
 
-    return (
-        <ThemeProvider theme={theme}>
-            <AppBar></AppBar>
-            <ListCards uri={uri}></ListCards>
-            <SortProduct></SortProduct>
-
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={theme}>
+      <AppBar></AppBar>
+      <ListCards uri={uri}></ListCards>
+    </ThemeProvider>
+  );
 }

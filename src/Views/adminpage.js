@@ -8,7 +8,6 @@ import Divider from "../Components/Utils/divider";
 import TeamHeader from "../Components/Team/teamHeader";
 import serverURI from "../Constants/connection";
 import { UpdateProduct, AddProduct } from "../Components/Team/popupForm";
-import Calender from "../Components/calender";
 
 const theme = createTheme();
 
@@ -17,7 +16,6 @@ export default function AdminPage() {
   const [showFormUpload, setshowFormUpload] = React.useState(false);
   const [uploadChange, setUploadChange] = React.useState(false);
   const [myOption, setOption] = React.useState(0);
-
   const [myid, setId] = React.useState("");
 
   function isUploadChange() {
