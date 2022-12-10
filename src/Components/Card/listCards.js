@@ -2,6 +2,7 @@ import * as React from "react";
 import { Box, Container } from "@mui/material";
 import Card from "./productCard";
 import axios from "axios";
+import FilterCard from "./filterCard";
 
 export default function ListCards(props) {
   let uri = props.uri;
@@ -11,6 +12,10 @@ export default function ListCards(props) {
     props.func(data);
   }
   const [products, setProducts] = React.useState([]);
+
+  const getFilterOptions = (options) => {
+    console.log(options);
+  };
 
   React.useEffect(() => {
     console.log(uri);
@@ -35,29 +40,35 @@ export default function ListCards(props) {
   return (
     <Container sx={{ mt: 5, mb: 5 }}>
       {/* <Divider></Divider> */}
-      <Box
-        sx={{
-          display: "grid",
-          columnGap: 3,
-          rowGap: 2,
-          gridTemplateColumns: "repeat(4, 1fr)",
-        }}
-      >
-        {products.map((product) => (
-          <Card
-            func={func2}
-            admin={isAdmin}
-            key={product._id}
-            id={product._id}
-            price={product.price}
-            start_date={product.start_date}
-            duration={product.duration}
-            type={product.type}
-            name={product.name}
-            owner={product.owner}
-            image={product.image}
-          ></Card>
-        ))}
+      <Box sx={{ display: "flex" }}>
+        <Box sx={{ width: "20%", pl: 2 }}>
+          <FilterCard getFilterOptions={getFilterOptions}></FilterCard>
+        </Box>
+        <Box
+          sx={{
+            display: "grid",
+            columnGap: 3,
+            rowGap: 2,
+            gridTemplateColumns: "repeat(4, 1fr)",
+          }}
+        >
+          {products.map((product) => (
+            <Card
+              func={func2}
+              size={1}
+              admin={isAdmin}
+              key={product._id}
+              id={product._id}
+              price={product.price}
+              start_date={product.start_date}
+              duration={product.duration}
+              type={product.type}
+              name={product.name}
+              owner={product.owner}
+              image={product.image}
+            ></Card>
+          ))}
+        </Box>
       </Box>
     </Container>
   );
