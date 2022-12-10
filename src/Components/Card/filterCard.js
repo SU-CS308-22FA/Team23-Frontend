@@ -101,6 +101,7 @@ export default function FilterCard(props) {
         });
       }
     }
+    console.log(filterStatus);
     getOptions(filterStatus);
   };
 
@@ -116,7 +117,6 @@ export default function FilterCard(props) {
 
     axios(config)
       .then((response) => {
-        console.log(response.data.message);
         setFilterOps(response.data.message);
       })
       .catch((error) => {
