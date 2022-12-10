@@ -56,10 +56,12 @@ export default function AdminPage() {
     setOption(data);
   }
 
-  React.useEffect(() => {}, [uploadChange]);
+  React.useEffect(() => { }, [uploadChange]);
 
   const { id } = useParams();
-  let uri = serverURI + `/products/team/${id}`; //option ekle
+  const sort = id + "-" + myOption;
+  console.log(sort);
+  let uri = serverURI + `/products/team/${sort}`; //option ekle
 
   return (
     <ThemeProvider theme={theme}>

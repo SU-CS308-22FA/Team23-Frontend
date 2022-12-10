@@ -21,7 +21,7 @@ export default function SearchPage() {
         <ThemeProvider theme={theme}>
             <AppBar></AppBar>
             <ListCards uri={uri}></ListCards>
-            <SortProduct></SortProduct>
+            {/* <SortProduct></SortProduct> */}
 
         </ThemeProvider>
     );
