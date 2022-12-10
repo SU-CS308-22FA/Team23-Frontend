@@ -4,10 +4,10 @@ import Auction from "./auctionData";
 
 export default function ProductHeader(props) {
   //image
-  const image = props.image;
-  const price = props.price;
-  const duration = props.duration || 0;
-  const start_date = props.start_date || 0;
+  const image = props.prop.image;
+  const price = props.prop.price;
+  const duration = props.prop.duration || 0;
+  const start_date = props.prop.start_date || 0;
   console.log(start_date, duration, price);
 
   return (
@@ -45,7 +45,7 @@ export default function ProductHeader(props) {
             justifyContent: "center",
           }}
         >
-          <Auction duration={duration} price={price} start_date={start_date}></Auction>
+          <Auction prop={props.prop} bids={props.bids} ></Auction>
         </Box>
       </Box>
     </Container>
