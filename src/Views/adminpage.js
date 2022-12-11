@@ -8,7 +8,6 @@ import Divider from "../Components/Utils/divider";
 import TeamHeader from "../Components/Team/teamHeader";
 import serverURI from "../Constants/connection";
 import { UpdateProduct, AddProduct } from "../Components/Team/popupForm";
-import Calender from "../Components/calender";
 
 const theme = createTheme();
 
@@ -17,7 +16,6 @@ export default function AdminPage() {
   const [showFormUpload, setshowFormUpload] = React.useState(false);
   const [uploadChange, setUploadChange] = React.useState(false);
   const [myOption, setOption] = React.useState(0);
-
   const [myid, setId] = React.useState("");
 
   function isUploadChange() {
@@ -56,19 +54,28 @@ export default function AdminPage() {
     setOption(data);
   }
 
-  React.useEffect(() => {}, [uploadChange]);
+  React.useEffect(() => { }, [uploadChange]);
 
   const { id } = useParams();
-  let uri = serverURI + `/products/team/${id}`; //option ekle
+  const sort = id + "-" + myOption;
+  console.log(sort);
+  let uri = serverURI + `/products/team/${sort}`; //option ekle
 
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
-      {showFormUpload ? <AddProduct func2={isUploadChange} func={isShowFormUpload}></AddProduct> : ""}
+      {showFormUpload ? (
+        <AddProduct func2={isUploadChange} func={isShowFormUpload}></AddProduct>
+      ) : (
+        ""
+      )}
       <TeamHeader email={id} func={isShowFormUpload}></TeamHeader>
-      <Calender email={id}></Calender>
       <Divider func={func1}></Divider>
-      {showFormUpdate ? <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct> : ""}
+      {showFormUpdate ? (
+        <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct>
+      ) : (
+        ""
+      )}
       <ListCards admin={true} uri={uri} func={isShowFormUpdate}></ListCards>
     </ThemeProvider>
   );
