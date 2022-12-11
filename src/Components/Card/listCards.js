@@ -3,18 +3,70 @@ import { Box, Container } from "@mui/material";
 import Card from "./productCard";
 import axios from "axios";
 import FilterCard from "./filterCard";
+import SortProduct from "./sort";
+import serverURI from "../../Constants/connection";
 
 export default function ListCards(props) {
-  let uri = props.uri;
   const isAdmin = props.admin;
+  const [myOption, setOption] = React.useState(0);
+  const [uri, setUri] = React.useState(serverURI + "/products/option:0");
+  const [products, setProducts] = React.useState([]);
+  const [total, setTotal] = React.useState("option:0");
+
+  function func1(data) {
+    setOption(data);
+    let newTotal = total.substring(0, total.lastIndexOf(":") + 1) + data;
+    setTotal(newTotal);
+    setUri(serverURI + "/products/" + newTotal);
+  }
+
   function func2(data) {
     console.log(data);
     props.func(data);
   }
-  const [products, setProducts] = React.useState([]);
 
   const getFilterOptions = (options) => {
-    console.log(options);
+    let total = "";
+    if (options.status.length !== 0) {
+      total += "status:";
+      for (let i = 0; i < options.status.length; i++) {
+        if (i === 0) {
+          total += options.status[i];
+        } else {
+          total += "," + options.status[i];
+        }
+      }
+      total += ";";
+    }
+    if (options.teams.length !== 0) {
+      total += "teams:";
+      for (let i = 0; i < options.teams.length; i++) {
+        if (i === 0) {
+          total += options.teams[i];
+        } else {
+          total += "," + options.teams[i];
+        }
+      }
+      total += ";";
+    }
+    if (options.productType.length !== 0) {
+      total += "types:";
+      for (let i = 0; i < options.productType.length; i++) {
+        if (i === 0) {
+          total += options.productType[i];
+        } else {
+          total += "," + options.productType[i];
+        }
+      }
+      total += ";";
+    }
+    if (options.priceRange !== "") {
+      total += "priceRange:" + options.priceRange + ";";
+    }
+    total += "option:" + myOption;
+
+    setTotal(total);
+    setUri(serverURI + "/products/" + total);
   };
 
   React.useEffect(() => {
@@ -40,6 +92,7 @@ export default function ListCards(props) {
   return (
     <Container sx={{ mt: 5, mb: 5 }}>
       {/* <Divider></Divider> */}
+      <SortProduct func={func1}></SortProduct>
       <Box sx={{ display: "flex" }}>
         <Box sx={{ width: "20%", pl: 2 }}>
           <FilterCard getFilterOptions={getFilterOptions}></FilterCard>
@@ -55,7 +108,7 @@ export default function ListCards(props) {
           {products.map((product) => (
             <Card
               func={func2}
-              size={1}
+              size={0}
               admin={isAdmin}
               key={product._id}
               id={product._id}
