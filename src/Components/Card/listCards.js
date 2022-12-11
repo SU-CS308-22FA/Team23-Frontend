@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Container } from "@mui/material";
+import { Box, Container, CircularProgress } from "@mui/material";
 import Card from "./productCard";
 import axios from "axios";
 import FilterCard from "./filterCard";
@@ -12,6 +12,7 @@ export default function ListCards(props) {
   const [uri, setUri] = React.useState(serverURI + "/products/option:0");
   const [products, setProducts] = React.useState([]);
   const [total, setTotal] = React.useState("option:0");
+  const [loading, setLoading] = React.useState(true);
 
   function func1(data) {
     setOption(data);
@@ -81,6 +82,7 @@ export default function ListCards(props) {
 
     axios(config)
       .then((response) => {
+        setLoading(false);
         console.log(response.data.message);
         setProducts(response.data.message);
       })
@@ -90,39 +92,50 @@ export default function ListCards(props) {
   }, [uri]);
 
   return (
-    <Container sx={{ mt: 5, mb: 5 }}>
-      {/* <Divider></Divider> */}
-      <SortProduct func={func1}></SortProduct>
-      <Box sx={{ display: "flex" }}>
-        <Box sx={{ width: "20%", pl: 2 }}>
-          <FilterCard getFilterOptions={getFilterOptions}></FilterCard>
+    <Container maxWidth="xl" sx={{ mt: 8, mb: 5, width: "100%" }}>
+      {loading ? (
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 30 }}>
+          <CircularProgress />
         </Box>
-        <Box
-          sx={{
-            display: "grid",
-            columnGap: 3,
-            rowGap: 2,
-            gridTemplateColumns: "repeat(4, 1fr)",
-          }}
-        >
-          {products.map((product) => (
-            <Card
-              func={func2}
-              size={0}
-              admin={isAdmin}
-              key={product._id}
-              id={product._id}
-              price={product.price}
-              start_date={product.start_date}
-              duration={product.duration}
-              type={product.type}
-              name={product.name}
-              owner={product.owner}
-              image={product.image}
-            ></Card>
-          ))}
+      ) : (
+        <Box>
+          <Box sx={{ display: "flex", flexDirection: "row-reverse", mb: 4, pr: 5 }}>
+            <SortProduct func={func1}></SortProduct>
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "flex-start" }}>
+            <Box sx={{ width: "20%", pl: 5 }}>
+              <FilterCard getFilterOptions={getFilterOptions}></FilterCard>
+            </Box>
+            <Box
+              sx={{
+                pr: 5,
+                pl: 5,
+                display: "grid",
+                columnGap: 3,
+                rowGap: 2,
+                gridTemplateColumns: "repeat(4, 1fr)",
+              }}
+            >
+              {products.map((product) => (
+                <Card
+                  func={func2}
+                  size={0}
+                  admin={isAdmin}
+                  key={product._id}
+                  id={product._id}
+                  price={product.price}
+                  start_date={product.start_date}
+                  duration={product.duration}
+                  type={product.type}
+                  name={product.name}
+                  owner={product.owner}
+                  image={product.image}
+                ></Card>
+              ))}
+            </Box>
+          </Box>
         </Box>
-      </Box>
+      )}
     </Container>
   );
 }

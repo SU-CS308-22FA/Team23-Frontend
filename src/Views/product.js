@@ -2,6 +2,7 @@ import * as React from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { CircularProgress, Box } from "@mui/material";
 
 import AppBar from "../Components/Navbar/appbar";
 import ProductHeader from "../Components/Product/productHeader";
@@ -17,6 +18,7 @@ export default function HomePage() {
   const [products, setProducts] = React.useState([{}]);
   const [bids, setBids] = React.useState([{}]);
   const [showList, setshowList] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     var config = {
@@ -48,6 +50,7 @@ export default function HomePage() {
 
     axios(config)
       .then((response) => {
+        setLoading(false);
         setBids(response.data.message);
       })
       .catch((error) => {
@@ -66,20 +69,25 @@ export default function HomePage() {
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
-      <ProductHeader
-        prop={products[0]}
-        bids={bids}
-      ></ProductHeader>
-      <ArrowDown func={isShow}></ArrowDown>
-      {showList ? (
-        <ProductBody
-          player={products[0].name}
-          owner={products[0].owner}
-          type={products[0].type}
-          sold={products[0].sold}
-        ></ProductBody>
+      {loading ? (
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 30 }}>
+          <CircularProgress />
+        </Box>
       ) : (
-        ""
+        <Box>
+          <ProductHeader prop={products[0]} bids={bids}></ProductHeader>
+          <ArrowDown func={isShow}></ArrowDown>
+          {showList ? (
+            <ProductBody
+              player={products[0].name}
+              owner={products[0].owner}
+              type={products[0].type}
+              sold={products[0].sold}
+            ></ProductBody>
+          ) : (
+            ""
+          )}
+        </Box>
       )}
     </ThemeProvider>
   );
