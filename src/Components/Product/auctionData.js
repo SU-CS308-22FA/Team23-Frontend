@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Button, TextField, List, ListItem, Divider, ListItemText, Box } from "@mui/material";
 import secondsToDhms from "../../Utils/countDown";
-import BidHistory from "./bidHistory"
+import BidHistory from "./bidHistory";
 
 export default function AuctionData(props) {
   const price = props.prop.price;
@@ -37,7 +37,7 @@ export default function AuctionData(props) {
             // </React.Fragment>
           }
 
-        // secondary={<React.Fragment>{secondsToDhms(number)}</React.Fragment>}
+          // secondary={<React.Fragment>{secondsToDhms(number)}</React.Fragment>}
         />
       </ListItem>
       <Divider variant="inset" component="li" />
@@ -50,7 +50,7 @@ export default function AuctionData(props) {
         <Button>Enter Bid</Button>
       </Box>
       <Divider variant="inset" component="li" />
-      <BidHistory info={props.bids} ></BidHistory>
+      <BidHistory info={props.bids}></BidHistory>
       <Divider variant="inset" component="li" />
     </List>
   );

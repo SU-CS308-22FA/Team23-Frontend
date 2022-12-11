@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useParams } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import { Divider } from "@mui/material";
 import AppBar from "../Components/Navbar/appbar";
 import ListCards from "../Components/Card/listCards";
-import Divider from "../Components/Utils/divider";
+// import Divider from "../Components/Utils/divider";
 import TeamHeader from "../Components/Team/teamHeader";
 import serverURI from "../Constants/connection";
 import { UpdateProduct, AddProduct } from "../Components/Team/popupForm";
@@ -54,7 +54,7 @@ export default function AdminPage() {
     setOption(data);
   }
 
-  React.useEffect(() => { }, [uploadChange]);
+  React.useEffect(() => {}, [uploadChange]);
 
   const { id } = useParams();
   const sort = id + "-" + myOption;
@@ -64,18 +64,11 @@ export default function AdminPage() {
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
-      {showFormUpload ? (
-        <AddProduct func2={isUploadChange} func={isShowFormUpload}></AddProduct>
-      ) : (
-        ""
-      )}
+      {showFormUpload ? <AddProduct func2={isUploadChange} func={isShowFormUpload}></AddProduct> : ""}
       <TeamHeader email={id} func={isShowFormUpload}></TeamHeader>
-      <Divider func={func1}></Divider>
-      {showFormUpdate ? (
-        <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct>
-      ) : (
-        ""
-      )}
+      <Divider></Divider>
+
+      {showFormUpdate ? <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct> : ""}
       <ListCards admin={true} uri={uri} func={isShowFormUpdate}></ListCards>
     </ThemeProvider>
   );

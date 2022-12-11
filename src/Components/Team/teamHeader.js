@@ -61,7 +61,7 @@ export default function TeamHeader(props) {
   }, []);
 
   return (
-    <Container sx={{ height: 500 }}>
+    <Container sx={{ height: 600, pt: 5 }}>
       <Box
         sx={{
           display: "flex",
@@ -89,11 +89,7 @@ export default function TeamHeader(props) {
             ml: 10,
           }}
         >
-          <Typography
-            variant="h3"
-            color="text.primary"
-            sx={{ fontWeight: 900 }}
-          >
+          <Typography variant="h3" color="text.primary" sx={{ fontWeight: 900 }}>
             {teamName}
           </Typography>
           <Box sx={{ mt: 10, display: "flex" }}>
