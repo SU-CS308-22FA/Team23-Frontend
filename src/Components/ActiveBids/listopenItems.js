@@ -31,37 +31,41 @@ export default function ListCards(props) {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
-  if (loading === true) {
-    return <CircularProgress />;
-  }
+  }, [email, uri]);
+
   return (
     <Container sx={{ mt: 5, mb: 5 }}>
       {/* <Divider></Divider> */}
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          columnGap: 3,
-          rowGap: 2,
-          gridTemplateColumns: "repeat(4, 1fr)",
-        }}
-      >
-        {message.map((product, idx) => (
-          <OpenItems
-            key={idx}
-            pid={product._id}
-            price={product.price}
-            start_date={product.start_date}
-            duration={product.duration}
-            type={product.type}
-            name={product.name}
-            owner={product.owner}
-            image={product.image}
-            states={product.state}
-          ></OpenItems>
-        ))}
-      </Box>
+      {loading ? (
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 30 }}>
+          <CircularProgress />
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            columnGap: 3,
+            rowGap: 2,
+            gridTemplateColumns: "repeat(4, 1fr)",
+          }}
+        >
+          {message.map((product, idx) => (
+            <OpenItems
+              key={idx}
+              pid={product._id}
+              price={product.price}
+              start_date={product.start_date}
+              duration={product.duration}
+              type={product.type}
+              name={product.name}
+              owner={product.owner}
+              image={product.image}
+              states={product.state}
+            ></OpenItems>
+          ))}
+        </Box>
+      )}
     </Container>
   );
 }
