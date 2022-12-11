@@ -15,6 +15,7 @@ export default function HomePage() {
   const { id } = useParams();
   let uri = serverURI + "/products/productPage/";
   const [products, setProducts] = React.useState([{}]);
+  const [bids, setBids] = React.useState([{}]);
   const [showList, setshowList] = React.useState(false);
 
   React.useEffect(() => {
@@ -34,7 +35,25 @@ export default function HomePage() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [uri, id]);
+
+  React.useEffect(() => {
+    var config = {
+      method: "get",
+      url: serverURI + "/products/bidHistory/" + id,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios(config)
+      .then((response) => {
+        setBids(response.data.message);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [id]);
 
   function isShow() {
     if (showList === true) {
@@ -48,10 +67,8 @@ export default function HomePage() {
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
       <ProductHeader
-        image={products[0].image}
-        price={products[0].price}
-        duration={products[0].duration}
-        start_date={products[0].start_date}
+        prop={products[0]}
+        bids={bids}
       ></ProductHeader>
       <ArrowDown func={isShow}></ArrowDown>
       {showList ? (
