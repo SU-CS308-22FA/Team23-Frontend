@@ -63,7 +63,7 @@ export default function HotAuctions(props) {
             width: 0.5,
           }}
         >
-          <Box
+          <Box // Item 1
             sx={{
               alignItems: "center",
               display: "flex",
@@ -85,7 +85,7 @@ export default function HotAuctions(props) {
               image={products[2].image}
             ></Card>
           </Box>
-          <Box
+          <Box // Item 2
             sx={{
               alignItems: "center",
               display: "flex",
@@ -106,7 +106,7 @@ export default function HotAuctions(props) {
               image={products[0].image}
             ></Card>
           </Box>
-          <Box
+          <Box // Item 3
             sx={{
               alignItems: "center",
               display: "flex",
