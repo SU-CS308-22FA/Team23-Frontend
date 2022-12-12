@@ -1,9 +1,7 @@
 import * as React from "react";
-import { Box, Typography, IconButton } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Container } from "@mui/material";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import { useNavigate } from "react-router-dom";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 
 export default function OpenItems(props) {
   const pid = props.pid;
@@ -52,17 +50,14 @@ export default function OpenItems(props) {
           <Box sx={{ display: "flex", direction: "row", alignItems: "center" }}>
             <Box>
               <img
+                onClick={handleProductPage}
                 component="img"
                 src={image}
                 alt="Paella dish"
                 style={{ width: 200, height: 200, m: 3 }}
               />
-              <IconButton sx={{ fontSize: 12 }} onClick={handleProductPage}>
-                Product Detail
-                <RemoveRedEyeIcon />
-              </IconButton>
             </Box>
-            <Box sx={{ ml: 5 }}>
+            <Box onClick={handleProductPage} sx={{ ml: 5 }}>
               <Typography color="text.primary" sx={{ fontWeight: 700 }}>
                 {name}
               </Typography>
@@ -72,22 +67,23 @@ export default function OpenItems(props) {
               <Typography color="text.primary" sx={{ fontWeight: 500 }}>
                 {owner}
               </Typography>
-              <Typography color="text.primary" sx={{ fontWeight: 500 }}>
-                {`${price}$`}
-              </Typography>
             </Box>
           </Box>
-          <Box sx={{ alignItems: "center" }}>
+          <Box
+            onClick={handleProductPage}
+            sx={{ display: "flex", alignItems: "center" }}
+          >
+            <Typography sx={{ color: "black", fontWeight: 700 }}>
+              {`Your bid:`}
+            </Typography>
             {states ? (
-              <Box sx={{ display: "flex" }}>
-                {" "}
-                <EmojiEventsIcon></EmojiEventsIcon>
-                <Typography sx={{ color: "green", fontWeight: 700 }}>
-                  Highest Bid
-                </Typography>
-              </Box>
+              <Typography sx={{ color: "green", fontWeight: 700 }}>
+                {`${price}$`}
+              </Typography>
             ) : (
-              ""
+              <Typography sx={{ color: "red", fontWeight: 700 }}>
+                {`${price}$`}
+              </Typography>
             )}
           </Box>
         </Box>
