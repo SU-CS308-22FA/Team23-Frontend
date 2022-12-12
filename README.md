@@ -1,10 +1,19 @@
-# Team23-Frontend
+# MAÇTAN
 https://team23-frontend.herokuapp.com/
 
-# Team23-Backend
-https://team23-backend.herokuapp.com/
+## Description
 
-## DEVELOPER DOCUMENTATION
+MAÇTAN is an e-commerce platform that aims to serve both football clubs and fans. Turkey football teams can upload match worn items; so that fans can purchase matched worn products with auctions.
+
+## User Documentation
+
+By clicking https://team23-frontend.herokuapp.com/ and signing-up, you can start using MAÇTAN.
+
+For your information, there is a bug in the sign in page. Although you provide correct credentials, there is a possibility that the page will give you an error that indicates provided information is incorrect. For now, refreshing the page is a temporary solution. The bug will be fixed soon. 
+
+For any further bugs, you can contact with emails provided in the footer.
+
+## Developer Documentation
 
 ### How To Install
 
