@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Container, CircularProgress } from "@mui/material";
+import { Box, Container, CircularProgress, Typography } from "@mui/material";
 import OpenItems from "../ActiveBids/openItems";
 import serverURI from "../../Constants/connection";
 import axios from "axios";
@@ -33,6 +33,10 @@ export default function ListCards(props) {
       });
   }, [email, uri]);
 
+  function notEmpty(obj) {
+    return Object.keys(obj).length === 0;
+  }
+
   return (
     <Container sx={{ mt: 5, mb: 5 }}>
       {/* <Divider></Divider> */}
@@ -41,29 +45,37 @@ export default function ListCards(props) {
           <CircularProgress />
         </Box>
       ) : (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            columnGap: 3,
-            rowGap: 2,
-            gridTemplateColumns: "repeat(4, 1fr)",
-          }}
-        >
-          {message.map((product, idx) => (
-            <OpenItems
-              key={idx}
-              pid={product._id}
-              price={product.price}
-              start_date={product.start_date}
-              duration={product.duration}
-              type={product.type}
-              name={product.name}
-              owner={product.owner}
-              image={product.image}
-              states={product.state}
-            ></OpenItems>
-          ))}
+        <Box>
+          {notEmpty(message[0]) ? (
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 30 }}>
+              <Typography fontWeight={600}>No active bid history.</Typography>
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                columnGap: 3,
+                rowGap: 2,
+                gridTemplateColumns: "repeat(4, 1fr)",
+              }}
+            >
+              {message.map((product, idx) => (
+                <OpenItems
+                  key={idx}
+                  pid={product._id}
+                  price={product.price}
+                  start_date={product.start_date}
+                  duration={product.duration}
+                  type={product.type}
+                  name={product.name}
+                  owner={product.owner}
+                  image={product.image}
+                  states={product.state}
+                ></OpenItems>
+              ))}
+            </Box>
+          )}
         </Box>
       )}
     </Container>
