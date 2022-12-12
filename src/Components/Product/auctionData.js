@@ -37,7 +37,7 @@ export default function AuctionData(props) {
             // </React.Fragment>
           }
 
-          // secondary={<React.Fragment>{secondsToDhms(number)}</React.Fragment>}
+        // secondary={<React.Fragment>{secondsToDhms(number)}</React.Fragment>}
         />
       </ListItem>
       <Divider variant="inset" component="li" />
@@ -49,9 +49,8 @@ export default function AuctionData(props) {
         <TextField margin="normal" required fullWidth id="bid" label="Enter bid" name="bid" autoFocus />
         <Button>Enter Bid</Button>
       </Box>
-      <Divider variant="inset" component="li" />
+
       <BidHistory info={props.bids}></BidHistory>
-      <Divider variant="inset" component="li" />
     </List>
   );
 }
