@@ -58,7 +58,7 @@ export default function AdminPage() {
 
   const { id } = useParams();
   const sort = id + "-" + myOption;
-  console.log(sort);
+  console.log(id);
   let uri = serverURI + `/products/team/${sort}`; //option ekle
 
   return (
@@ -69,7 +69,7 @@ export default function AdminPage() {
       <Divider></Divider>
 
       {showFormUpdate ? <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct> : ""}
-      <ListCards admin={true} uri={uri} func={isShowFormUpdate}></ListCards>
+      <ListCards email={id} admin={true} uri={uri} func={isShowFormUpdate}></ListCards>
     </ThemeProvider>
   );
 }

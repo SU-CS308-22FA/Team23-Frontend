@@ -14,6 +14,7 @@ const styles = {
 };
 
 export default function FilterCard(props) {
+  const email = props.email;
   const [filterOps, setFilterOps] = React.useState([{ teams: [], types: [] }]);
   const [status, setStatus] = React.useState([false, false]);
 
@@ -154,39 +155,43 @@ export default function FilterCard(props) {
       <Divider sx={{ maxWidth: "90%", mt: 1 }}></Divider>
 
       {/* Filter Team */}
-      <FormGroup>
-        <Typography sx={{ fontWeight: 500, mb: 2, mt: 2, fontSize: styles.headerFontSize }}>Teams</Typography>
-        <List
-          sx={{
-            width: "100%",
-            maxWidth: 360,
-            bgcolor: "background.paper",
-            position: "relative",
-            overflow: "auto",
-            maxHeight: 200,
-            "& ul": { padding: 0 },
-          }}
-          subheader={<li />}
-        >
-          {filterOps[0].teams.map((teamName) => (
-            <li key={`section-${teamName}`}>
-              <ul>
-                <FormGroup>
-                  <FormControlLabel
-                    control={<Checkbox onChange={(e) => handleChange(teamName, "team")} />}
-                    label={
-                      <Typography sx={{ color: "#000000", fontWeight: 500, fontSize: styles.fontSize }}>
-                        {teamName}
-                      </Typography>
-                    }
-                  />
-                </FormGroup>
-              </ul>
-            </li>
-          ))}
-        </List>
-      </FormGroup>
-      <Divider sx={{ maxWidth: "90%", mt: 1 }}></Divider>
+      {email ? (
+        ""
+      ) : (
+        <FormGroup>
+          <Typography sx={{ fontWeight: 500, mb: 2, mt: 2, fontSize: styles.headerFontSize }}>Teams</Typography>
+          <List
+            sx={{
+              width: "100%",
+              maxWidth: 360,
+              bgcolor: "background.paper",
+              position: "relative",
+              overflow: "auto",
+              maxHeight: 200,
+              "& ul": { padding: 0 },
+            }}
+            subheader={<li />}
+          >
+            {filterOps[0].teams.map((teamName) => (
+              <li key={`section-${teamName}`}>
+                <ul>
+                  <FormGroup>
+                    <FormControlLabel
+                      control={<Checkbox onChange={(e) => handleChange(teamName, "team")} />}
+                      label={
+                        <Typography sx={{ color: "#000000", fontWeight: 500, fontSize: styles.fontSize }}>
+                          {teamName}
+                        </Typography>
+                      }
+                    />
+                  </FormGroup>
+                </ul>
+              </li>
+            ))}
+          </List>
+          <Divider sx={{ maxWidth: "90%", mt: 1 }}></Divider>
+        </FormGroup>
+      )}
 
       {/* Filter Price Range */}
       <FormGroup>
