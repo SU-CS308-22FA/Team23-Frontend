@@ -4,8 +4,6 @@ import serverURI from "../Constants/connection";
 async function DeleteServiceProduct(prop) {
   let _id = prop;
   let uri = serverURI + "/products/delete/" + _id;
-  //let uri = "http://localhost:3001/deleteProduct";
-
   var data = JSON.stringify({
     _id: _id,
   });
