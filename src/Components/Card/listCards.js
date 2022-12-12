@@ -8,6 +8,7 @@ import serverURI from "../../Constants/connection";
 
 export default function ListCards(props) {
   const isAdmin = props.admin;
+  const email = props.email;
   const [myOption, setOption] = React.useState(0);
   const [uri, setUri] = React.useState(serverURI + "/products/option:0");
   const [products, setProducts] = React.useState([]);
@@ -27,6 +28,12 @@ export default function ListCards(props) {
   }
 
   const getFilterOptions = (options) => {
+    if (email) {
+      console.log("email burda hovam", email);
+      let name = email.substring(0, email.indexOf("@"));
+      name = name.charAt(0).toUpperCase() + name.slice(1);
+      options.teams.push(name);
+    }
     let total = "";
     if (options.status.length !== 0) {
       total += "status:";
@@ -91,6 +98,12 @@ export default function ListCards(props) {
       });
   }, [uri]);
 
+  React.useEffect(() => {
+    if (email) {
+      getFilterOptions({ status: [], teams: [email], priceRange: "", productType: [] });
+    }
+  }, []);
+
   return (
     <Container maxWidth="xl" sx={{ mt: 8, mb: 5, width: "100%" }}>
       {loading ? (
@@ -104,7 +117,7 @@ export default function ListCards(props) {
           </Box>
           <Box sx={{ display: "flex", alignItems: "flex-start" }}>
             <Box sx={{ width: "20%", pl: 5 }}>
-              <FilterCard getFilterOptions={getFilterOptions}></FilterCard>
+              <FilterCard email={email} getFilterOptions={getFilterOptions}></FilterCard>
             </Box>
             <Box
               sx={{
