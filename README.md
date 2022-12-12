@@ -1,9 +1,8 @@
 # Team23-Frontend
 https://team23-frontend.herokuapp.com/
 
-
-# Team23-Frontend
-https://team23-frontend.herokuapp.com/
+# Team23-Backend
+https://team23-backend.herokuapp.com/
 
 ## DEVELOPER DOCUMENTATION
 
