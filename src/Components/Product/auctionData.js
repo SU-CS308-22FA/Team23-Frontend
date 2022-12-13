@@ -44,11 +44,9 @@ export default function AuctionData(props) {
       EnterBid(obj).then((response) => {
         console.log(response, "asdasdasd");
         setInsert(true);
-        window.location.reload();
       });
     } else {
       setInsert(false);
-      alert("You have to bid higher than current price.")
     }
   };
 
