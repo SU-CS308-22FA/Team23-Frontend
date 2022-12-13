@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Button,
   TextField,
@@ -7,19 +7,24 @@ import {
   Divider,
   ListItemText,
   Box,
-} from '@mui/material';
-import secondsToDhms from '../../Utils/countDown';
-import BidHistory from './bidHistory';
-import Cookies from 'universal-cookie';
-import { NewBidServiceBid } from '../../Service/BidService';
+} from "@mui/material";
+import secondsToDhms from "../../Utils/countDown";
+import BidHistory from "./bidHistory";
+import { EnterBid } from "../../Service/ProductService";
 
 export default function AuctionData(props) {
   const price = props.prop.price;
+  const id = props.id;
+  // console.log(id);
+  const basePrice = props.prop.basePrice;
+  // console.log(basePrice);
   const duration = Number(props.prop.duration) / 1000;
   const start_date = Number(props.prop.start_date) / 1000;
   const currentDate = Math.floor(Date.now() / 1000);
   const remainingTime = duration - (currentDate - start_date);
   const [currentRemaningTime, setRemainingTime] = React.useState(remainingTime);
+  const [data, setData] = React.useState({ bid: "" });
+  const [insert, setInsert] = React.useState(true);
   // console.log("e", duration, start_date, currentDate, remainingTime);
   React.useEffect(() => {
     const intervalId = setInterval(() => {
@@ -29,85 +34,27 @@ export default function AuctionData(props) {
     return () => clearInterval(intervalId);
   }, []);
 
-  //____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-  function handleOnClickEnterBid() {
-    alert('zaten burdayız kardeş bu çalışıyodur');
-    //Get User Email
-    const cookie = new Cookies();
-    const useremail = cookie.get('email');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const obj = {};
+    obj.bid = data.bid;
+    obj.pid = id;
 
-    // Get bid in TextField and convert it to int
-    const newBidValue = parseInt(document.getElementById('bid').value);
-    const oldPrice = price;
-    // Get the full path of the current URL
-    const urlPath = window.location.pathname;
-    // Split the path into an array of strings using the '/' character as a delimiter
-    const pathParts = urlPath.split('/');
-    // The product ID should be the last part of the path, so get the last element of the array
-    const productId = pathParts.pop();
-    /*
-    alert(`Old Price of Product: ${oldPrice}
-    Your bid is: ${newBidValue}
-    The product ID is: ${productId}
-    The user email is: ${useremail}
-    The date: ${currentDate}`);
-    */
-    const data = {
-      productId: productId,
-      useremail: useremail,
-      newBidValue: newBidValue,
-      oldPrice: oldPrice,
-      currentDate: currentDate,
-    };
-
-    // Send the POST request to the backend
-    fetch('/api/newbid', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
+    if (data.bid > price) {
+      EnterBid(obj).then((response) => {
+        console.log(response, "asdasdasd");
+        setInsert(true);
+        window.location.reload();
       });
-  }
-  const asyhandleOnClickEnterBid = async () => {
-    try {
-      const cookie = new Cookies();
-      const useremail = cookie.get('email');
-      const newBidValue = parseInt(document.getElementById('bid').value);
-      const oldPrice = price;
-      const urlPath = window.location.pathname;
-      const pathParts = urlPath.split('/');
-      const productId = pathParts.pop();
-      const path = 'http://localhost:3000/product/newbid';
-
-      console.log(useremail);
-      console.log(newBidValue);
-      console.log(oldPrice);
-      console.log(productId);
-      console.log(path);
-
-      const response = await NewBidServiceBid(
-        productId,
-        useremail,
-        newBidValue,
-        oldPrice,
-        currentDate
-      );
-      console.log(response);
-      //window.location.reload();
-    } catch (error) {
-      console.log(error);
+    } else {
+      setInsert(false);
     }
   };
 
-  //____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+  const handleChange = (name) => (e) => {
+    const value = name === "image" ? e.target.files[0] : e.target.value;
+    setData({ ...data, [name]: value });
+  };
 
   return (
     <List
@@ -140,17 +87,35 @@ export default function AuctionData(props) {
         />
       </ListItem>
       <Divider variant="inset" component="li" />
-      <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="bid"
-          label="Enter bid"
-          name="bid"
-          autoFocus
-        />
-        <Button onClick={asyhandleOnClickEnterBid}>Enter Bid</Button>
+      <Box sx={{ display: "flex", flexDirection: "row" }}>
+        {insert ? (
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="bid"
+            value={data.bid}
+            label="Enter bid"
+            name="bid"
+            autoFocus
+            onChange={handleChange("bid")}
+          />
+        ) : (
+          <TextField
+            error
+            margin="normal"
+            required
+            fullWidth
+            id="bid"
+            value={data.bid}
+            label="Enter bid"
+            name="bid"
+            autoFocus
+            onChange={handleChange("bid")}
+          />
+        )}
+
+        <Button onClick={handleSubmit}>Enter Bid</Button>
       </Box>
       <Divider variant="inset" component="li" />
       <BidHistory info={props.bids}></BidHistory>

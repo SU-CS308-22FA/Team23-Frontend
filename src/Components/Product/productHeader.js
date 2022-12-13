@@ -5,6 +5,7 @@ import Auction from "./auctionData";
 export default function ProductHeader(props) {
   //image
   const image = props.prop.image;
+  const id = props.id;
   const price = props.prop.price;
   const duration = props.prop.duration || 0;
   const start_date = props.prop.start_date || 0;
@@ -32,7 +33,11 @@ export default function ProductHeader(props) {
           }}
         >
           {/* <Item></Item>{" "} */}
-          <CardMedia component="img" src={image} style={{ width: 400, height: 500 }} />
+          <CardMedia
+            component="img"
+            src={image}
+            style={{ width: 400, height: 500 }}
+          />
         </Box>
         <Box
           sx={{
@@ -45,7 +50,7 @@ export default function ProductHeader(props) {
             justifyContent: "center",
           }}
         >
-          <Auction prop={props.prop} bids={props.bids} ></Auction>
+          <Auction id={id} prop={props.prop} bids={props.bids}></Auction>
         </Box>
       </Box>
     </Container>
