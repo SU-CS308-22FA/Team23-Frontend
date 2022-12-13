@@ -69,9 +69,7 @@ export default function Profile() {
     let oldPassword = data.get("oldPassword");
     const obj = [newPassword, oldPassword, user];
 
-    UpdateService(obj).then((response) => {
-      console.log(response, "asdasdasd");
-    });
+    UpdateService(obj).then((response) => {});
   };
 
   const handleLogout = (event) => {
@@ -125,13 +123,9 @@ export default function Profile() {
             sm={4}
             md={7}
             sx={{
-              backgroundImage:
-                "url(https://sortitoutsi.net/uploads/images/whrQXkyE74x0gSePdWBh40Dt7uvgypjO.png)",
+              backgroundImage: "url(https://sortitoutsi.net/uploads/images/whrQXkyE74x0gSePdWBh40Dt7uvgypjO.png)",
               backgroundRepeat: "no-repeat",
-              backgroundColor: (t) =>
-                t.palette.mode === "light"
-                  ? t.palette.grey[50]
-                  : t.palette.grey[900],
+              backgroundColor: (t) => (t.palette.mode === "light" ? t.palette.grey[50] : t.palette.grey[900]),
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
@@ -153,12 +147,7 @@ export default function Profile() {
             <Typography component="h1" variant="h5">
               {user.name} {user.lastname}
             </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
-            >
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 fullWidth
@@ -196,17 +185,9 @@ export default function Profile() {
                   alignItems: "center",
                 }}
               ></Box>
-              <Grid
-                container
-                spacing={2}
-                direction="row"
-                alignItems="center"
-                justifyContent="center"
-              >
+              <Grid container spacing={2} direction="row" alignItems="center" justifyContent="center">
                 <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-password">
-                    Old Password
-                  </InputLabel>
+                  <InputLabel htmlFor="outlined-adornment-password">Old Password</InputLabel>
                   <OutlinedInput
                     name="oldPassword"
                     id="old_password"
@@ -220,11 +201,7 @@ export default function Profile() {
                           onClick={handleClickOldShowPassword}
                           edge="end"
                         >
-                          {values.oldShowPassword ? (
-                            <VisibilityOff />
-                          ) : (
-                            <Visibility />
-                          )}
+                          {values.oldShowPassword ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
                       </InputAdornment>
                     }
@@ -232,9 +209,7 @@ export default function Profile() {
                   />
                 </FormControl>
                 <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-password">
-                    New Password
-                  </InputLabel>
+                  <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
                   <OutlinedInput
                     name="newPassword"
                     id="new_password"
@@ -248,11 +223,7 @@ export default function Profile() {
                           onClick={handleClickNewShowPassword}
                           edge="end"
                         >
-                          {values.newShowPassword ? (
-                            <VisibilityOff />
-                          ) : (
-                            <Visibility />
-                          )}
+                          {values.newShowPassword ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
                       </InputAdornment>
                     }
@@ -261,48 +232,21 @@ export default function Profile() {
                 </FormControl>
               </Grid>
 
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
+              <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                 Update Profile
               </Button>
             </Box>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <Box
-                  component="form"
-                  noValidate
-                  onSubmit={handleDelete}
-                  sx={{ mt: 1 }}
-                >
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                    color="error"
-                  >
+                <Box component="form" noValidate onSubmit={handleDelete} sx={{ mt: 1 }}>
+                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} color="error">
                     Delete Profile
                   </Button>
                 </Box>
               </Grid>
               <Grid item xs={12} sm={6}>
-                <Box
-                  component="form"
-                  noValidate
-                  onSubmit={handleLogout}
-                  sx={{ mt: 1 }}
-                >
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                    color="primary"
-                  >
+                <Box component="form" noValidate onSubmit={handleLogout} sx={{ mt: 1 }}>
+                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} color="primary">
                     Logout
                   </Button>
                 </Box>

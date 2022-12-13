@@ -6,7 +6,6 @@ import axios from "axios";
 
 export default function ListCards(props) {
   const email = props.email;
-  // console.log(email);
   let uri = serverURI + "/users/activebids/";
   const [message, setMessage] = React.useState([{}]);
   const [loading, setLoading] = React.useState(true);
@@ -20,17 +19,13 @@ export default function ListCards(props) {
         "Content-Type": "application/json",
       },
     };
-    console.log(uri);
 
     axios(config)
       .then((response) => {
-        console.log(response.data.message);
         setMessage(response.data.message);
         setLoading(false);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }, [email, uri]);
 
   function notEmpty(obj) {

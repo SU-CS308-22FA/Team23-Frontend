@@ -9,7 +9,6 @@ export default function ProductHeader(props) {
   const price = props.prop.price;
   const duration = props.prop.duration || 0;
   const start_date = props.prop.start_date || 0;
-  console.log(start_date, duration, price);
 
   return (
     <Container maxWidth="xl" sx={{ height: 500 }}>
@@ -33,11 +32,7 @@ export default function ProductHeader(props) {
           }}
         >
           {/* <Item></Item>{" "} */}
-          <CardMedia
-            component="img"
-            src={image}
-            style={{ width: 400, height: 500 }}
-          />
+          <CardMedia component="img" src={image} style={{ width: 400, height: 500 }} />
         </Box>
         <Box
           sx={{

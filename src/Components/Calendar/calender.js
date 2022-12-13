@@ -28,8 +28,6 @@ export default function Calendar(props) {
 
   var begindate = new Date(begin[2], begin[1] - 1, begin[0]).getTime();
   var enddate = new Date(end[2], end[1] - 1, end[0]).getTime();
-  console.log(begindate, enddate);
-  console.log(startDate);
   React.useEffect(() => {
     var config = {
       method: "get",
@@ -39,17 +37,13 @@ export default function Calendar(props) {
         "Content-Type": "application/json",
       },
     };
-    console.log(uri);
 
     axios(config)
       .then((response) => {
-        console.log(response.data.message);
         setMessage(response.data.message);
         setshowmessage(true);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }, [begindate, enddate]);
 
   function isShowMessage() {

@@ -17,7 +17,6 @@ function SortProduct(props) {
   }, [option]);
 
   function func3() {
-    console.log(option);
     props.func(option);
   }
 

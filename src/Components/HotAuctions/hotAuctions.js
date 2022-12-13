@@ -23,7 +23,6 @@ export default function HotAuctions() {
   const [products, setProducts] = React.useState([{}, {}, {}]);
 
   React.useEffect(() => {
-    console.log(uri);
     var config = {
       method: "get",
       url: uri,
@@ -35,13 +34,10 @@ export default function HotAuctions() {
     axios(config)
       .then((response) => {
         setLoading(false);
-        console.log(response.data.message);
+
         setProducts(response.data.message);
-        console.log(products);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }, []);
 
   const handlePrevious = () => {

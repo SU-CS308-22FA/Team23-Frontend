@@ -108,13 +108,12 @@ export default function FilterCard(props) {
         });
       }
     }
-    console.log(filterStatus);
+
     // getOptions(filterStatus);
     props.getFilterOptions(filterStatus);
   };
 
   React.useEffect(() => {
-    console.log(uri);
     var config = {
       method: "get",
       url: uri,
@@ -127,9 +126,7 @@ export default function FilterCard(props) {
       .then((response) => {
         setFilterOps(response.data.message);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }, [uri]);
 
   return (

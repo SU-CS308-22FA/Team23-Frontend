@@ -64,7 +64,6 @@ export default function Signin() {
 
     SigninService(obj)
       .then((response) => {
-        console.log(response);
         cookies.set("email", email, { path: "/" });
         navigateProfile();
       })

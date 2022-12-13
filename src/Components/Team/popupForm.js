@@ -56,9 +56,7 @@ const UpdateProduct = (props) => {
         setData({ name: "", type: "", image: "", price: "" });
         history.replace("/");
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (

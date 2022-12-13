@@ -19,10 +19,7 @@ async function DeleteServiceProduct(prop) {
   };
 
   axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-      console.log("success");
-    })
+    .then(function (response) {})
     .catch(function (error) {
       console.log(error);
     });
@@ -31,10 +28,10 @@ async function DeleteServiceProduct(prop) {
 async function EnterBid(prop) {
   const cookie = new Cookies();
   const email = cookie.get("email");
-  console.log(email);
+
   let bid = prop.bid;
   let pid = prop.pid;
-  console.log(pid);
+
   let result = {};
   let uri = serverURI + "/products/enterBid/";
   //let uri = "http://localhost:3001/deleteProduct";
@@ -56,8 +53,6 @@ async function EnterBid(prop) {
 
   axios(config)
     .then(function (response) {
-      console.log(JSON.stringify(response.data));
-      console.log("success");
       result = JSON.stringify(response.data);
       return response.data;
     })

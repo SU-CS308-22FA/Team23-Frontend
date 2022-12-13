@@ -12,9 +12,7 @@ export default function SearchPage() {
   const { searchQuery } = useParams();
   let uri = serverURI + "/products/search/" + searchQuery;
 
-  React.useEffect(() => {
-    console.log(searchQuery);
-  }, [searchQuery]);
+  React.useEffect(() => {}, [searchQuery]);
 
   return (
     <ThemeProvider theme={theme}>

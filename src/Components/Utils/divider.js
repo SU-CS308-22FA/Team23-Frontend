@@ -4,7 +4,6 @@ import SortProduct from "../Card/sort";
 
 export default function Divider(props) {
   function func2(data) {
-    console.log(data);
     props.func(data);
   }
 

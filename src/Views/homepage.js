@@ -9,14 +9,13 @@ import serverURI from "../Constants/connection";
 import SortProduct from "../Components/Card/sort";
 import { CssBaseline } from "@mui/material";
 import { fontWeight } from "@mui/system";
-import Footer from "../Components/Navbar/footer"
+import Footer from "../Components/Navbar/footer";
 const themeLight = createTheme();
 
 export default function HomePage() {
   const [myOption, setOption] = React.useState(0);
 
   function func1(data) {
-    console.log(data);
     setOption(data);
   }
 

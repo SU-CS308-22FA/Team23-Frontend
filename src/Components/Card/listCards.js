@@ -23,13 +23,11 @@ export default function ListCards(props) {
   }
 
   function func2(data) {
-    console.log(data);
     props.func(data);
   }
 
   const getFilterOptions = (options) => {
     if (email) {
-      console.log("email burda hovam", email);
       let name = email.substring(0, email.indexOf("@"));
       name = name.charAt(0).toUpperCase() + name.slice(1);
       options.teams.push(name);
@@ -78,7 +76,6 @@ export default function ListCards(props) {
   };
 
   React.useEffect(() => {
-    console.log(uri);
     var config = {
       method: "get",
       url: uri,
@@ -90,12 +87,10 @@ export default function ListCards(props) {
     axios(config)
       .then((response) => {
         setLoading(false);
-        console.log(response.data.message);
+
         setProducts(response.data.message);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }, [uri]);
 
   React.useEffect(() => {
