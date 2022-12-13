@@ -6,6 +6,7 @@ import List from "@mui/material/List";
 import serverURI from "../../Constants/connection";
 
 const priceRanges = ["0 - 200 $", "200 - 400 $", "400 - 1000 $ ", "1000 - 2000 $", "+ 2000 $"];
+const urlPriceRanges = ["0-200", "200-400", "400-1000", "1000-2000", "2000-+"];
 
 const styles = {
   headerFontSize: "14px",
@@ -13,7 +14,7 @@ const styles = {
 };
 
 export default function FilterCard(props) {
-  let getOptions = props.getFilterOptions;
+  const email = props.email;
   const [filterOps, setFilterOps] = React.useState([{ teams: [], types: [] }]);
   const [status, setStatus] = React.useState([false, false]);
 
@@ -22,6 +23,10 @@ export default function FilterCard(props) {
   const [filterStatus, setFilterStatus] = React.useState({ status: [], teams: [], priceRange: "", productType: [] });
 
   let uri = serverURI + "/products/filter/ops";
+
+  const getOptions = (status) => {
+    props.getFilterOptions(status);
+  };
 
   const handleChange = (idx, menu, rangeIdx = 0) => {
     if (menu === "status") {
@@ -72,19 +77,21 @@ export default function FilterCard(props) {
         });
       }
     } else if (menu === "range") {
-      setFilterStatus((old) => {
-        old.priceRange = idx;
-        return old;
-      });
-      setPriceRange((old) => {
-        if (old[rangeIdx] === true) {
-          return [false, false, false, false, false];
-        } else {
-          old = [false, false, false, false, false];
-          old[rangeIdx] = true;
+      if (priceRange[rangeIdx] === true) {
+        setFilterStatus((old) => {
+          old.priceRange = "";
           return old;
-        }
-      });
+        });
+        setPriceRange([false, false, false, false, false]);
+      } else {
+        setFilterStatus((old) => {
+          old.priceRange = urlPriceRanges[rangeIdx];
+          return old;
+        });
+        let oldRange = [false, false, false, false, false];
+        oldRange[rangeIdx] = true;
+        setPriceRange(oldRange);
+      }
     } else if (menu === "type") {
       if (!filterStatus.productType.includes(idx)) {
         setFilterStatus((old) => {
@@ -101,7 +108,9 @@ export default function FilterCard(props) {
         });
       }
     }
-    getOptions(filterStatus);
+    console.log(filterStatus);
+    // getOptions(filterStatus);
+    props.getFilterOptions(filterStatus);
   };
 
   React.useEffect(() => {
@@ -116,7 +125,6 @@ export default function FilterCard(props) {
 
     axios(config)
       .then((response) => {
-        console.log(response.data.message);
         setFilterOps(response.data.message);
       })
       .catch((error) => {
@@ -147,39 +155,43 @@ export default function FilterCard(props) {
       <Divider sx={{ maxWidth: "90%", mt: 1 }}></Divider>
 
       {/* Filter Team */}
-      <FormGroup>
-        <Typography sx={{ fontWeight: 500, mb: 2, mt: 2, fontSize: styles.headerFontSize }}>Teams</Typography>
-        <List
-          sx={{
-            width: "100%",
-            maxWidth: 360,
-            bgcolor: "background.paper",
-            position: "relative",
-            overflow: "auto",
-            maxHeight: 200,
-            "& ul": { padding: 0 },
-          }}
-          subheader={<li />}
-        >
-          {filterOps[0].teams.map((teamName) => (
-            <li key={`section-${teamName}`}>
-              <ul>
-                <FormGroup>
-                  <FormControlLabel
-                    control={<Checkbox onChange={(e) => handleChange(teamName, "team")} />}
-                    label={
-                      <Typography sx={{ color: "#000000", fontWeight: 500, fontSize: styles.fontSize }}>
-                        {teamName}
-                      </Typography>
-                    }
-                  />
-                </FormGroup>
-              </ul>
-            </li>
-          ))}
-        </List>
-      </FormGroup>
-      <Divider sx={{ maxWidth: "90%", mt: 1 }}></Divider>
+      {email ? (
+        ""
+      ) : (
+        <FormGroup>
+          <Typography sx={{ fontWeight: 500, mb: 2, mt: 2, fontSize: styles.headerFontSize }}>Teams</Typography>
+          <List
+            sx={{
+              width: "100%",
+              maxWidth: 360,
+              bgcolor: "background.paper",
+              position: "relative",
+              overflow: "auto",
+              maxHeight: 200,
+              "& ul": { padding: 0 },
+            }}
+            subheader={<li />}
+          >
+            {filterOps[0].teams.map((teamName) => (
+              <li key={`section-${teamName}`}>
+                <ul>
+                  <FormGroup>
+                    <FormControlLabel
+                      control={<Checkbox onChange={(e) => handleChange(teamName, "team")} />}
+                      label={
+                        <Typography sx={{ color: "#000000", fontWeight: 500, fontSize: styles.fontSize }}>
+                          {teamName}
+                        </Typography>
+                      }
+                    />
+                  </FormGroup>
+                </ul>
+              </li>
+            ))}
+          </List>
+          <Divider sx={{ maxWidth: "90%", mt: 1 }}></Divider>
+        </FormGroup>
+      )}
 
       {/* Filter Price Range */}
       <FormGroup>

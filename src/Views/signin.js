@@ -108,7 +108,9 @@ export default function Signin() {
               autoFocus
             />
             <FormControl sx={{ width: 1, mt: 1.5 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+              <InputLabel style={{ textAlign: "left" }} htmlFor="outlined-adornment-password">
+                Password
+              </InputLabel>
               <OutlinedInput
                 error={flag}
                 name="password"

@@ -1,18 +1,20 @@
 import * as React from 'react';
-import { Box, Typography, ListItem, List } from '@mui/material';
+import { Box, Typography, ListItem, List, Divider } from '@mui/material';
 import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
+
 
 export default function BidHistory(props) {
     let bidInfo = props.info || [];
 
-    function isEmpty(obj) {
+    function notEmpty(obj) {
         return Object.keys(obj).length !== 0;
     }
 
     return (
         <Box>
-            {isEmpty(bidInfo[0]) ? (
+            {notEmpty(bidInfo[0]) ? (
                 <Box>
+                    <Divider></Divider>
                     <Box sx={{ fontWeight: 'bold', fontSize: "15px", mb: 1, mt: 2, ml: 1 }} >
                         Current Bids
                     </Box>
@@ -59,15 +61,13 @@ export default function BidHistory(props) {
                                 </li>))}
                         </List >
                     </Box >
+                    <Divider></Divider>
                 </Box>
             ) :
-                <Box sx={{ display: "flex", alignItems: "center", ml: 15 }}>
-                    <Typography variant="h10" color="text.primary" sx={{ fontWeight: 700, fontSize: "125px" }}>
-                        :(
-                    </Typography>
-                </Box>
+                <Typography variant="h10" color="red" sx={{ ml: 2, fontWeight: 600, fontSize: "16px" }}>
+                    Enter a bid to be the first bidder!
+                </Typography>
             }
-
         </Box >
     );
 }

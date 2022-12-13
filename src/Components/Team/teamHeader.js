@@ -3,9 +3,10 @@ import { useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { Button, Typography, Container, Box } from "@mui/material";
-import Calendar from "../calender";
+import Calendar from "../Calendar/calender";
 
 import serverURI from "../../Constants/connection";
+import CalendarIcon from "../Calendar/calendarIcon";
 
 // https://upload.wikimedia.org/wikipedia/commons/a/a3/Fenerbah%C3%A7elogo.png
 
@@ -16,15 +17,28 @@ export default function TeamHeader(props) {
   const [isShowLogin, setIsShowLogin] = useState(true);
   const [logo, setLogo] = useState("");
   const [teamName, setTeamName] = useState("");
+  const [showCalendar, setShowCalendar] = React.useState(false);
 
   function func2() {
     props.func();
+  }
+
+  function func3() {
+    props.func2();
   }
 
   const handleLoginClick = () => {
     setIsShowLogin((isShowLogin) => !isShowLogin);
   };
 
+  function isShowCalendar() {
+    if (showCalendar === false) {
+      setShowCalendar(true);
+    }
+    if (showCalendar === true) {
+      setShowCalendar(false);
+    }
+  }
   React.useEffect(() => {
     let uri = serverURI + "/users/team/";
     const email = cookie.get("email");
@@ -47,7 +61,7 @@ export default function TeamHeader(props) {
   }, []);
 
   return (
-    <Container sx={{ height: 500 }}>
+    <Container sx={{ height: 600, pt: 5 }}>
       <Box
         sx={{
           display: "flex",
@@ -75,25 +89,13 @@ export default function TeamHeader(props) {
             ml: 10,
           }}
         >
-          <Typography
-            variant="h3"
-            color="text.primary"
-            sx={{ fontWeight: 900 }}
-          >
+          <Typography variant="h3" color="text.primary" sx={{ fontWeight: 900 }}>
             {teamName}
           </Typography>
-          <Box sx={{ mt: 5 }}>
-            <Typography
-              variant="h5"
-              color="text.primary"
-              sx={{ fontWeight: 40 }}
-            >
-              Stats
-            </Typography>
+          <Box sx={{ mt: 10, display: "flex" }}>
+            <CalendarIcon func={isShowCalendar}></CalendarIcon>
           </Box>
-          <Box>
-            <Calendar email={email}></Calendar>
-          </Box>
+          {showCalendar ? <Calendar email={email}></Calendar> : ""}
         </Box>
         <Box
           sx={{
