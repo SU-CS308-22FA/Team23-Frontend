@@ -1,6 +1,6 @@
 import * as React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Divider, Box } from "@mui/material";
+import { Divider, Box, Typography } from "@mui/material";
 import AppBar from "../Components/Navbar/appbar";
 import ListCards from "../Components/Card/listCards";
 import HotAuctions from "../Components/HotAuctions/hotAuctions";
@@ -8,7 +8,8 @@ import HotAuctions from "../Components/HotAuctions/hotAuctions";
 import serverURI from "../Constants/connection";
 import SortProduct from "../Components/Card/sort";
 import { CssBaseline } from "@mui/material";
-
+import { fontWeight } from "@mui/system";
+import Footer from "../Components/Navbar/footer"
 const themeLight = createTheme();
 
 export default function HomePage() {
@@ -30,6 +31,7 @@ export default function HomePage() {
       <Divider></Divider>
 
       <ListCards admin={false} type={"list"}></ListCards>
+      <Footer></Footer>
 
       {/* <SortProduct></SortProduct> */}
     </ThemeProvider>

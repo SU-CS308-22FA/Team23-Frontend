@@ -75,7 +75,7 @@ export default function HomePage() {
         </Box>
       ) : (
         <Box>
-          <ProductHeader prop={products[0]} bids={bids}></ProductHeader>
+          <ProductHeader prop={products[0]} id={id} bids={bids}></ProductHeader>
           <ArrowDown func={isShow}></ArrowDown>
           {showList ? (
             <ProductBody
