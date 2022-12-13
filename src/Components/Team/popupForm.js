@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
-import { Box, TextField, Button, IconButton, ownerWindow } from "@mui/material";
+import { Box, TextField, Button, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 import serverURI from "../../Constants/connection";

@@ -8,7 +8,7 @@ export default function AuctionData(props) {
   const price = props.prop.price;
   const id = props.id;
   // console.log(id);
-  const basePrice = props.prop.basePrice;
+
   // console.log(basePrice);
   const duration = Number(props.prop.duration) / 1000;
   const start_date = Number(props.prop.start_date) / 1000;

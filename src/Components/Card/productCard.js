@@ -2,10 +2,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, CardContent, Typography, Chip, CardMedia, Card, CardActionArea, Button } from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-
 import secondsToDhms from "../../Utils/countDown";
-import { DeleteServiceProduct } from "../../Service/ProductService";
-import serverURI from "../../Constants/connection";
 
 export default function ProductCard(props) {
   const id = props.id;
@@ -29,12 +26,6 @@ export default function ProductCard(props) {
 
   const handleDeleteProduct = async () => {
     try {
-      let productid = id;
-
-      const path = serverURI + "/product/delete/" + productid;
-
-      const response = await DeleteServiceProduct(productid);
-
       window.location.reload();
     } catch (error) {}
   };

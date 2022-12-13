@@ -33,7 +33,7 @@ export default function Profile() {
   const [user, setUser] = useState({});
   const cookie = new Cookies();
   cookie.get("email");
-  const email = cookie.cookies.email;
+
   let uri = serverURI + "/users/profile/";
 
   const [values, setValues] = React.useState({

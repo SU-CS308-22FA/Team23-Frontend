@@ -16,17 +16,12 @@ const styles = {
 export default function FilterCard(props) {
   const email = props.email;
   const [filterOps, setFilterOps] = React.useState([{ teams: [], types: [] }]);
-  const [status, setStatus] = React.useState([false, false]);
 
   const [priceRange, setPriceRange] = React.useState([false, false, false, false, false]);
 
   const [filterStatus, setFilterStatus] = React.useState({ status: [], teams: [], priceRange: "", productType: [] });
 
   let uri = serverURI + "/products/filter/ops";
-
-  const getOptions = (status) => {
-    props.getFilterOptions(status);
-  };
 
   const handleChange = (idx, menu, rangeIdx = 0) => {
     if (menu === "status") {

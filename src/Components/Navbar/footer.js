@@ -6,8 +6,6 @@ export default function Footer() {
     copy: "For contact: mactan@gmail.com",
   };
 
-  let brand;
-
   return (
     <footer>
       <Container maxWidth="lg">
@@ -21,16 +19,8 @@ export default function Footer() {
             width: 1,
           }}
         >
-          <Box
-            sx={{ display: "flex", flexDirection: "column" }}
-            component="nav"
-          ></Box>
-          <Typography
-            color="textSecondary"
-            component="p"
-            variant="caption"
-            gutterBottom={false}
-          >
+          <Box sx={{ display: "flex", flexDirection: "column" }} component="nav"></Box>
+          <Typography color="textSecondary" component="p" variant="caption" gutterBottom={false}>
             {content["copy"]}
           </Typography>
         </Box>

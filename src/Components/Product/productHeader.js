@@ -6,9 +6,6 @@ export default function ProductHeader(props) {
   //image
   const image = props.prop.image;
   const id = props.id;
-  const price = props.prop.price;
-  const duration = props.prop.duration || 0;
-  const start_date = props.prop.start_date || 0;
 
   return (
     <Container maxWidth="xl" sx={{ height: 500 }}>
