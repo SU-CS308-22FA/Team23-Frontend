@@ -5,6 +5,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 import secondsToDhms from "../../Utils/countDown";
 import { DeleteServiceProduct } from "../../Service/ProductService";
+import serverURI from "../../Constants/connection";
 
 export default function ProductCard(props) {
   const id = props.id;
@@ -30,7 +31,7 @@ export default function ProductCard(props) {
     try {
       let productid = id;
 
-      const path = "http://localhost:3000/product/delete/" + productid;
+      const path = serverURI + "/product/delete/" + productid;
 
       const response = await DeleteServiceProduct(productid);
 
