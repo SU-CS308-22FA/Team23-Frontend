@@ -136,7 +136,7 @@ export default function FilterCard(props) {
     <Box>
       {/* Filter Open Closed Auction */}
       <FormGroup>
-        <Typography sx={{ fontWeight: 500, mb: 2, fontSize: styles.headerFontSize }}>Auction Type</Typography>
+        <Typography sx={{ fontWeight: 700, mb: 2, fontSize: styles.headerFontSize }}>Auction Type</Typography>
         <FormControlLabel
           control={<Checkbox onChange={(e) => handleChange(0, "status")} />}
           label={
@@ -159,7 +159,7 @@ export default function FilterCard(props) {
         ""
       ) : (
         <FormGroup>
-          <Typography sx={{ fontWeight: 500, mb: 2, mt: 2, fontSize: styles.headerFontSize }}>Teams</Typography>
+          <Typography sx={{ fontWeight: 700, mb: 2, mt: 2, fontSize: styles.headerFontSize }}>Teams</Typography>
           <List
             sx={{
               width: "100%",
@@ -195,7 +195,7 @@ export default function FilterCard(props) {
 
       {/* Filter Price Range */}
       <FormGroup>
-        <Typography sx={{ fontWeight: 500, mb: 2, mt: 2, fontSize: styles.headerFontSize }}>Price Range</Typography>
+        <Typography sx={{ fontWeight: 700, mb: 2, mt: 2, fontSize: styles.headerFontSize }}>Price Range</Typography>
         {/* <Box sx={{ display: "flex" }}>
           <TextField sx={{ m: 1, width: "8ch" }} size="small" id="outlined-basic" label="Min" variant="outlined" />
           <TextField sx={{ m: 1, width: "8ch" }} size="small" id="outlined-basic" label="Max" variant="outlined" />
@@ -237,7 +237,7 @@ export default function FilterCard(props) {
 
       {/* Filter Product Type */}
       <FormGroup>
-        <Typography sx={{ fontWeight: 500, mb: 2, mt: 2, fontSize: styles.headerFontSize }}>Product Type</Typography>
+        <Typography sx={{ fontWeight: 700, mb: 2, mt: 2, fontSize: styles.headerFontSize }}>Product Type</Typography>
         <List
           sx={{
             width: "100%",
