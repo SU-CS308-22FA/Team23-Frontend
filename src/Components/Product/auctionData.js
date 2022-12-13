@@ -48,6 +48,7 @@ export default function AuctionData(props) {
       });
     } else {
       setInsert(false);
+      alert("You have to bid higher than current price.")
     }
   };
 
