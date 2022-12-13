@@ -28,6 +28,7 @@ function App() {
         <Route path="/search/:searchQuery" element={<Search />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/team/:id" element={<AdminPage />} />
+        
       </Routes>
     </BrowserRouter>
   );

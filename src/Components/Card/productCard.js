@@ -1,19 +1,28 @@
-import * as React from "react";
-import { useNavigate } from "react-router-dom";
-import { Box, CardContent, Typography, Chip, CardMedia, Card, CardActionArea, Button } from "@mui/material";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+  Box,
+  CardContent,
+  Typography,
+  Chip,
+  CardMedia,
+  Card,
+  CardActionArea,
+  Button,
+} from '@mui/material';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
-import secondsToDhms from "../../Utils/countDown";
-import { DeleteServiceProduct } from "../../Service/ProductService";
+import secondsToDhms from '../../Utils/countDown';
+import { DeleteServiceProduct } from '../../Service/ProductService';
 
 export default function ProductCard(props) {
   const id = props.id;
-  const type = props.type || "test";
-  const name = props.name || "test";
-  const owner = props.owner || "test";
+  const type = props.type || 'test';
+  const name = props.name || 'test';
+  const owner = props.owner || 'test';
   const image =
     props.image ||
-    "https://assets.adidas.com/images/w_600,f_auto,q_auto/49808757050946de8bedae29011926b5_9366/Manchester_United_22-23_Home_Jersey_Red_H13881_21_model.jpg";
+    'https://assets.adidas.com/images/w_600,f_auto,q_auto/49808757050946de8bedae29011926b5_9366/Manchester_United_22-23_Home_Jersey_Red_H13881_21_model.jpg';
   const price = props.price;
   const duration = Number(props.duration) / 1000;
   const start_date = Number(props.start_date) / 1000;
@@ -28,44 +37,21 @@ export default function ProductCard(props) {
   }
 
   const handleDeleteProduct = async () => {
-    //navigate(`/products/delete`);
     try {
       let productid = id;
 
-      const path = "http://localhost:3000/product/delete/" + productid;
+      const path = 'http://localhost:3000/product/delete/' + productid;
 
       console.log(productid);
       console.log(path);
 
-      DeleteServiceProduct(productid)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      // if respone true
-      /*const res = await fetch(`${path}`, {
-        method: 'DELETE',
-        url: path,
-        data: productid,
-      });
-      
-      if (res.ok) {
-        console.log(productid);
-      console.log(path);
-      console.log(productid);
-      console.log(path);
-      console.log(productid);
-      console.log(path);
-      }*/
+      const response = await DeleteServiceProduct(productid);
+      console.log(response);
+
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
-
-    /* DeleteServiceProduct(productid).then((respose) => {
-      console.log(respose);
-    });*/
   };
 
   React.useEffect(() => {
@@ -87,38 +73,32 @@ export default function ProductCard(props) {
 
   size === 1
     ? (size1 = {
-        imgHeight: "220",
-        name: "h6",
-        itemType: "h10",
-        variant: "h10",
-        displayChip: "none",
+        maxWidth: 300,
+        imgHeight: '220',
+        name: 'h6',
+        itemType: 'h10',
+        variant: 'h10',
+        displayChip: 'none',
       })
     : (size1 = {
-        imgHeight: "300",
-        name: "h5",
-        itemType: "h9",
-        variant: "h9",
-        displayChip: "flex",
+        maxWidth: 300,
+        imgHeight: '300',
+        name: 'h5',
+        itemType: 'h9',
+        variant: 'h9',
+        displayChip: 'flex',
       });
 
   return (
-    <Card
-      sx={{
-        maxWidth: 300,
-        position: "relative",
-        border: 1,
-        borderColor: "#F2F2F2",
-        borderRadius: "10px",
-      }}
-    >
+    <Card sx={{ maxWidth: size1.maxWidth, position: 'relative' }}>
       <CardActionArea onClick={handleClick}>
         <Box
           sx={{
             display: size1.displayChip,
-            alignContent: "space-between",
-            position: "absolute",
-            bottom: "29%",
-            left: "5%",
+            alignContent: 'space-between',
+            position: 'absolute',
+            bottom: '29%',
+            left: '5%',
           }}
         >
           <Chip
@@ -127,28 +107,45 @@ export default function ProductCard(props) {
             label={`${secondsToDhms(currentRemaningTime)} Bid: $${price}`}
           />
         </Box>
-        <CardMedia component="img" height={size1.imgHeight} src={image} alt="Paella dish" />
+        <CardMedia
+          component="img"
+          height={size1.imgHeight}
+          src={image}
+          alt="Paella dish"
+        />
         <CardContent>
           <Box>
-            <Typography variant={size1.name} color="text.primary" sx={{ fontWeight: 700 }}>
+            <Typography
+              variant={size1.name}
+              color="text.primary"
+              sx={{ fontWeight: 700 }}
+            >
               {name}
             </Typography>
           </Box>
           <Box>
-            <Typography variant={size1.itemType} color="text.primary" sx={{ fontWeight: 500 }}>
+            <Typography
+              variant={size1.itemType}
+              color="text.primary"
+              sx={{ fontWeight: 500 }}
+            >
               {type}
             </Typography>
           </Box>
           <Box>
-            <Typography variant={size1.variant} color="text.primary" sx={{ fontWeight: 500 }}>
+            <Typography
+              variant={size1.variant}
+              color="text.primary"
+              sx={{ fontWeight: 500 }}
+            >
               {owner}
             </Typography>
           </Box>
         </CardContent>
       </CardActionArea>
       <Box sx={{ zIndex: 1 }}>
-        {admin ? <Button onClick={func3}>Update</Button> : ""}
-        {admin ? <Button onClick={handleDeleteProduct}>Delete</Button> : ""}
+        {admin ? <Button onClick={func3}>Update</Button> : ''}
+        {admin ? <Button onClick={handleDeleteProduct}>Delete</Button> : ''}
       </Box>
     </Card>
   );
