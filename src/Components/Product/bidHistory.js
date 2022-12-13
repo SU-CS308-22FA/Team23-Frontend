@@ -47,10 +47,10 @@ export default function BidHistory(props) {
                         >
                           <EmojiEventsOutlinedIcon
                             sx={{
+                              left: 1,
+                              top: 8,
                               position: "absolute",
-                              left: -1,
-                              top: 7,
-                              zIndex: 2,
+                              zIndex: 1,
                             }}
                           ></EmojiEventsOutlinedIcon>
                           <Box display="flex" flexDirection="column">
