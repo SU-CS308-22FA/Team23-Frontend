@@ -59,7 +59,7 @@ export default function AdminPage() {
 
   const { id } = useParams();
   const sort = id + "-" + myOption;
-  console.log(sort);
+  console.log(id);
   let uri = serverURI + `/products/team/${sort}`; //option ekle
 
   return (

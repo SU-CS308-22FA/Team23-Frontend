@@ -58,9 +58,9 @@ export default function AuctionData(props) {
   return (
     <List
       sx={{
-        width: "100%",
+        width: '100%',
         maxWidth: 360,
-        bgcolor: "background.paper",
+        bgcolor: 'background.paper',
       }}
     >
       <ListItem alignItems="flex-start">
@@ -116,8 +116,9 @@ export default function AuctionData(props) {
 
         <Button onClick={handleSubmit}>Enter Bid</Button>
       </Box>
-
+      <Divider variant="inset" component="li" />
       <BidHistory info={props.bids}></BidHistory>
+      <Divider variant="inset" component="li" />
     </List>
   );
 }
