@@ -8,10 +8,6 @@ import { Container } from "@mui/system";
 import axios from "axios";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/material";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import { ListSubheader } from "@mui/material";
 
 export default function Calendar(props) {
   let email = props.email;
@@ -98,9 +94,7 @@ export default function Calendar(props) {
               <Typography>{` ${message.sum}$`}</Typography>
             </Box>
             <Box sx={{ display: "flex" }}>
-              <Typography
-                sx={{ fontWeight: 600 }}
-              >{`Total closed auctions: `}</Typography>
+              <Typography sx={{ fontWeight: 600 }}>{`Total closed auctions: `}</Typography>
               <Typography>{` ${message.soldItems.length}`}</Typography>
             </Box>
           </Container>

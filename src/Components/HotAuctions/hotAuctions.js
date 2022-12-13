@@ -3,7 +3,7 @@ import axios from "axios";
 import { Box, Container, IconButton, Typography, CircularProgress } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import serverURI from "../../Constants/connection";
 import Card from "../Card/productCard";
