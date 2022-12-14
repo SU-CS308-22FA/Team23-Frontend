@@ -80,6 +80,16 @@ function ResponsiveAppBar(props) {
       settings.pop("Active Bids");
     }
   }
+  if (isAdmin === false) {
+    if (settings.includes("My Products") === false) {
+      settings.push("My Products");
+      // settings.splice(1, 0, "Active Bids");
+    }
+  } else {
+    if (settings.includes("My Products") === true) {
+      settings.pop("My Products");
+    }
+  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -119,8 +129,11 @@ function ResponsiveAppBar(props) {
   const handleActiveBids = () => {
     navigate(`/activebids/${email}`);
   };
+  const handleMyProducts = () => {
+    navigate(`/myproducts/${email}`);
+  };
 
-  const settingsFunctions = [handleProfile, handleLogOut, handleActiveBids];
+  const settingsFunctions = [handleProfile, handleLogOut, handleActiveBids, handleMyProducts];
 
   React.useEffect(() => {
     if (email !== undefined) {
