@@ -65,20 +65,13 @@ export default function AdminPage() {
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
-      {showFormUpload ? (
-        <AddProduct func2={isUploadChange} func={isShowFormUpload}></AddProduct>
-      ) : (
-        ""
-      )}
+      {showFormUpload ? <AddProduct func2={isUploadChange} func={isShowFormUpload}></AddProduct> : ""}
       <TeamHeader email={id} func={isShowFormUpload}></TeamHeader>
       <Divider></Divider>
 
-      {showFormUpdate ? (
-        <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct>
-      ) : (
-        ""
-      )}
-      <ListCards admin={true} uri={uri} func={isShowFormUpdate}></ListCards>
+      {showFormUpdate ? <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct> : ""}
+
+      <ListCards email={id} admin={true} uri={uri} func={isShowFormUpdate}></ListCards>
       <Footer></Footer>
     </ThemeProvider>
   );
