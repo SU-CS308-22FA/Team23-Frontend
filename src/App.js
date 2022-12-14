@@ -12,6 +12,7 @@ import Product from "./Views/product";
 
 import AdminPage from "./Views/adminpage";
 import ActiveBids from "./Views/activebid";
+import MyProducts from "./Views/myProducts";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/activebids/:email" element={<ActiveBids />} />
         {/* <Route path="/test" element={<Test />} /> */}
+        <Route path="/myproducts/:email" element={<MyProducts />} />
 
         <Route path="/search/:searchQuery" element={<Search />} />
         <Route path="/product/:id" element={<Product />} />
