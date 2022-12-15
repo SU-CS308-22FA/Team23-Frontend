@@ -47,6 +47,13 @@ export default function ProductCard(props) {
     navigate(`/product/${id}`);
   };
 
+  const imageOptimize = (imageUrl) => {
+    const indx = imageUrl.indexOf("upload/") + 7;
+    const insert = "c_scale,q_50,w_400/";
+    const newURL = imageUrl.slice(0, indx) + insert + imageUrl.slice(indx);
+    return newURL;
+  };
+
   size === 1
     ? (size1 = {
         maxWidth: 300,
@@ -83,7 +90,7 @@ export default function ProductCard(props) {
             label={`${secondsToDhms(currentRemaningTime)} Bid: $${price}`}
           />
         </Box>
-        <CardMedia component="img" height={size1.imgHeight} src={image} alt="Paella dish" />
+        <CardMedia component="img" height={size1.imgHeight} src={imageOptimize(image)} alt="Paella dish" />
         <CardContent>
           <Box>
             <Typography variant={size1.name} color="text.primary" sx={{ fontWeight: 700 }}>
