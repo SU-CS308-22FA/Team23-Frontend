@@ -66,4 +66,30 @@ async function EnterBid(prop) {
     });
 }
 
-export { DeleteServiceProduct, EnterBid };
+async function GetCertificate(prop) {
+  let pid = prop.certificate;
+  console.log(pid);
+
+  let uri = serverURI + "/products/getCertificate/" + pid;
+  let result = {};
+
+  var config = {
+    method: "post",
+    url: uri,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  await axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      result = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    return result;
+}
+
+export { DeleteServiceProduct, EnterBid, GetCertificate };

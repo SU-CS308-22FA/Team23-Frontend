@@ -35,7 +35,7 @@ const themeLight = createTheme();
 //   },
 // }
 
-const pages = ["Teams", "Open Auctions"];
+const pages = ["Teams", "Open Auctions", "Authenticate"];
 const settings = ["Profile", "Logout"];
 
 function ResponsiveAppBar(props) {
@@ -89,6 +89,7 @@ function ResponsiveAppBar(props) {
   };
 
   const handleCloseNavMenu = () => {
+    console.log("asdada");
     setAnchorElNav(null);
   };
 
@@ -120,7 +121,20 @@ function ResponsiveAppBar(props) {
     navigate(`/activebids/${email}`);
   };
 
+  const handleTeams = () => {
+
+  };
+
+  const handleOpenAuctions = () => {
+
+  };
+
+  const handleAuthenticate = () => {
+    navigate(`/authenticate`);
+  };
+
   const settingsFunctions = [handleProfile, handleLogOut, handleActiveBids];
+  const pagesFunctions = [handleTeams, handleOpenAuctions, handleAuthenticate];
 
   React.useEffect(() => {
     if (email !== undefined) {
@@ -184,7 +198,7 @@ function ResponsiveAppBar(props) {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
+                {pages.map((page, idx) => (
                   <MenuItem key={page} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">{page}</Typography>
                   </MenuItem>
@@ -212,10 +226,10 @@ function ResponsiveAppBar(props) {
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
+              {pages.map((page, idx) => (
                 <Button
                   key={page}
-                  onClick={handleCloseNavMenu}
+                  onClick={pagesFunctions[idx]}
                   sx={{ my: 2, color: "black", display: "block" }}
                 >
                   {page}

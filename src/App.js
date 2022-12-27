@@ -13,6 +13,8 @@ import Product from "./Views/product";
 import AdminPage from "./Views/adminpage";
 import ActiveBids from "./Views/activebid";
 
+import Authenticate from "./Views/authenticate";
+
 function App() {
   return (
     <BrowserRouter>
@@ -28,7 +30,8 @@ function App() {
         <Route path="/search/:searchQuery" element={<Search />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/team/:id" element={<AdminPage />} />
-        
+        <Route path="/authenticate" element={<Authenticate />} />
+
       </Routes>
     </BrowserRouter>
   );
