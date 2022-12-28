@@ -85,6 +85,7 @@ async function SigninService(props) {
       console.log(response);
 
       result = response.data;
+      console.log(result);
     })
     .catch(function (error) {
       console.log(error);

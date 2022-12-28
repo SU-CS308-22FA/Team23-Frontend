@@ -66,13 +66,18 @@ export default function Signin() {
       .then((response) => {
         console.log(response);
         cookies.set("email", email, { path: "/" });
-        navigateProfile();
+        console.log(response.message);
+        if (response.message === true) {
+          navigateProfile();
+          setFlag(false);
+        } else {
+          setFlag(true);
+        }
       })
       .catch((err) => {
         setFlag(true);
         console.log(flag);
       });
-    setFlag(true);
     // if respone true
   };
 
@@ -95,7 +100,12 @@ export default function Signin() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
               error={flag}
               margin="normal"
@@ -108,14 +118,16 @@ export default function Signin() {
               autoFocus
             />
             <FormControl sx={{ width: 1, mt: 1.5 }} variant="outlined">
-              <InputLabel style={{ textAlign: "left" }} htmlFor="outlined-adornment-password">
+              <InputLabel
+                style={{ textAlign: "left" }}
+                htmlFor="outlined-adornment-password"
+              >
                 Password
               </InputLabel>
               <OutlinedInput
                 error={flag}
                 name="password"
                 label="Password"
-                type="password"
                 id="password"
                 autoComplete="current-password"
                 type={values.showPassword ? "text" : "password"}
@@ -123,7 +135,11 @@ export default function Signin() {
                 onChange={handleChange("password")}
                 endAdornment={
                   <InputAdornment position="end">
-                    <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} edge="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      edge="end"
+                    >
                       {values.showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
@@ -139,7 +155,12 @@ export default function Signin() {
               }}
             ></Box>
             {flag === true ? "Wrong email and password!" : ""}
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
               Sign In
             </Button>
             <Grid container>

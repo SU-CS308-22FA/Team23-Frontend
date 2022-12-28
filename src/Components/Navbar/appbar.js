@@ -73,11 +73,14 @@ function ResponsiveAppBar(props) {
   if (isAdmin === false) {
     if (settings.includes("Active Bids") === false) {
       settings.push("Active Bids");
-      // settings.splice(1, 0, "Active Bids");
+    } else if (settings.includes("Favorite Auctions") === false) {
+      settings.push("Favorite Auctions");
     }
   } else {
     if (settings.includes("Active Bids") === true) {
       settings.pop("Active Bids");
+    } else if (settings.includes("Favorite Auctions") === true) {
+      settings.pop("Favorite Auctions");
     }
   }
 
@@ -120,7 +123,16 @@ function ResponsiveAppBar(props) {
     navigate(`/activebids/${email}`);
   };
 
-  const settingsFunctions = [handleProfile, handleLogOut, handleActiveBids];
+  const handleFavoriteAuction = () => {
+    navigate(`/favoriteauctions/${email}`);
+  };
+
+  const settingsFunctions = [
+    handleProfile,
+    handleLogOut,
+    handleActiveBids,
+    handleFavoriteAuction,
+  ];
 
   React.useEffect(() => {
     if (email !== undefined) {
