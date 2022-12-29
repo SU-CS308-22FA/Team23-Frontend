@@ -9,7 +9,8 @@ import serverURI from "../Constants/connection";
 import SortProduct from "../Components/Card/sort";
 import { CssBaseline } from "@mui/material";
 import { fontWeight } from "@mui/system";
-import Footer from "../Components/Navbar/footer"
+import Footer from "../Components/Navbar/footer";
+import TeamsSlider from "../Components/Teams/teamsSlider";
 const themeLight = createTheme();
 
 export default function HomePage() {
@@ -28,6 +29,11 @@ export default function HomePage() {
       <AppBar></AppBar>
 
       <HotAuctions></HotAuctions>
+
+      <Divider></Divider>
+
+      <TeamsSlider></TeamsSlider>
+
       <Divider></Divider>
 
       <ListCards admin={false} type={"list"}></ListCards>
