@@ -69,9 +69,14 @@ export default function TeamPage() {
       <TeamHeader email={id} func={isShowFormUpload}></TeamHeader>
       <Divider></Divider>
 
-      {showFormUpdate ? <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct> : ""}
 
-      <ListCards email={id} admin={true} uri={uri} func={isShowFormUpdate}></ListCards>
+      {showFormUpdate ? (
+        <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct>
+      ) : (
+        ""
+      )}
+      <ListCards email={id} adminPage={true} uri={uri} func={isShowFormUpdate}></ListCards>
+
       <Footer></Footer>
     </ThemeProvider>
   );

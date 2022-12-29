@@ -47,6 +47,7 @@ function ResponsiveAppBar(props) {
   const [anchorElTeams, setAnchorElTeams] = React.useState(null);
   const [logedIn, setLogedIn] = React.useState(false);
   const [isAdmin, setIsAdmin] = React.useState(false);
+  const [check, setCheck] = React.useState(false);
   const [email, setEmail] = React.useState(cookie.get("email"));
   const [teams, setTeams] = React.useState([
     {
@@ -78,6 +79,20 @@ function ResponsiveAppBar(props) {
         setIsAdmin(false);
       });
   });
+  // if (props) {
+  //   props.func(isAdmin);
+  // }
+  if (Object.keys(props).length !== 0) {
+    console.log("a");
+    props.func(isAdmin);
+  }
+  function adminCheck() {
+    // if (isAdmin) {
+    //   setCheck(true);
+    // } else {
+    //   setCheck(false);
+    // }
+  }
 
   React.useEffect(() => {
     var config = {
@@ -101,11 +116,14 @@ function ResponsiveAppBar(props) {
   if (isAdmin === false) {
     if (settings.includes("Active Bids") === false) {
       settings.push("Active Bids");
-      // settings.splice(1, 0, "Active Bids");
+    } else if (settings.includes("Favorite Auctions") === false) {
+      settings.push("Favorite Auctions");
     }
   } else {
     if (settings.includes("Active Bids") === true) {
       settings.pop("Active Bids");
+    } else if (settings.includes("Favorite Auctions") === true) {
+      settings.pop("Favorite Auctions");
     }
   }
 
@@ -180,6 +198,19 @@ function ResponsiveAppBar(props) {
     navigate(`/activebids/${email}`);
   };
 
+
+  const handleFavoriteAuction = () => {
+    navigate(`/favoriteauctions/${email}`);
+  };
+
+  const settingsFunctions = [
+    handleProfile,
+    handleLogOut,
+    handleActiveBids,
+    handleFavoriteAuction,
+    handleWonAuctions
+  ];
+
   const handleTeams = () => {};
 
   const handleOpenAuctions = () => {};
@@ -194,8 +225,8 @@ function ResponsiveAppBar(props) {
     navigate(`/wonAuctions/${email}`);
   };
 
-  const settingsFunctions = [handleProfile, handleLogOut, handleActiveBids, handleWonAuctions];
   const pagesFunctions = [handleTeams, handleOpenAuctions, handleAuthenticate];
+
 
   React.useEffect(() => {
     if (email !== undefined) {

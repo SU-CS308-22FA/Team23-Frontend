@@ -5,12 +5,18 @@ import axios from "axios";
 import FilterCard from "./filterCard";
 import SortProduct from "./sort";
 import serverURI from "../../Constants/connection";
+import Cookies from "universal-cookie";
 
 export default function ListCards(props) {
-  const isAdmin = props.admin;
+  const adminPage = props.adminPage;
+  const isAdmin = props.isAdmin;
   const email = props.email;
+  const cookie = new Cookies();
+  const newEmail = cookie.get("email");
   const [myOption, setOption] = React.useState(0);
-  const [uri, setUri] = React.useState(serverURI + "/products/option:0");
+  const [uri, setUri] = React.useState(
+    serverURI + "/products/option:0" + "&" + newEmail
+  );
   const [products, setProducts] = React.useState([]);
   const [total, setTotal] = React.useState("option:0");
   const [loading, setLoading] = React.useState(true);
@@ -19,7 +25,7 @@ export default function ListCards(props) {
     setOption(data);
     let newTotal = total.substring(0, total.lastIndexOf(":") + 1) + data;
     setTotal(newTotal);
-    setUri(serverURI + "/products/" + newTotal);
+    setUri(serverURI + "/products/" + newTotal + "&" + newEmail);
   }
 
   function func2(data) {
@@ -74,7 +80,8 @@ export default function ListCards(props) {
     total += "option:" + myOption;
 
     setTotal(total);
-    setUri(serverURI + "/products/" + total);
+
+    setUri(serverURI + "/products/" + total + "&" + newEmail);
   };
 
   // React.useEffect(() => {
@@ -122,6 +129,18 @@ export default function ListCards(props) {
       });
   }, [uri]);
 
+
+  React.useEffect(() => {
+    if (email) {
+      getFilterOptions({
+        status: [],
+        teams: [email],
+        priceRange: "",
+        productType: [],
+      });
+    }
+  }, []);
+
   return (
     <Container maxWidth="xl" sx={{ mt: 8, mb: 5, width: "100%" }}>
       {loading ? (
@@ -130,12 +149,17 @@ export default function ListCards(props) {
         </Box>
       ) : (
         <Box>
-          <Box sx={{ display: "flex", flexDirection: "row-reverse", mb: 4, pr: 5 }}>
+          <Box
+            sx={{ display: "flex", flexDirection: "row-reverse", mb: 4, pr: 5 }}
+          >
             <SortProduct func={func1}></SortProduct>
           </Box>
           <Box sx={{ display: "flex", alignItems: "flex-start" }}>
             <Box sx={{ width: "20%", pl: 5 }}>
-              <FilterCard email={email} getFilterOptions={getFilterOptions}></FilterCard>
+              <FilterCard
+                email={email}
+                getFilterOptions={getFilterOptions}
+              ></FilterCard>
             </Box>
             <Box
               sx={{
@@ -149,9 +173,11 @@ export default function ListCards(props) {
             >
               {products.map((product) => (
                 <Card
+                  isfav={product.isFav}
                   func={func2}
                   size={0}
-                  admin={isAdmin}
+                  adminPage={adminPage}
+                  isAdmin={isAdmin}
                   key={product._id}
                   id={product._id}
                   price={product.price}

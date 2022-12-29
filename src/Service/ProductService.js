@@ -66,6 +66,60 @@ async function EnterBid(prop) {
     });
 }
 
+async function AddFavList(props) {
+  //[name, type, owner, image, price, duration, start_date];
+  let pid = props[0];
+  const cookie = new Cookies();
+  const email = cookie.get("email");
+  console.log(email);
+  let uri = serverURI + "/users/favList/" + email;
+  var data = JSON.stringify({
+    pid: pid,
+  });
+  var config = {
+    method: "post",
+    url: uri,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      console.log("success");
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+async function DeleteFavList(prop) {
+  let pid = prop[0];
+  const cookie = new Cookies();
+  const email = cookie.get("email");
+  let uri = serverURI + "/users/deletefavList/" + email + "+" + pid;
+  var config = {
+    method: "put",
+    url: uri,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      console.log("success");
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+
 async function GetCertificate(prop) {
   let pid = prop.certificate;
   console.log(pid);
@@ -92,4 +146,4 @@ async function GetCertificate(prop) {
     return result;
 }
 
-export { DeleteServiceProduct, EnterBid, GetCertificate };
+export { DeleteServiceProduct, EnterBid, GetCertificate, AddFavList, DeleteFavList };

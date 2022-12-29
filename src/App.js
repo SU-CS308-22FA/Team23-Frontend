@@ -10,8 +10,10 @@ import Product from "./Views/product";
 import AdminPage from "./Views/adminpage";
 import TeamPage from "./Views/teampage";
 import ActiveBids from "./Views/activebid";
+import FavoriteAuctions from "./Views/favoriteauctions";
 import WonAuctions from "./Views/wonAuctions";
 import Authenticate from "./Views/authenticate";
+
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/activebids/:email" element={<ActiveBids />} />
+        <Route path="/favoriteauctions/:email" element={<FavoriteAuctions />} />
         <Route path="/wonAuctions/:email" element={<WonAuctions />} />
         {/* <Route path="/test" element={<Test />} /> */}
         <Route path="/search/:searchQuery" element={<Search />} />
