@@ -159,7 +159,7 @@ export default function FilterCard(props) {
         ""
       ) : (
         <FormGroup>
-          <Typography sx={{ fontWeight: 700, mb: 2, mt: 2, fontSize: styles.headerFontSize }}>Teams</Typography>
+          <Typography sx={{ fontWeight: 500, mb: 2, mt: 2, fontSize: styles.headerFontSize }}>Teams</Typography>
           <List
             sx={{
               width: "100%",

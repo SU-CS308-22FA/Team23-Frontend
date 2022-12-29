@@ -11,10 +11,12 @@ import HomePage from "./Views/homepage";
 import Product from "./Views/product";
 
 import AdminPage from "./Views/adminpage";
+import TeamPage from "./Views/teampage";
 import ActiveBids from "./Views/activebid";
 import WonAuctions from "./Views/wonAuctions";
 
 import Authenticate from "./Views/authenticate";
+
 
 function App() {
   return (
@@ -22,12 +24,13 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/team" element={<AdminPage />} />
+        <Route path="/teams/:teamName" element={<TeamPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/activebids/:email" element={<ActiveBids />} />
         <Route path="/wonAuctions/:email" element={<WonAuctions />} />
         {/* <Route path="/test" element={<Test />} /> */}
+        <Route path="/myproducts/:email" element={<MyProducts />} />
 
         <Route path="/search/:searchQuery" element={<Search />} />
         <Route path="/product/:id" element={<Product />} />

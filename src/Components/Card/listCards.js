@@ -77,8 +77,22 @@ export default function ListCards(props) {
     setUri(serverURI + "/products/" + total);
   };
 
+  // React.useEffect(() => {
+  //   if (email) {
+  //     console.log(props.email);
+  //     setLoading(false);
+  //     getFilterOptions({ status: [], teams: [email], priceRange: "", productType: [] });
+  //   }
+  // }, []);
+
   React.useEffect(() => {
     console.log(uri);
+    if (props.email) {
+      console.log(props.email);
+      getFilterOptions({ status: [], teams: [email], priceRange: "", productType: [] });
+    } else {
+      setLoading(false);
+    }
     var config = {
       method: "get",
       url: uri,
@@ -89,20 +103,24 @@ export default function ListCards(props) {
 
     axios(config)
       .then((response) => {
-        setLoading(false);
         console.log(response.data.message);
         setProducts(response.data.message);
+        setLoading(false);
+
+        if (props.email) {
+          console.log(props.email);
+          getFilterOptions({ status: [], teams: [email], priceRange: "", productType: [] });
+          setProducts(response.data.message);
+          setLoading(false);
+        } else {
+          setProducts(response.data.message);
+          setLoading(false);
+        }
       })
       .catch((error) => {
         console.log(error);
       });
   }, [uri]);
-
-  React.useEffect(() => {
-    if (email) {
-      getFilterOptions({ status: [], teams: [email], priceRange: "", productType: [] });
-    }
-  }, []);
 
   return (
     <Container maxWidth="xl" sx={{ mt: 8, mb: 5, width: "100%" }}>

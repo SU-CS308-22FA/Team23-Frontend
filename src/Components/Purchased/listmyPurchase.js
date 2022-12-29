@@ -1,25 +1,13 @@
 import * as React from 'react';
 import { Box, Container, CircularProgress, Typography } from '@mui/material';
-import OpenItems from '../ActiveBids/openItems';
+import OpenItems from './myPurchase.js';
 import serverURI from '../../Constants/connection';
 import axios from 'axios';
 
-export default function ListCards(props) {
+export default function ListPurchase(props) {
   const email = props.email;
   // console.log(email);
-
-  let uri = serverURI + "/users/activebids/";
-
-  if (props.active === "true") {
-    uri = serverURI + "/users/activebids/";
-  }
-  else if (props.active === "false") {
-    uri = serverURI + "/users/wonAuctions/";
-  }
-
-  
-
-
+  let uri = serverURI + '/users/myproducts/';
   const [message, setMessage] = React.useState([{}]);
   const [loading, setLoading] = React.useState(true);
 
@@ -84,7 +72,6 @@ export default function ListCards(props) {
                   owner={product.owner}
                   image={product.image}
                   states={product.state}
-                  active = {props.active}
                 ></OpenItems>
               ))}
             </Box>
