@@ -3,7 +3,7 @@ import { ListItem, Typography, IconButton, Box, TextField, Button } from "@mui/m
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Container } from "@mui/system";
 import { GetCertificate } from "../../Service/ProductService";
-
+import useWindowDimensions from "../Utils/windowDimensions";
 
 export default function ItemAuthentication(props) {
     const [data, setData] = React.useState({ certificate: "" });
@@ -31,17 +31,29 @@ export default function ItemAuthentication(props) {
         });
     };
 
+    let { height, width } = useWindowDimensions();
+    let boxHeight = height - 68;
+    let boxWidth = width;
+    console.log(boxHeight, boxWidth)
     return (
-        <Container maxWidth="sm">
-            <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", mt: 30 }}>
+        <Container>
+            <Box sx={{ left: 0, right: 0, top: 68, zIndex: -5, position: "absolute" }}>
+                <img width={boxWidth} height={boxHeight} src="https://cdn1.ntv.com.tr/gorsel/XsRyCBiv1ki-6sLIb0DOEQ.jpg?width=952&height=540&mode=both&scale=both">
+
+                </img>
+            </Box>
+
+            <Box sx={{ display: "flex", padding: 3, height: 200, width: 550, justifyContent: "center", flexDirection: "column", mt: 20, ml: 35, backgroundColor: "white" }}>
                 <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
-                    <Typography variant="h6" color="text.primary" sx={{ fontWeight: 700 }}>
+                    <Typography variant="h6" color="text.primary" sx={{ fontWeight: 700, fontFamily: "Helvetica Neue" }}>
                         AUTHENTICATE YOUR SHIRT
                     </Typography>
                 </Box>
-                <Typography variant="h10" color="text.primary" sx={{ fontWeight: 400 }}>
-                    Verify the unique serial number below to confirm authenticity and obtain player data.
-                </Typography>
+                <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
+                    <Typography variant="h10" color="text.primary" sx={{ fontWeight: 400 }}>
+                        Verify the unique serial number below to confirm authenticity and obtain player data.
+                    </Typography>
+                </Box>
 
                 <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
                     <TextField
@@ -62,6 +74,7 @@ export default function ItemAuthentication(props) {
                         This certificate number is not valid
                     </Typography>) : ""}
             </Box>
-        </Container>
+        </Container >
+
     );
 }

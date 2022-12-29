@@ -8,6 +8,16 @@ export default function ListCards(props) {
   const email = props.email;
   // console.log(email);
   let uri = serverURI + "/users/activebids/";
+
+  if (props.active === "true") {
+    uri = serverURI + "/users/activebids/";
+  }
+  else if (props.active === "false") {
+    uri = serverURI + "/users/wonAuctions/";
+  }
+
+  
+
   const [message, setMessage] = React.useState([{}]);
   const [loading, setLoading] = React.useState(true);
 
@@ -72,6 +82,7 @@ export default function ListCards(props) {
                   owner={product.owner}
                   image={product.image}
                   states={product.state}
+                  active = {props.active}
                 ></OpenItems>
               ))}
             </Box>

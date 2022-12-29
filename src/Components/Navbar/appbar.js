@@ -35,7 +35,7 @@ const themeLight = createTheme();
 //   },
 // }
 
-const pages = ["Teams", "Open Auctions", "Authenticate"];
+const pages = ["Teams", "Open Auctions"];
 const settings = ["Profile", "Logout"];
 
 function ResponsiveAppBar(props) {
@@ -78,6 +78,27 @@ function ResponsiveAppBar(props) {
   } else {
     if (settings.includes("Active Bids") === true) {
       settings.pop("Active Bids");
+    }
+  }
+
+  if (isAdmin === false) {
+    if (settings.includes("Won Auctions") === false) {
+      settings.push("Won Auctions");
+      // settings.splice(1, 0, "Active Bids");
+    }
+  } else {
+    if (settings.includes("Won Auctions") === true) {
+      settings.pop("Won Auctions");
+    }
+  }
+
+  if (isAdmin === false) {
+    if (pages.includes("Authenticate") === false) {
+      pages.push("Authenticate");
+    }
+  } else {
+    if (pages.includes("Authenticate") === true) {
+      pages.pop("Authenticate");
     }
   }
 
@@ -133,7 +154,11 @@ function ResponsiveAppBar(props) {
     navigate(`/authenticate`);
   };
 
-  const settingsFunctions = [handleProfile, handleLogOut, handleActiveBids];
+  const handleWonAuctions = () => {
+    navigate(`/wonAuctions/${email}`);
+  };
+
+  const settingsFunctions = [handleProfile, handleLogOut, handleActiveBids, handleWonAuctions];
   const pagesFunctions = [handleTeams, handleOpenAuctions, handleAuthenticate];
 
   React.useEffect(() => {
