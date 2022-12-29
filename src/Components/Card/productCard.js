@@ -29,6 +29,7 @@ export default function ProductCard(props) {
   const cookie = new Cookies();
   const isFav = props.isfav;
   const id = props.id;
+  const isAdmin = props.isAdmin;
   const type = props.type || "test";
   const name = props.name || "test";
   const owner = props.owner || "test";
@@ -41,7 +42,7 @@ export default function ProductCard(props) {
   const currentDate = Math.floor(Date.now() / 1000);
   const remainingTime = duration - (currentDate - start_date);
   const [currentRemaningTime, setRemainingTime] = React.useState(remainingTime);
-  const admin = props.admin;
+  const adminPage = props.adminPage;
   // const [isAdmin, setIsAdmin] = React.useState(false);
   const [liked, setliked] = React.useState(isFav);
 
@@ -150,7 +151,9 @@ export default function ProductCard(props) {
 
   return (
     <Card sx={{ maxWidth: size1.maxWidth, position: "relative" }}>
-      {admin ? (
+      {adminPage ? (
+        ""
+      ) : isAdmin ? (
         ""
       ) : (
         <IconButton onClick={handleSubmit}>
@@ -214,8 +217,8 @@ export default function ProductCard(props) {
         </CardContent>
       </CardActionArea>
       <Box sx={{ zIndex: 1 }}>
-        {admin ? <Button onClick={func3}>Update</Button> : ""}
-        {admin ? <Button onClick={handleDeleteProduct}>Delete</Button> : ""}
+        {adminPage ? <Button onClick={func3}>Update</Button> : ""}
+        {adminPage ? <Button onClick={handleDeleteProduct}>Delete</Button> : ""}
       </Box>
     </Card>
   );

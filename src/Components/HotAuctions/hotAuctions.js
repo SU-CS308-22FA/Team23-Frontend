@@ -1,6 +1,12 @@
 import * as React from "react";
 import axios from "axios";
-import { Box, Container, IconButton, Typography, CircularProgress } from "@mui/material";
+import {
+  Box,
+  Container,
+  IconButton,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useState, useEffect } from "react";
@@ -11,7 +17,7 @@ import "../../Style/hotAuctions.css";
 
 const uri = serverURI + "/products/get/hot";
 
-export default function HotAuctions() {
+export default function HotAuctions(prop) {
   const [classList, setClassList] = useState([
     "carousel-item carousel-item-2",
     "carousel-item carousel-item-3",
@@ -21,7 +27,7 @@ export default function HotAuctions() {
   const [loading, setLoading] = useState(true);
   const [activeCard, setActiveCard] = useState(0);
   const [products, setProducts] = React.useState([{}, {}, {}]);
-
+  const isAdmin = prop.isAdmin;
   React.useEffect(() => {
     console.log(uri);
     var config = {
@@ -137,6 +143,7 @@ export default function HotAuctions() {
               <div className="carousel-container">
                 <div className={classList[0]}>
                   <Card
+                    isAdmin={isAdmin}
                     size={sizes[0]}
                     key={products[2]._id}
                     id={products[2]._id}
@@ -151,6 +158,7 @@ export default function HotAuctions() {
                 </div>
                 <div className={classList[1]}>
                   <Card
+                    isAdmin={isAdmin}
                     size={sizes[1]}
                     key={products[0]._id}
                     id={products[0]._id}
@@ -165,6 +173,7 @@ export default function HotAuctions() {
                 </div>
                 <div className={classList[2]}>
                   <Card
+                    isAdmin={isAdmin}
                     size={sizes[2]}
                     key={products[1]._id}
                     id={products[1]._id}
@@ -205,11 +214,19 @@ export default function HotAuctions() {
               ml: 4,
             }}
           >
-            <Typography variant="h4" color="text.primary" sx={{ fontWeight: 900 }}>
+            <Typography
+              variant="h4"
+              color="text.primary"
+              sx={{ fontWeight: 900 }}
+            >
               HOT AUCTIONS
             </Typography>
             <Box sx={{ mt: 5 }}>
-              <Typography variant="h4" color="text.primary" sx={{ fontWeight: 900 }}>
+              <Typography
+                variant="h4"
+                color="text.primary"
+                sx={{ fontWeight: 900 }}
+              >
                 {`#${activeCard + 1} ${products[activeCard].name}`}
               </Typography>
             </Box>

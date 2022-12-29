@@ -78,7 +78,7 @@ export default function AdminPage() {
       ) : (
         ""
       )}
-      <ListCards admin={true} uri={uri} func={isShowFormUpdate}></ListCards>
+      <ListCards adminPage={true} uri={uri} func={isShowFormUpdate}></ListCards>
       <Footer></Footer>
     </ThemeProvider>
   );

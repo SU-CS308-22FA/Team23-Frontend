@@ -8,7 +8,8 @@ import serverURI from "../../Constants/connection";
 import Cookies from "universal-cookie";
 
 export default function ListCards(props) {
-  const isAdmin = props.admin;
+  const adminPage = props.adminPage;
+  const isAdmin = props.isAdmin;
   const email = props.email;
   const cookie = new Cookies();
   const newEmail = cookie.get("email");
@@ -150,7 +151,8 @@ export default function ListCards(props) {
                   isfav={product.isFav}
                   func={func2}
                   size={0}
-                  admin={isAdmin}
+                  adminPage={adminPage}
+                  isAdmin={isAdmin}
                   key={product._id}
                   id={product._id}
                   price={product.price}

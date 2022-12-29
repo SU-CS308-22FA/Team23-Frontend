@@ -45,6 +45,7 @@ function ResponsiveAppBar(props) {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [logedIn, setLogedIn] = React.useState(false);
   const [isAdmin, setIsAdmin] = React.useState(false);
+  const [check, setCheck] = React.useState(false);
   const [email, setEmail] = React.useState(cookie.get("email"));
 
   const navigate = useNavigate();
@@ -69,6 +70,20 @@ function ResponsiveAppBar(props) {
         setIsAdmin(false);
       });
   });
+  // if (props) {
+  //   props.func(isAdmin);
+  // }
+  if (Object.keys(props).length !== 0) {
+    console.log("a");
+    props.func(isAdmin);
+  }
+  function adminCheck() {
+    // if (isAdmin) {
+    //   setCheck(true);
+    // } else {
+    //   setCheck(false);
+    // }
+  }
 
   if (isAdmin === false) {
     if (settings.includes("Active Bids") === false) {
