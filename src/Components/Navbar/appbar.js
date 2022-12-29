@@ -198,18 +198,9 @@ function ResponsiveAppBar(props) {
     navigate(`/activebids/${email}`);
   };
 
-
   const handleFavoriteAuction = () => {
     navigate(`/favoriteauctions/${email}`);
   };
-
-  const settingsFunctions = [
-    handleProfile,
-    handleLogOut,
-    handleActiveBids,
-    handleFavoriteAuction,
-    handleWonAuctions
-  ];
 
   const handleTeams = () => {};
 
@@ -225,8 +216,9 @@ function ResponsiveAppBar(props) {
     navigate(`/wonAuctions/${email}`);
   };
 
-  const pagesFunctions = [handleTeams, handleOpenAuctions, handleAuthenticate];
+  const settingsFunctions = [handleProfile, handleLogOut, handleActiveBids, handleWonAuctions, handleFavoriteAuction];
 
+  const pagesFunctions = [handleTeams, handleOpenAuctions, handleAuthenticate];
 
   React.useEffect(() => {
     if (email !== undefined) {
