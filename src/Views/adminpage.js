@@ -12,7 +12,7 @@ import Footer from "../Components/Navbar/footer";
 
 const theme = createTheme();
 
-export default function AdminPage() {
+export default function TeamPage() {
   const [showFormUpdate, setshowFormUpdate] = React.useState(false);
   const [showFormUpload, setshowFormUpload] = React.useState(false);
   const [uploadChange, setUploadChange] = React.useState(false);
@@ -65,20 +65,18 @@ export default function AdminPage() {
   return (
     <ThemeProvider theme={theme}>
       <AppBar></AppBar>
-      {showFormUpload ? (
-        <AddProduct func2={isUploadChange} func={isShowFormUpload}></AddProduct>
-      ) : (
-        ""
-      )}
+      {showFormUpload ? <AddProduct func2={isUploadChange} func={isShowFormUpload}></AddProduct> : ""}
       <TeamHeader email={id} func={isShowFormUpload}></TeamHeader>
       <Divider></Divider>
+
 
       {showFormUpdate ? (
         <UpdateProduct id={myid} func={isShowFormUpdate}></UpdateProduct>
       ) : (
         ""
       )}
-      <ListCards adminPage={true} uri={uri} func={isShowFormUpdate}></ListCards>
+      <ListCards email={id} adminPage={true} uri={uri} func={isShowFormUpdate}></ListCards>
+
       <Footer></Footer>
     </ThemeProvider>
   );

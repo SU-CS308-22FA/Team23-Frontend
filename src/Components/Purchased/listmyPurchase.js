@@ -1,35 +1,23 @@
-import * as React from 'react';
-import { Box, Container, CircularProgress, Typography } from '@mui/material';
-import OpenItems from '../ActiveBids/openItems';
-import serverURI from '../../Constants/connection';
-import axios from 'axios';
+import * as React from "react";
+import { Box, Container, CircularProgress, Typography } from "@mui/material";
+import OpenItems from "./myPurchase.js";
+import serverURI from "../../Constants/connection";
+import axios from "axios";
 
-export default function ListCards(props) {
+export default function ListPurchase(props) {
   const email = props.email;
   // console.log(email);
-
-  let uri = serverURI + "/users/activebids/";
-
-  if (props.active === "true") {
-    uri = serverURI + "/users/activebids/";
-  }
-  else if (props.active === "false") {
-    uri = serverURI + "/users/wonAuctions/";
-  }
-
-  
-
-
+  let uri = serverURI + "/users/myproducts/";
   const [message, setMessage] = React.useState([{}]);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     var config = {
-      method: 'get',
+      method: "get",
       url: uri + email,
 
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     };
     console.log(uri);
@@ -53,23 +41,23 @@ export default function ListCards(props) {
     <Container sx={{ mt: 5, mb: 5 }}>
       {/* <Divider></Divider> */}
       {loading ? (
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 30 }}>
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 30 }}>
           <CircularProgress />
         </Box>
       ) : (
         <Box>
           {notEmpty(message[0]) ? (
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 30 }}>
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 30 }}>
               <Typography fontWeight={600}>No active bid history.</Typography>
             </Box>
           ) : (
             <Box
               sx={{
-                display: 'flex',
-                flexDirection: 'column',
+                display: "flex",
+                flexDirection: "column",
                 columnGap: 3,
                 rowGap: 2,
-                gridTemplateColumns: 'repeat(4, 1fr)',
+                gridTemplateColumns: "repeat(4, 1fr)",
               }}
             >
               {message.map((product, idx) => (
@@ -84,7 +72,6 @@ export default function ListCards(props) {
                   owner={product.owner}
                   image={product.image}
                   states={product.state}
-                  active = {props.active}
                 ></OpenItems>
               ))}
             </Box>

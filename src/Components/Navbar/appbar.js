@@ -37,16 +37,25 @@ const themeLight = createTheme();
 
 const pages = ["Teams", "Open Auctions"];
 const settings = ["Profile", "Logout"];
+const uriTeams = serverURI + "/teams/logos";
 
 function ResponsiveAppBar(props) {
   const cookie = new Cookies();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElTeams, setAnchorElTeams] = React.useState(null);
   const [logedIn, setLogedIn] = React.useState(false);
   const [isAdmin, setIsAdmin] = React.useState(false);
   const [check, setCheck] = React.useState(false);
   const [email, setEmail] = React.useState(cookie.get("email"));
+  const [teams, setTeams] = React.useState([
+    {
+      url: "https://res.cloudinary.com/dbb2x1zfs/image/upload/v1669152744/logo/1920px-Gaziantepspor_logo.svg_notcr1.png",
+      team: "test",
+      displayName: "Fenerbahçe",
+    },
+  ]);
 
   const navigate = useNavigate();
 
@@ -85,6 +94,25 @@ function ResponsiveAppBar(props) {
     // }
   }
 
+  React.useEffect(() => {
+    var config = {
+      method: "get",
+      url: uriTeams,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios(config)
+      .then((response) => {
+        setTeams(response.data.message);
+        console.log(teams);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   if (isAdmin === false) {
     if (settings.includes("Active Bids") === false) {
       settings.push("Active Bids");
@@ -99,6 +127,31 @@ function ResponsiveAppBar(props) {
     }
   }
 
+  const handleClick = (id) => {
+    navigate(`/teams/${id}`);
+  };
+
+  if (isAdmin === false) {
+    if (settings.includes("Won Auctions") === false) {
+      settings.push("Won Auctions");
+      // settings.splice(1, 0, "Active Bids");
+    }
+  } else {
+    if (settings.includes("Won Auctions") === true) {
+      settings.pop("Won Auctions");
+    }
+  }
+
+  if (isAdmin === false) {
+    if (pages.includes("Authenticate") === false) {
+      pages.push("Authenticate");
+    }
+  } else {
+    if (pages.includes("Authenticate") === true) {
+      pages.pop("Authenticate");
+    }
+  }
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -106,7 +159,14 @@ function ResponsiveAppBar(props) {
     setAnchorElUser(event.currentTarget);
   };
 
+  const handleOpenTeamMenu = (event) => {
+    setAnchorElTeams(event.currentTarget);
+  };
+  const handleCloseTeamMenu = (event) => {
+    setAnchorElTeams(null);
+  };
   const handleCloseNavMenu = () => {
+    console.log("asdada");
     setAnchorElNav(null);
   };
 
@@ -138,6 +198,7 @@ function ResponsiveAppBar(props) {
     navigate(`/activebids/${email}`);
   };
 
+
   const handleFavoriteAuction = () => {
     navigate(`/favoriteauctions/${email}`);
   };
@@ -147,7 +208,25 @@ function ResponsiveAppBar(props) {
     handleLogOut,
     handleActiveBids,
     handleFavoriteAuction,
+    handleWonAuctions
   ];
+
+  const handleTeams = () => {};
+
+  const handleOpenAuctions = () => {};
+
+  const handleAuthenticate = () => {
+    console.log("auth");
+    navigate(`/authenticate`);
+  };
+
+  const handleWonAuctions = () => {
+    console.log("won");
+    navigate(`/wonAuctions/${email}`);
+  };
+
+  const pagesFunctions = [handleTeams, handleOpenAuctions, handleAuthenticate];
+
 
   React.useEffect(() => {
     if (email !== undefined) {
@@ -211,7 +290,7 @@ function ResponsiveAppBar(props) {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
+                {pages.map((page, idx) => (
                   <MenuItem key={page} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">{page}</Typography>
                   </MenuItem>
@@ -239,12 +318,37 @@ function ResponsiveAppBar(props) {
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "black", display: "block" }}
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip>
+                  <Button
+                    aria-controls={anchorElTeams ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={anchorElTeams ? "true" : undefined}
+                    onClick={handleOpenTeamMenu}
+                    sx={{ my: 2, color: "black", display: "block" }}
+                  >
+                    Teams
+                  </Button>
+                </Tooltip>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  open={Boolean(anchorElTeams)}
+                  onClose={handleCloseTeamMenu}
                 >
+                  {teams.map((el, indx) => {
+                    let name = el.team.substring(0, el.team.indexOf("@"));
+                    return (
+                      <MenuItem key={indx} onClick={() => handleClick(name)}>
+                        <Typography textAlign="center">{el.displayName}</Typography>
+                      </MenuItem>
+                    );
+                  })}
+                </Menu>
+              </Box>
+
+              {pages.map((page, idx) => (
+                <Button key={page} onClick={pagesFunctions[idx]} sx={{ my: 2, color: "black", display: "block" }}>
                   {page}
                 </Button>
               ))}

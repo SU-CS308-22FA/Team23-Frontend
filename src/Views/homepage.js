@@ -12,6 +12,8 @@ import SortProduct from "../Components/Card/sort";
 import { CssBaseline } from "@mui/material";
 import { fontWeight } from "@mui/system";
 import Footer from "../Components/Navbar/footer";
+import TeamsSlider from "../Components/Teams/teamsSlider";
+
 const themeLight = createTheme();
 
 export default function HomePage() {
@@ -53,7 +55,15 @@ export default function HomePage() {
     <ThemeProvider theme={themeLight}>
       <CssBaseline />
       <AppBar></AppBar>
+
       <HotAuctions isAdmin={isAdmin}></HotAuctions>
+
+
+      <Divider></Divider>
+
+      <TeamsSlider></TeamsSlider>
+
+
       <Divider></Divider>
       <ListCards isAdmin={isAdmin} adminPage={false} type={"list"}></ListCards>
       <Footer></Footer>
