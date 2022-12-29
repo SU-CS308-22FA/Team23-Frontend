@@ -5,18 +5,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Profile from "./Views/profile";
 // import Test from "./Views/test";
 import Search from "./Views/search";
-
 import HomePage from "./Views/homepage";
-
 import Product from "./Views/product";
-
 import AdminPage from "./Views/adminpage";
 import TeamPage from "./Views/teampage";
 import ActiveBids from "./Views/activebid";
 import WonAuctions from "./Views/wonAuctions";
-
 import Authenticate from "./Views/authenticate";
-
 
 function App() {
   return (
@@ -30,13 +25,10 @@ function App() {
         <Route path="/activebids/:email" element={<ActiveBids />} />
         <Route path="/wonAuctions/:email" element={<WonAuctions />} />
         {/* <Route path="/test" element={<Test />} /> */}
-        <Route path="/myproducts/:email" element={<MyProducts />} />
-
         <Route path="/search/:searchQuery" element={<Search />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/team/:id" element={<AdminPage />} />
         <Route path="/authenticate" element={<Authenticate />} />
-
       </Routes>
     </BrowserRouter>
   );
