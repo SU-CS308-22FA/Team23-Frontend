@@ -43,7 +43,7 @@ export default function ItemAuthentication(props) {
                 </img>
             </Box>
 
-            <Box sx={{ display: "flex", padding: 3, height: 200, width: 550, justifyContent: "center", flexDirection: "column", mt: 20, ml: 35, backgroundColor: "white" }}>
+            <Box sx={{ display: "flex", borderRadius: "10px", boxShadow: 5, padding: 3, height: 200, width: 550, justifyContent: "center", flexDirection: "column", mt: 20, ml: 35, backgroundColor: "white" }}>
                 <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
                     <Typography variant="h6" color="text.primary" sx={{ fontWeight: 700, fontFamily: "Helvetica Neue" }}>
                         AUTHENTICATE YOUR SHIRT
