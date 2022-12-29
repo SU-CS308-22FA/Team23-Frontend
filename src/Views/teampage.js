@@ -26,7 +26,7 @@ export default function TeamPage() {
       <AppBar></AppBar>
       <TeamHeader email={email}></TeamHeader>
       <Divider></Divider>
-      <ListCards email={teamName + `@gmail.com`} admin={false} uri={uri}></ListCards>
+      <ListCards email={email} admin={false} uri={uri}></ListCards>
       <Footer></Footer>
     </ThemeProvider>
   );
