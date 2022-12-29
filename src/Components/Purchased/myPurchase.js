@@ -1,17 +1,17 @@
-import * as React from "react";
-import { Box, Typography } from "@mui/material";
-import { Container } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import * as React from 'react';
+import { Box, Typography } from '@mui/material';
+import { Container } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export default function OpenItems(props) {
   const pid = props.pid;
   // console.log(pid);
-  const type = props.type || "test";
-  const name = props.name || "test";
-  const owner = props.owner || "test";
+  const type = props.type || 'test';
+  const name = props.name || 'test';
+  const owner = props.owner || 'test';
   const image =
     props.image ||
-    "https://assets.adidas.com/images/w_600,f_auto,q_auto/49808757050946de8bedae29011926b5_9366/Manchester_United_22-23_Home_Jersey_Red_H13881_21_model.jpg";
+    'https://assets.adidas.com/images/w_600,f_auto,q_auto/49808757050946de8bedae29011926b5_9366/Manchester_United_22-23_Home_Jersey_Red_H13881_21_model.jpg';
   const price = props.price;
   const duration = Number(props.duration) / 1000;
   const start_date = Number(props.start_date) / 1000;
@@ -35,19 +35,18 @@ export default function OpenItems(props) {
 
   return (
     <Container>
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
-        {" "}
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <Box
           sx={{
-            width: "60%",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-
+            width: '60%',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
             p: 3,
           }}
         >
-          <Box sx={{ display: "flex", direction: "row", alignItems: "center" }}>
+          <Box sx={{ display: 'flex', direction: 'row', alignItems: 'center' }}>
             <Box>
               <img
                 onClick={handleProductPage}
@@ -68,23 +67,6 @@ export default function OpenItems(props) {
                 {owner}
               </Typography>
             </Box>
-          </Box>
-          <Box
-            onClick={handleProductPage}
-            sx={{ display: "flex", alignItems: "center" }}
-          >
-            <Typography sx={{ color: "white", fontWeight: 700 }}>
-              {`Your bid:`}
-            </Typography>
-            {states ? (
-              <Typography sx={{ color: "white", fontWeight: 700 }}>
-                {`${price}$`}
-              </Typography>
-            ) : (
-              <Typography sx={{ color: "white", fontWeight: 700 }}>
-                {`${price}$`}
-              </Typography>
-            )}
           </Box>
         </Box>
       </Box>

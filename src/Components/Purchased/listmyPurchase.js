@@ -7,7 +7,7 @@ import axios from 'axios';
 export default function ListPurchase(props) {
   const email = props.email;
   // console.log(email);
-  let uri = serverURI + '/users/activebids/';
+  let uri = serverURI + '/users/myproducts/';
   const [message, setMessage] = React.useState([{}]);
   const [loading, setLoading] = React.useState(true);
 
