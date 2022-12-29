@@ -12,7 +12,7 @@ import Footer from "../Components/Navbar/footer";
 
 const theme = createTheme();
 
-export default function AdminPage() {
+export default function TeamPage() {
   const [showFormUpdate, setshowFormUpdate] = React.useState(false);
   const [showFormUpload, setshowFormUpload] = React.useState(false);
   const [uploadChange, setUploadChange] = React.useState(false);

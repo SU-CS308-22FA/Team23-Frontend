@@ -11,6 +11,7 @@ import HomePage from "./Views/homepage";
 import Product from "./Views/product";
 
 import AdminPage from "./Views/adminpage";
+import TeamPage from "./Views/teampage";
 import ActiveBids from "./Views/activebid";
 import MyProducts from "./Views/myProducts";
 
@@ -20,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/team" element={<AdminPage />} />
+        <Route path="/teams/:teamName" element={<TeamPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/activebids/:email" element={<ActiveBids />} />
@@ -30,7 +31,6 @@ function App() {
         <Route path="/search/:searchQuery" element={<Search />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/team/:id" element={<AdminPage />} />
-        
       </Routes>
     </BrowserRouter>
   );
