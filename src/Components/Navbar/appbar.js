@@ -35,7 +35,7 @@ const themeLight = createTheme();
 //   },
 // }
 
-const pages = ["Open Auctions"];
+const pages = ["Teams", "Open Auctions"];
 const settings = ["Profile", "Logout"];
 const uriTeams = serverURI + "/teams/logos";
 
@@ -106,16 +106,6 @@ function ResponsiveAppBar(props) {
   } else {
     if (settings.includes("Active Bids") === true) {
       settings.pop("Active Bids");
-    }
-  }
-  if (isAdmin === false) {
-    if (settings.includes("My Products") === false) {
-      settings.push("My Products");
-      // settings.splice(1, 0, "Active Bids");
-    }
-  } else {
-    if (settings.includes("My Products") === true) {
-      settings.pop("My Products");
     }
   }
 
@@ -189,30 +179,23 @@ function ResponsiveAppBar(props) {
   const handleActiveBids = () => {
     navigate(`/activebids/${email}`);
   };
-  const handleMyProducts = () => {
-    navigate(`/myproducts/${email}`);
-  };
 
+  const handleTeams = () => {};
 
-  const handleTeams = () => {
-
-  };
-
-  const handleOpenAuctions = () => {
-
-  };
+  const handleOpenAuctions = () => {};
 
   const handleAuthenticate = () => {
+    console.log("auth");
     navigate(`/authenticate`);
   };
 
   const handleWonAuctions = () => {
+    console.log("won");
     navigate(`/wonAuctions/${email}`);
   };
 
   const settingsFunctions = [handleProfile, handleLogOut, handleActiveBids, handleWonAuctions];
   const pagesFunctions = [handleTeams, handleOpenAuctions, handleAuthenticate];
-
 
   React.useEffect(() => {
     if (email !== undefined) {
@@ -304,7 +287,6 @@ function ResponsiveAppBar(props) {
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip>
                   <Button
@@ -335,10 +317,7 @@ function ResponsiveAppBar(props) {
               </Box>
 
               {pages.map((page, idx) => (
-                <Button
-                  key={page}
-                  onClick={pagesFunctions[idx]}
-                  sx={{ my: 2, color: "black", display: "block" }}>
+                <Button key={page} onClick={pagesFunctions[idx]} sx={{ my: 2, color: "black", display: "block" }}>
                   {page}
                 </Button>
               ))}
