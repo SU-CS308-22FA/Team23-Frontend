@@ -123,6 +123,27 @@ function ResponsiveAppBar(props) {
     navigate(`/teams/${id}`);
   };
 
+  if (isAdmin === false) {
+    if (settings.includes("Won Auctions") === false) {
+      settings.push("Won Auctions");
+      // settings.splice(1, 0, "Active Bids");
+    }
+  } else {
+    if (settings.includes("Won Auctions") === true) {
+      settings.pop("Won Auctions");
+    }
+  }
+
+  if (isAdmin === false) {
+    if (pages.includes("Authenticate") === false) {
+      pages.push("Authenticate");
+    }
+  } else {
+    if (pages.includes("Authenticate") === true) {
+      pages.pop("Authenticate");
+    }
+  }
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -137,6 +158,7 @@ function ResponsiveAppBar(props) {
     setAnchorElTeams(null);
   };
   const handleCloseNavMenu = () => {
+    console.log("asdada");
     setAnchorElNav(null);
   };
 
@@ -171,7 +193,26 @@ function ResponsiveAppBar(props) {
     navigate(`/myproducts/${email}`);
   };
 
-  const settingsFunctions = [handleProfile, handleLogOut, handleActiveBids, handleMyProducts];
+
+  const handleTeams = () => {
+
+  };
+
+  const handleOpenAuctions = () => {
+
+  };
+
+  const handleAuthenticate = () => {
+    navigate(`/authenticate`);
+  };
+
+  const handleWonAuctions = () => {
+    navigate(`/wonAuctions/${email}`);
+  };
+
+  const settingsFunctions = [handleProfile, handleLogOut, handleActiveBids, handleWonAuctions];
+  const pagesFunctions = [handleTeams, handleOpenAuctions, handleAuthenticate];
+
 
   React.useEffect(() => {
     if (email !== undefined) {
@@ -235,7 +276,7 @@ function ResponsiveAppBar(props) {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
+                {pages.map((page, idx) => (
                   <MenuItem key={page} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">{page}</Typography>
                   </MenuItem>
@@ -263,6 +304,7 @@ function ResponsiveAppBar(props) {
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip>
                   <Button
@@ -292,8 +334,11 @@ function ResponsiveAppBar(props) {
                 </Menu>
               </Box>
 
-              {pages.map((page) => (
-                <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: "black", display: "block" }}>
+              {pages.map((page, idx) => (
+                <Button
+                  key={page}
+                  onClick={pagesFunctions[idx]}
+                  sx={{ my: 2, color: "black", display: "block" }}>
                   {page}
                 </Button>
               ))}

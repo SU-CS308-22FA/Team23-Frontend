@@ -73,18 +73,27 @@ export default function OpenItems(props) {
             onClick={handleProductPage}
             sx={{ display: "flex", alignItems: "center" }}
           >
-            <Typography sx={{ color: "black", fontWeight: 700 }}>
-              {`Your bid:`}
-            </Typography>
-            {states ? (
-              <Typography sx={{ color: "green", fontWeight: 700 }}>
-                {`${price}$`}
+            {props.active === "true" ? (<Box>
+              <Typography sx={{ color: "black", fontWeight: 700 }}>
+                {`Your bid:`}
               </Typography>
-            ) : (
-              <Typography sx={{ color: "red", fontWeight: 700 }}>
-                {`${price}$`}
-              </Typography>
-            )}
+              {states ? (
+                <Typography sx={{ color: "green", fontWeight: 700 }}>
+                  {`${price}$`}
+                </Typography>
+              ) : (
+                <Typography sx={{ color: "red", fontWeight: 700 }}>
+                  {`${price}$`}
+                </Typography>
+              )}
+            </Box>) : (
+              <Box sx={{ display: "flex", width: 50, height: 100 }}>
+                <Typography sx={{ color: "black", fontWeight: 700, fontSize: "14px" }}>
+                  {`Authentication token: ${pid}`}
+                </Typography>
+              </Box>)}
+
+
           </Box>
         </Box>
       </Box>
