@@ -127,4 +127,46 @@ async function SignupService(props) {
     });
 }
 
-export { DeleteService, UpdateService, SigninService, SignupService };
+async function AddCreditCard(props) {
+  //[name, type, owner, image, price, duration, start_date];
+  let cardNumber = props.cardNumber;
+  console.log(props);
+  let cvv = props.cvv;
+  let name = props.name;
+  let expDate = props.expDate;
+  let email = props.email;
+  console.log(email, cardNumber, cvv, name);
+  let uri = serverURI + "/users/creditCard/" + email;
+  var data = JSON.stringify({
+    cardNumber: cardNumber,
+    cvv: cvv,
+    name: name,
+    expDate: expDate,
+  });
+  var config = {
+    method: "post",
+    url: uri,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      console.log("success");
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+export {
+  DeleteService,
+  UpdateService,
+  SigninService,
+  SignupService,
+  AddCreditCard,
+};
