@@ -216,7 +216,13 @@ function ResponsiveAppBar(props) {
     navigate(`/wonAuctions/${email}`);
   };
 
-  const settingsFunctions = [handleProfile, handleLogOut, handleActiveBids, handleWonAuctions, handleFavoriteAuction];
+  const settingsFunctions = [
+    handleProfile,
+    handleLogOut,
+    handleActiveBids,
+    handleWonAuctions,
+    handleFavoriteAuction,
+  ];
 
   const pagesFunctions = [handleTeams, handleOpenAuctions, handleAuthenticate];
 
@@ -332,7 +338,9 @@ function ResponsiveAppBar(props) {
                     let name = el.team.substring(0, el.team.indexOf("@"));
                     return (
                       <MenuItem key={indx} onClick={() => handleClick(name)}>
-                        <Typography textAlign="center">{el.displayName}</Typography>
+                        <Typography textAlign="center">
+                          {el.displayName}
+                        </Typography>
                       </MenuItem>
                     );
                   })}
@@ -340,7 +348,11 @@ function ResponsiveAppBar(props) {
               </Box>
 
               {pages.map((page, idx) => (
-                <Button key={page} onClick={pagesFunctions[idx]} sx={{ my: 2, color: "black", display: "block" }}>
+                <Button
+                  key={page}
+                  onClick={pagesFunctions[idx]}
+                  sx={{ my: 2, color: "black", display: "block" }}
+                >
                   {page}
                 </Button>
               ))}

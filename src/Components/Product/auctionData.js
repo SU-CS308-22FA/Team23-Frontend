@@ -58,9 +58,9 @@ export default function AuctionData(props) {
   return (
     <List
       sx={{
-        width: '100%',
+        width: "100%",
         maxWidth: 360,
-        bgcolor: 'background.paper',
+        bgcolor: "background.paper",
       }}
     >
       <ListItem alignItems="flex-start">

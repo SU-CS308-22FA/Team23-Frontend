@@ -17,7 +17,9 @@ export default function ListCards(props) {
     uri = serverURI + "/users/wonAuctions/";
   }
 
-  
+  function payCard(data){
+    props.popUp(data);
+  }  
 
 
   const [message, setMessage] = React.useState([{}]);
@@ -85,6 +87,7 @@ export default function ListCards(props) {
                   image={product.image}
                   states={product.state}
                   active = {props.active}
+                  payCard = {payCard}
                 ></OpenItems>
               ))}
             </Box>

@@ -3,7 +3,7 @@ import serverURI from "../../Constants/connection";
 import axios from "axios";
 import { useEffect } from "react";
 import Cookies from "universal-cookie";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useRevalidator } from "react-router-dom";
 import {
   Box,
   CardContent,
@@ -33,6 +33,7 @@ export default function ProductCard(props) {
   const type = props.type || "test";
   const name = props.name || "test";
   const owner = props.owner || "test";
+  const user = props.user;
   const image =
     props.image ||
     "https://assets.adidas.com/images/w_600,f_auto,q_auto/49808757050946de8bedae29011926b5_9366/Manchester_United_22-23_Home_Jersey_Red_H13881_21_model.jpg";
@@ -45,6 +46,19 @@ export default function ProductCard(props) {
   const adminPage = props.adminPage;
   // const [isAdmin, setIsAdmin] = React.useState(false);
   const [liked, setliked] = React.useState(isFav);
+  const [show, setShow] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!user) {
+      setShow(false);
+    } else {
+      if (isAdmin) {
+        setShow(false);
+      } else {
+        setShow(true);
+      }
+    }
+  }, []);
 
   function func3() {
     props.func(id);
@@ -125,10 +139,14 @@ export default function ProductCard(props) {
         displayChip: "flex",
       });
 
+  const handleSignup = () => {
+    console.log("not user");
+    navigate(`/signup`);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const obj = [id];
-    console.log(liked);
     if (!liked) {
       AddFavList(obj)
         .then((response) => {
@@ -153,9 +171,7 @@ export default function ProductCard(props) {
     <Card sx={{ maxWidth: size1.maxWidth, position: "relative" }}>
       {adminPage ? (
         ""
-      ) : isAdmin ? (
-        ""
-      ) : (
+      ) : show ? ( //isAdmin changed
         <IconButton onClick={handleSubmit}>
           {liked ? (
             <FavoriteIcon sx={{ color: "red" }} />
@@ -163,6 +179,8 @@ export default function ProductCard(props) {
             <FavoriteIcon sx={{ color: "black" }} />
           )}
         </IconButton>
+      ) : (
+        ""
       )}
       <CardActionArea onClick={handleClick}>
         <Box
