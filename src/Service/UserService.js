@@ -127,4 +127,32 @@ async function SignupService(props) {
     });
 }
 
-export { DeleteService, UpdateService, SigninService, SignupService };
+async function CardSelectionService(prop) {
+  let card = prop[0];
+  let address = prop[1];
+
+  console.log(card, address)
+
+  // let uri = serverURI + "/products/getCertificate/" + pid;
+  // let result = {};
+
+  // var config = {
+  //   method: "post",
+  //   url: uri,
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // };
+
+  // await axios(config)
+  //   .then(function (response) {
+  //     console.log(JSON.stringify(response.data));
+  //     result = response.data;
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+  //   return result;
+}
+
+export { DeleteService, UpdateService, SigninService, SignupService, CardSelectionService };

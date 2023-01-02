@@ -9,10 +9,14 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import LooksOneIcon from '@mui/icons-material/LooksOne';
 import LooksTwoIcon from '@mui/icons-material/LooksTwo';
+import AddCardIcon from '@mui/icons-material/AddCard';
 
 import serverURI from "../../Constants/connection";
 import "../../Style/popupForm.css";
 import useWindowDimensions from "../Utils/windowDimensions";
+
+
+import { CardSelectionService } from "../../Service/UserService";
 
 export default function CardSelection(props) {
   const id = props.id;
@@ -20,7 +24,11 @@ export default function CardSelection(props) {
   const cookie = new Cookies();
   cookie.get("email");
   const email = cookie.cookies.email;
-  const owner = email.substr(0, email.indexOf("@"));
+
+  let { height, width } = useWindowDimensions();
+
+  height = ((height - 580) / 2) + 30;
+  width = (width - 500) / 2;
 
   const handleCancel = () => {
     props.close();
@@ -37,17 +45,17 @@ export default function CardSelection(props) {
   const [cardMessage, setCardMessage] = React.useState([]);
   const [addressMessage, setAddressMessage] = React.useState([]);
 
-  let { height, width } = useWindowDimensions();
-
-  height = ((height - 580) / 2) + 30;
-  width = (width - 500) / 2;
+  const [address, setAddress] = React.useState({});
+  const [card, setCard] = React.useState({});
 
   function selectPayment(idx) {
     for (let i = 0; i < paymentArray.length; i++) {
       paymentArray[i] = false;
       setSelect(!select);
     }
+    setCard(cardMessage[idx])
     paymentArray[idx] = true;
+
     setSelect(!select);
   }
 
@@ -57,12 +65,29 @@ export default function CardSelection(props) {
       setSelect(!select);
     }
     deliveryArray[idx] = true;
+    setAddress(addressMessage[idx])
+
     setSelect(!select);
   }
 
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate(`/profile`);
+  };
+
+  const handlePay = (event) => {
+    event.preventDefault();
+    const objList = [];
+
+    objList.push(card);
+    objList.push(address);
+
+    CardSelectionService(objList).then((response) => {
+      // if (response.message.length > 0) {
+      //   console.log("anan")
+      // }
+    });
+
   };
 
   let uri = serverURI + "/users/paymentMethod/" + email;
@@ -86,9 +111,6 @@ export default function CardSelection(props) {
         console.log(error);
       });
   }, [email, uri]);
-
-  console.log(cardMessage);
-  console.log(addressMessage);
 
   return (
     <Container maxWidth="xl">
@@ -114,23 +136,33 @@ export default function CardSelection(props) {
           </Box>
 
           <Box style={{ overflowY: "scroll", height: 240 }}>
-            {[0, 1, 2, 3, 4, 5].map((product, idx) => (
+            {cardMessage.map((cards, idx) => (
               <Box sx={{ display: "flex", height: 60, width: 420, mt: 2, flexDirection: "row", border: 1, borderRadius: '5px', borderColor: 'grey.500' }}>
                 <IconButton onClick={() => selectPayment(idx)}>
                   {paymentArray[idx] ? (
-                    <RadioButtonCheckedIcon></RadioButtonCheckedIcon>
+                    <RadioButtonCheckedIcon sx={{ color: "black" }}></RadioButtonCheckedIcon>
                   ) : (
                     <RadioButtonUncheckedIcon></RadioButtonUncheckedIcon>
                   )}
                 </IconButton>
-                <Box sx={{ dislay: "flex", flexDirection: "colum", ml: 0.5, mt: 0.5 }}>
-                  <Typography color='grey.700' sx={{ fontWeight: 500 }}>
-                    MasterCard
-                  </Typography>
-                  <Typography color='grey.700' sx={{ fontWeight: 500 }}>
-                    **** **** **** 0615
-                  </Typography>
-                </Box>
+                {paymentArray[idx] ?
+                  (<Box sx={{ dislay: "flex", flexDirection: "colum", ml: 0.5, mt: 0.5 }}>
+                    <Typography color='black' sx={{ fontWeight: 500 }}>
+                      {cards.name}
+                    </Typography>
+                    <Typography color='black' sx={{ fontWeight: 500 }}>
+                      •••• •••• •••• {cards.cardNumber}
+                    </Typography>
+                  </Box>) :
+                  (<Box sx={{ dislay: "flex", flexDirection: "colum", ml: 0.5, mt: 0.5 }}>
+                    <Typography color='grey.700' sx={{ fontWeight: 500 }}>
+                      {cards.name}
+                    </Typography>
+                    <Typography color='grey.700' sx={{ fontWeight: 500 }}>
+                      •••• •••• •••• {cards.cardNumber}
+                    </Typography>
+                  </Box>)}
+
               </Box>
             ))}
           </Box>
@@ -152,32 +184,40 @@ export default function CardSelection(props) {
           </Box>
 
           <Box style={{ overflowY: "scroll", height: 150 }}>
-            {[0, 1, 2].map((product, idx) => (
+            {addressMessage.map((addresses, idx) => (
               <Box onClick={() => selectDelivery(idx)} sx={{ display: "flex", height: 60, width: 420, mt: 2, flexDirection: "row", border: 1, borderRadius: '5px', borderColor: 'grey.500' }}>
                 <IconButton onClick={() => selectDelivery(idx)}>
                   {deliveryArray[idx] ? (
-                    <RadioButtonCheckedIcon></RadioButtonCheckedIcon>
+                    <RadioButtonCheckedIcon sx={{ color: "black" }}></RadioButtonCheckedIcon>
                   ) : (
                     <RadioButtonUncheckedIcon></RadioButtonUncheckedIcon>
                   )}
                 </IconButton>
-                <Box sx={{ dislay: "flex", flexDirection: "colum", ml: 0.5, mt: 0.5 }}>
-                  <Typography color='grey.700' sx={{ fontWeight: 500 }}>
-                    Orta Mah. Sabancı No: B4
-                  </Typography>
-                  <Typography color='grey.700' sx={{ fontWeight: 500 }}>
-                    Tuzla İstanbul
-                  </Typography>
-
-                </Box>
+                {deliveryArray[idx] ?
+                  (<Box sx={{ dislay: "flex", flexDirection: "colum", ml: 0.5, mt: 0.5 }}>
+                    <Typography color='black' sx={{ fontWeight: 500 }}>
+                      {addresses.address}
+                    </Typography>
+                    <Typography color='black' sx={{ fontWeight: 500 }}>
+                      {addresses.city}
+                    </Typography>
+                  </Box>
+                  ) :
+                  (<Box sx={{ dislay: "flex", flexDirection: "colum", ml: 0.5, mt: 0.5 }}>
+                    <Typography color='grey.700' sx={{ fontWeight: 500 }}>
+                      {addresses.address}
+                    </Typography>
+                    <Typography color='grey.700' sx={{ fontWeight: 500 }}>
+                      {addresses.city}
+                    </Typography>
+                  </Box>)}
               </Box>
             ))}
           </Box>
-
-
         </Box>
+
         <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "flex-end", mt: 2, mr: 2 }}>
-          <Button variant="contained">Pay</Button>
+          <Button onClick={handlePay} variant="contained">Pay</Button>
         </Box>
 
       </Box>
