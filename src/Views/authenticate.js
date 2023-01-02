@@ -1,8 +1,6 @@
 import * as React from "react";
-import { useParams } from "react-router-dom";
 import AppBar from "../Components/Navbar/appbar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { CssBaseline, Grid, CardMedia, Paper, Box } from "@mui/material";
 import ItemAuthentication from "../Components/Authentication/ItemAuthentication";
 import Certificate from "../Components/Authentication/Certificate";
 import CreditCard from "../Components/Payment/creditCard";

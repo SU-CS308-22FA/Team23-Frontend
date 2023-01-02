@@ -9,16 +9,18 @@ export default function Certificate(props) {
     let finishDate = new Date(info.start_date + info.duration);
     finishDate = finishDate.toLocaleString();
 
-
-
     let { height, width } = useWindowDimensions();
+
+    height = (height - 550) / 2;
+    width = (width - 900) / 2;
 
     const handleCancel = () => {
         props.close();
     };
+
     return (
         <Container maxWidth="sm">
-            <Box sx={{ height: 550, width: 900, border: 1, borderRadius: '20px', flexDirection: "column", bgcolor: "primary", position: "fixed", top: "20%", left: "20%", zIndex: 1, backgroundColor: "white" }}>
+            <Box sx={{ height: 550, width: 900, border: 1, borderRadius: '20px', flexDirection: "column", bgcolor: "primary", position: "fixed", top: height, left: width, zIndex: 1, backgroundColor: "white" }}>
                 <IconButton
                     aria-label="close"
                     onClick={handleCancel}
