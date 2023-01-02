@@ -61,6 +61,42 @@ async function UpdateService(props) {
     });
 }
 
+async function AddressService(props) {
+  let address = props[0];
+  let city = props[1];
+  let country = props[2];
+  let zip = props[3];
+  let { email } = props[4];
+  let uri = serverURI + "/users/address";
+
+  var data = JSON.stringify({
+    address: address,
+    city: city,
+    country: country,
+    zip: zip,
+    email: email,
+  });
+  console.log(data);
+
+  var config = {
+    method: "post",
+    url: uri,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      console.log("success");
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
 async function SigninService(props) {
   let uri = serverURI + "/users/signin";
   let email = props[0];
@@ -127,4 +163,4 @@ async function SignupService(props) {
     });
 }
 
-export { DeleteService, UpdateService, SigninService, SignupService };
+export { DeleteService, UpdateService, SigninService, SignupService, AddressService };
