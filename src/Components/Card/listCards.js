@@ -12,7 +12,10 @@ export default function ListCards(props) {
   const isAdmin = props.isAdmin;
   const email = props.email;
   const cookie = new Cookies();
-  const newEmail = cookie.get("email");
+  let newEmail = cookie.get("email");
+  if (newEmail === undefined) {
+    newEmail = "guest@gmail.com";
+  }
   const [myOption, setOption] = React.useState(0);
   const [uri, setUri] = React.useState(
     serverURI + "/products/option:0" + "&" + newEmail
@@ -20,6 +23,16 @@ export default function ListCards(props) {
   const [products, setProducts] = React.useState([]);
   const [total, setTotal] = React.useState("option:0");
   const [loading, setLoading] = React.useState(true);
+  const [user, setUser] = React.useState(false);
+
+  React.useEffect(() => {
+    if (newEmail === "guest@gmail.com") {
+      setUser(false);
+    } else {
+      setUser(true);
+    }
+  }, []);
+  console.log(user);
 
   function func1(data) {
     setOption(data);
@@ -96,7 +109,12 @@ export default function ListCards(props) {
     console.log(uri);
     if (props.email) {
       console.log(props.email);
-      getFilterOptions({ status: [], teams: [email], priceRange: "", productType: [] });
+      getFilterOptions({
+        status: [],
+        teams: [email],
+        priceRange: "",
+        productType: [],
+      });
     } else {
       setLoading(false);
     }
@@ -116,7 +134,12 @@ export default function ListCards(props) {
 
         if (props.email) {
           console.log(props.email);
-          getFilterOptions({ status: [], teams: [email], priceRange: "", productType: [] });
+          getFilterOptions({
+            status: [],
+            teams: [email],
+            priceRange: "",
+            productType: [],
+          });
           setProducts(response.data.message);
           setLoading(false);
         } else {
@@ -128,7 +151,6 @@ export default function ListCards(props) {
         console.log(error);
       });
   }, [uri]);
-
 
   React.useEffect(() => {
     if (email) {
@@ -187,6 +209,7 @@ export default function ListCards(props) {
                   name={product.name}
                   owner={product.owner}
                   image={product.image}
+                  user={user}
                 ></Card>
               ))}
             </Box>
