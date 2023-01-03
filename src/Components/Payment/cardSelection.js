@@ -85,7 +85,6 @@ export default function CardSelection(props) {
         console.log(response);
       setFailure(true);
     });
-
   };
 
   const [loading, setLoading] = React.useState(true);
@@ -238,18 +237,22 @@ export default function CardSelection(props) {
                       <Typography color='black' sx={{ fontWeight: 500 }}>
                         {addresses.address}
                       </Typography>
-                      <Typography color='black' sx={{ fontWeight: 500 }}>
-                        {addresses.city}
-                      </Typography>
+                      <Box sx={{ display: "flex", flexDirection: "row" }}>
+                        <Typography color='black' sx={{ fontWeight: 500 }}>
+                          {addresses.city}, {" "} {addresses.country}, {" "} {addresses.zip}
+                        </Typography>
+                      </Box>
                     </Box>
                     ) :
                     (<Box sx={{ dislay: "flex", flexDirection: "colum", ml: 0.5, mt: 0.5 }}>
                       <Typography color='grey.700' sx={{ fontWeight: 500 }}>
                         {addresses.address}
                       </Typography>
-                      <Typography color='grey.700' sx={{ fontWeight: 500 }}>
-                        {addresses.city}
-                      </Typography>
+                      <Box sx={{ display: "flex", flexDirection: "row" }}>
+                        <Typography color='grey.700' sx={{ fontWeight: 500 }}>
+                          {addresses.city}, {" "} {addresses.country}, {" "} {addresses.zip}
+                        </Typography>
+                      </Box>
                     </Box>)}
                 </Box>
               ))}
