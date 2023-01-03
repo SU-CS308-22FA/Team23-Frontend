@@ -91,12 +91,15 @@ export default function OpenItems(props) {
               )}
             </Box>) : (
               <Box sx={{ display: "flex", width: 50, flexDirection: "row" }}>
-                <Typography sx={{ color: "black", fontWeight: 700, fontSize: "14px" }}>
-                  {`Authentication token: ${pid}`}
-                </Typography>
-                <Box sx={{ display: "flex", ml: 2 }}>
-                  <Button variant="contained" onClick={handlePay}>Pay</Button>
-                </Box>
+                {props.paid ?
+                  (
+                    <Typography sx={{ color: "black", fontWeight: 700, fontSize: "14px" }}>
+                      {`Authentication token: ${pid}`}
+                    </Typography>
+                  ) :
+                  (<Box sx={{ display: "flex", ml: 2 }}>
+                    <Button variant="contained" onClick={handlePay}>Pay</Button>
+                  </Box>)}
               </Box>)}
           </Box>
         </Box>
