@@ -35,10 +35,7 @@ export default function CreditCard(props) {
   const handleChange = (name) => (e) => {
     const value = name === "image" ? e.target.files[0] : e.target.value;
 
-    if (
-      name === "cardNumber" &&
-      (value.length === 4 || value.length === 9 || value.length === 14)
-    ) {
+    if (name === "cardNumber" && (value.length === 4 || value.length === 9 || value.length === 14)) {
       setData({ ...data, [name]: value + " " });
     } else {
       setData({ ...data, [name]: value });
@@ -84,13 +81,10 @@ export default function CreditCard(props) {
         setnum(true);
       }
     } else {
+      setemptycard(false);
       setnum(false);
     }
-    if (
-      data.cardNumber.length === 19 &&
-      data.cvv.length === 3 &&
-      data.name.length !== 0
-    ) {
+    if (data.cardNumber.length === 19 && data.cvv.length === 3 && data.name.length !== 0) {
       AddCreditCard(obj)
         .then((response) => {
           console.log(response);
@@ -125,12 +119,10 @@ export default function CreditCard(props) {
         borderRadius: "10px",
         boxShadow: 5,
         padding: 3,
-        height: 300,
         width: 350,
         flexDirection: "column",
         mb: 5,
-        ml: 55,
-
+        ml: "36%",
         backgroundColor: "white",
       }}
     >
@@ -148,7 +140,7 @@ export default function CreditCard(props) {
         name="cardNumber"
         placeholder="Credit Card Number"
         onChange={handleChange("cardNumber")}
-      // onChange={handleChange("bid")}
+        // onChange={handleChange("bid")}
       />
       <Box sx={{ display: "flex", flexDirection: "row" }}>
         <Box sx={{ mt: 2, width: 300 }}>
@@ -163,9 +155,7 @@ export default function CreditCard(props) {
               onChange={(newValue) => {
                 setDate(newValue);
               }}
-              renderInput={(params) => (
-                <TextField {...params} helperText={null} />
-              )}
+              renderInput={(params) => <TextField {...params} helperText={null} />}
             />
           </LocalizationProvider>
         </Box>
@@ -180,7 +170,7 @@ export default function CreditCard(props) {
             name="bid"
             placeholder="CVV"
             onChange={handleChange("cvv")}
-          // onChange={handleChange("bid")}
+            // onChange={handleChange("bid")}
           />
         </Box>
       </Box>
@@ -193,84 +183,60 @@ export default function CreditCard(props) {
         name="name"
         placeholder="Cardholder Name"
         onChange={handleChange("name")}
-      // onChange={handleChange("bid")}
+        // onChange={handleChange("bid")}
       />
       <Box>
         {exp ? (
-          <Typography
-            color="text.primary"
-            sx={{ color: "red", fontWeight: 500 }}
-          >
+          <Typography color="text.primary" sx={{ color: "red", fontWeight: 500 }}>
             Invalid expiration date!
           </Typography>
         ) : (
           ""
         )}
         {exist ? (
-          <Typography
-            color="text.primary"
-            sx={{ color: "red", fontWeight: 500 }}
-          >
+          <Typography color="text.primary" sx={{ color: "red", fontWeight: 500 }}>
             Card already exists!
           </Typography>
         ) : (
           ""
         )}
         {cvv ? (
-          <Typography
-            color="text.primary"
-            sx={{ color: "red", fontWeight: 500 }}
-          >
+          <Typography color="text.primary" sx={{ color: "red", fontWeight: 500 }}>
             CVV must contain 3 digits.
           </Typography>
         ) : (
           ""
         )}
         {num ? (
-          <Typography
-            color="text.primary"
-            sx={{ color: "red", fontWeight: 500 }}
-          >
+          <Typography color="text.primary" sx={{ color: "red", fontWeight: 500 }}>
             Card number must contain 16 digits.
           </Typography>
         ) : (
           ""
         )}
         {success ? (
-          <Typography
-            color="text.primary"
-            sx={{ color: "red", fontWeight: 500 }}
-          >
+          <Typography color="text.primary" sx={{ color: "red", fontWeight: 500 }}>
             Card added successfully.
           </Typography>
         ) : (
           ""
         )}
         {emptycvv ? (
-          <Typography
-            color="text.primary"
-            sx={{ color: "red", fontWeight: 500 }}
-          >
+          <Typography color="text.primary" sx={{ color: "red", fontWeight: 500 }}>
             CVV cannot be empty.
           </Typography>
         ) : (
           ""
         )}
         {emptycard ? (
-          <Typography
-            color="text.primary"
-            sx={{ color: "red", fontWeight: 500 }}
-          >
+          <Typography color="text.primary" sx={{ color: "red", fontWeight: 500 }}>
             Card cannot be empty.
           </Typography>
         ) : (
           ""
         )}
         {name ? (
-          <Typography
-            color="text.primary"
-            sx={{ color: "red", fontWeight: 500 }}
-          >
+          <Typography color="text.primary" sx={{ color: "red", fontWeight: 500 }}>
             Card holder name cannot be empty.
           </Typography>
         ) : (
