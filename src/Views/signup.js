@@ -27,6 +27,8 @@ const theme = createTheme();
 
 export default function SignUp() {
   const [flag, setFlag] = useState(false);
+  const [mail, setmail] = useState(false);
+  const [psw, setpsw] = useState(false);
 
   const [values, setValues] = React.useState({
     password: "",
@@ -56,11 +58,32 @@ export default function SignUp() {
     let email = data.get("email");
     let password = data.get("password");
     const obj = [name, lastname, email, password];
-    SignupService(obj).then((response) => {
-      console.log(response, "asdasdasd");
-    });
-
-    handle();
+    console.log(email.includes("@"));
+    if (email.includes("@")) {
+      setmail(false);
+      if (password.length >= 6) {
+        setpsw(false);
+        SignupService(obj).then((response) => {
+          console.log(response, "asdasdasd");
+        });
+        handle();
+      } else {
+        setpsw(true);
+      }
+    } else {
+      setmail(true);
+      if (password.length >= 6) {
+        setpsw(false);
+        SignupService(obj).then((response) => {
+          console.log(response, "asdasdasd");
+        });
+        handle();
+      } else {
+        setpsw(true);
+      }
+    }
+    console.log(mail);
+    console.log(psw);
   };
 
   return (
@@ -81,7 +104,12 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -105,11 +133,20 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
               </Grid>
               <Grid item xs={12}>
                 <FormControl sx={{ width: 1 }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Password
+                  </InputLabel>
                   <OutlinedInput
                     error={flag}
                     name="password"
@@ -127,7 +164,11 @@ export default function SignUp() {
                           onClick={handleClickShowPassword}
                           edge="end"
                         >
-                          {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                          {values.showPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
                         </IconButton>
                       </InputAdornment>
                     }
@@ -135,9 +176,34 @@ export default function SignUp() {
                 </FormControl>
               </Grid>
             </Grid>
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
               Sign Up
             </Button>
+            {mail ? (
+              <Typography
+                color="text.primary"
+                sx={{ color: "red", fontWeight: 500 }}
+              >
+                Mail address must contain @.
+              </Typography>
+            ) : (
+              ""
+            )}
+            {psw ? (
+              <Typography
+                color="text.primary"
+                sx={{ color: "red", fontWeight: 500 }}
+              >
+                Password length should be at least 6.
+              </Typography>
+            ) : (
+              ""
+            )}
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link onClick={handle} href="#" variant="body2">

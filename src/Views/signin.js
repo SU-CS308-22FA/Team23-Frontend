@@ -30,6 +30,7 @@ const theme = createTheme();
 export default function Signin() {
   const cookies = new Cookies();
   const [flag, setFlag] = useState(false);
+  const [mail, setmail] = useState(false);
   const [values, setValues] = React.useState({
     password: "",
     showPassword: false,
@@ -61,7 +62,6 @@ export default function Signin() {
     let email = data.get("email");
     let password = data.get("password");
     const obj = [email, password];
-
     SigninService(obj)
       .then((response) => {
         console.log(response);
@@ -78,6 +78,28 @@ export default function Signin() {
         setFlag(true);
         console.log(flag);
       });
+
+    // if (email.includes("@")) {
+    //   setmail(false);
+    //   SigninService(obj)
+    //     .then((response) => {
+    //       console.log(response);
+    //       cookies.set("email", email, { path: "/" });
+    //       console.log(response.message);
+    //       if (response.message === true) {
+    //         navigateProfile();
+    //         setFlag(false);
+    //       } else {
+    //         setFlag(true);
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       setFlag(true);
+    //       console.log(flag);
+    //     });
+    // } else {
+    //   setmail(true);
+    // }
     // if respone true
   };
 
@@ -154,7 +176,26 @@ export default function Signin() {
                 alignItems: "center",
               }}
             ></Box>
-            {flag === true ? "Wrong email and password!" : ""}
+            {flag === true ? (
+              <Typography
+                color="text.primary"
+                sx={{ color: "red", fontWeight: 500 }}
+              >
+                Wrong email or password.
+              </Typography>
+            ) : (
+              ""
+            )}
+            {/* {mail ? (
+              <Typography
+                color="text.primary"
+                sx={{ color: "red", fontWeight: 500 }}
+              >
+                Mail address must contain @.
+              </Typography>
+            ) : (
+              ""
+            )} */}
             <Button
               type="submit"
               fullWidth
