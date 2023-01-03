@@ -67,6 +67,7 @@ async function AddressService(props) {
   let country = props[2];
   let zip = props[3];
   let { email } = props[4];
+  let result = {};
   let uri = serverURI + "/users/address";
 
   var data = JSON.stringify({
@@ -87,14 +88,16 @@ async function AddressService(props) {
     data: data,
   };
 
-  axios(config)
+  await axios(config)
     .then(function (response) {
       console.log(JSON.stringify(response.data));
       console.log("success");
+      result = response.data;
     })
     .catch(function (error) {
       console.log(error);
     });
+  return result;
 }
 
 async function SigninService(props) {
@@ -163,12 +166,11 @@ async function SignupService(props) {
     });
 }
 
-
 async function CardSelectionService(prop) {
   let card = prop[0];
   let address = prop[1];
 
-  console.log(card, address)
+  console.log(card, address);
 
   // let uri = serverURI + "/products/getCertificate/" + pid;
   // let result = {};
@@ -191,8 +193,6 @@ async function CardSelectionService(prop) {
   //   });
   //   return result;
 }
-
-
 
 async function AddCreditCard(props) {
   //[name, type, owner, image, price, duration, start_date];
@@ -237,5 +237,5 @@ export {
   SignupService,
   AddCreditCard,
   CardSelectionService,
-  AddressService
+  AddressService,
 };
