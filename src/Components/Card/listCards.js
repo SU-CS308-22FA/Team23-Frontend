@@ -105,6 +105,7 @@ export default function ListCards(props) {
   //   }
   // }, []);
 
+  
   React.useEffect(() => {
     console.log(uri);
     if (props.email) {
