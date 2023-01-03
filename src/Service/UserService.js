@@ -169,19 +169,28 @@ async function CardSelectionService(prop) {
   let address = prop[1];
   let pid = prop[2];
 
+  console.log(card);
+
   var data = JSON.stringify({
     conversationId: card.conversationId,
     userId: card.userId,
     email: card.email,
     cardUserKey: card.cardUserKey,
     cardToken: card.cardToken,
+    cardHolderName: card.cardHolderName,
+    cardNumber: card.cardNumber,
     lastFourDigits: card.lastFourDigits,
+    cvv: card.cvv,
+    expMonth: card.expMonth,
+    expYear: card.expYear,
     cardType: card.cardType,
     cardAssociation: card.cardAssociation,
     cardFamily: card.cardFamily,
     cardBankName: card.cardBankName,
     address: address.address,
+    country: address.country,
     city: address.city,
+    zip: address.zip,
     pid: pid,
   });
 
