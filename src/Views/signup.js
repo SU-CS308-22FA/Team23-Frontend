@@ -20,6 +20,7 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import AppBar from "../Components/Navbar/appbar";
 
 import { SignupService } from "../Service/UserService";
 
@@ -88,6 +89,7 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
+      <AppBar></AppBar>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

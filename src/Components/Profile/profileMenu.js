@@ -38,8 +38,10 @@ export default function ProfileMenu(props) {
   let selected;
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-
+  const [error, setError] = useState([0, 0, 0, 0]);
+  const [helperText, setHelperTexts] = useState({ address: "", city: "", country: "", zip: "" });
   const [user, setUser] = useState({});
+  const [res, setRes] = useState("Fail");
   const [countries, setCountries] = useState([{ name: { common: "Turkey" } }]);
   const cookie = new Cookies();
   cookie.get("email");
@@ -61,9 +63,55 @@ export default function ProfileMenu(props) {
     zip: "",
   });
 
+  const checkValid = () => {
+    let help = { address: "", city: "", country: "", zip: "" };
+    let err = [0, 0, 0, 0];
+    if (addressValues.address === "") {
+      help.address = "Address field cannot be empty!";
+      err[0] = 1;
+    } else {
+      help.address = "";
+      err[0] = 2;
+    }
+    if (addressValues.city === "") {
+      help.city = "City field cannot be empty!";
+      err[1] = 1;
+    } else {
+      help.address = "";
+      err[1] = 2;
+    }
+
+    if (addressValues.country === "") {
+      help.country = "Country field cannot be empty!";
+      err[2] = 1;
+    } else {
+      help.address = "";
+      err[2] = 2;
+    }
+
+    if (addressValues.zip === "") {
+      help.zip = "Zip field cannot be empty!";
+      err[3] = 1;
+    } else if (addressValues.zip.length !== 5) {
+      help.zip = "Zip code should be 5 digit. Please enter a valid zip code!";
+      err[3] = 1;
+    } else if (isNaN(addressValues.zip)) {
+      help.zip = "Zip code should be consist of numbers. Please enter a valid zip code!";
+      err[3] = 1;
+    } else {
+      help.address = "";
+      err[3] = 2;
+    }
+    setHelperTexts(help);
+    setError(err);
+    return err;
+  };
+
   const handleAddressChange = (prop) => (event) => {
     setAddressValues({ ...addressValues, [prop]: event.target.value });
-    console.log(addressValues);
+
+    setError([0, 0, 0, 0]);
+    setHelperTexts({ address: "", city: "", country: "", zip: "" });
   };
 
   const handleChange = (prop) => (event) => {
@@ -103,17 +151,39 @@ export default function ProfileMenu(props) {
     let country = addressValues.country;
     let zip = addressValues.zip;
 
-    const obj = [address, city, country, zip, user];
-    console.log(obj);
+    let check = true;
 
-    AddressService(obj).then((response) => {
-      console.log(response, "asdasdasd");
+    let err = checkValid();
+
+    const obj = [address, city, country, zip, user];
+
+    err.forEach((el) => {
+      if (el === 1) {
+        check = false;
+      }
     });
+
+    if (check) {
+      AddressService(obj).then((response) => {
+        console.log(response, "addres-add");
+        setRes(response.message);
+        setAddressValues({ address: "", city: "", country: "", zip: "" });
+        if (response.message === "Success") {
+          setTimeout(() => {
+            setRes("Fail");
+          }, 3000);
+        }
+      });
+    }
   };
 
   const handleLogout = (event) => {
     event.preventDefault();
     navigate("/signin");
+  };
+  const successMessage = () => {
+    setTimeout();
+    return "hi";
   };
 
   const handleDelete = (event) => {
@@ -380,17 +450,23 @@ export default function ProfileMenu(props) {
           <div>
             <Typography sx={{ ml: 1.5 }}>Address</Typography>
             <TextField
+              value={addressValues.address}
               name="address"
+              error={error[0] === 1 ? true : false}
               onChange={handleAddressChange("address")}
               size="small"
               id="outlined-textarea"
               placeholder="Address"
               multiline
+              helperText={helperText.address}
             />
           </div>
           <div>
             <Typography sx={{ ml: 1.5 }}>City</Typography>
             <TextField
+              value={addressValues.city}
+              error={error[1] === 1 ? true : false}
+              helperText={helperText.city}
               name="city"
               onChange={handleAddressChange("city")}
               size="small"
@@ -400,6 +476,9 @@ export default function ProfileMenu(props) {
           <div>
             <Typography sx={{ ml: 1.5 }}>Country</Typography>
             <TextField
+              value={addressValues.country}
+              error={error[2] === 1 ? true : false}
+              helperText={helperText.country}
               name="country"
               onChange={handleAddressChange("country")}
               size="small"
@@ -426,12 +505,21 @@ export default function ProfileMenu(props) {
           <div>
             <Typography sx={{ ml: 1.5 }}>ZIP Code</Typography>
             <TextField
+              value={addressValues.zip}
+              error={error[3] === 1 ? true : false}
+              helperText={helperText.zip}
               name="zip"
               onChange={handleAddressChange("zip")}
               size="small"
               placeholder="ZIP Code"
             ></TextField>
           </div>
+
+          {res === "Success" && (
+            <div>
+              <Typography color="#1DA33B">Address succesfully added!</Typography>
+            </div>
+          )}
           <Button onClick={handleAddressSubmit} sx={{ mt: 3, mb: 1, ml: 1 }}>
             Add Address
           </Button>
