@@ -20,6 +20,7 @@ import {
   Divider,
   Select,
   MenuItem,
+  CircularProgress,
 } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -28,6 +29,7 @@ import { UpdateService, DeleteService, AddressService } from "../../Service/User
 import serverURI from "../../Constants/connection";
 import { Container } from "@mui/system";
 import CreditCard from "../Payment/creditCard";
+
 const theme = createTheme();
 
 export default function ProfileMenu(props) {
@@ -234,7 +236,11 @@ export default function ProfileMenu(props) {
   }, []);
 
   if (isLoading) {
-    return <div> Loading ... </div>;
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 30 }}>
+        <CircularProgress />
+      </Box>
+    );
   }
   if (props.menu === 0) {
     return (
@@ -292,8 +298,8 @@ export default function ProfileMenu(props) {
                     type="email"
                   />
 
-                  <Grid container spacing={2} direction="row" alignItems="center" justifyContent="center">
-                    <FormControl sx={{ m: 1, width: "45%", mt: 3 }} variant="outlined">
+                  <Grid container spacing={1} direction="row" alignItems="center" justifyContent="center">
+                    <FormControl sx={{ mr: 2, width: "47%", mt: 3 }} variant="outlined">
                       <InputLabel style={{ textAlign: "left" }} htmlFor="outlined-adornment-password">
                         Old Password
                       </InputLabel>
@@ -317,7 +323,7 @@ export default function ProfileMenu(props) {
                         label="Old Password"
                       />
                     </FormControl>
-                    <FormControl sx={{ m: 1, width: "45%", mt: 3 }} variant="outlined">
+                    <FormControl sx={{ width: "47%", mt: 3 }} variant="outlined">
                       <InputLabel style={{ textAlign: "left" }} htmlFor="outlined-adornment-password">
                         New Password
                       </InputLabel>

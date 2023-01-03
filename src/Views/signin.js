@@ -122,28 +122,14 @@ export default function Signin() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
-            <TextField
-              error={flag}
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <FormControl sx={{ width: 1 }} variant="outlined">
+              <InputLabel style={{ textAlign: "left" }}>Email</InputLabel>
+              <OutlinedInput error={flag} name="email" id="email" label="Email" required />
+            </FormControl>
+
             <FormControl sx={{ width: 1, mt: 1.5 }} variant="outlined">
-              <InputLabel
-                style={{ textAlign: "left" }}
-                htmlFor="outlined-adornment-password"
-              >
+              <InputLabel style={{ textAlign: "left" }} htmlFor="outlined-adornment-password">
                 Password
               </InputLabel>
               <OutlinedInput
@@ -157,11 +143,7 @@ export default function Signin() {
                 onChange={handleChange("password")}
                 endAdornment={
                   <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      edge="end"
-                    >
+                    <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} edge="end">
                       {values.showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
@@ -177,10 +159,7 @@ export default function Signin() {
               }}
             ></Box>
             {flag === true ? (
-              <Typography
-                color="text.primary"
-                sx={{ color: "red", fontWeight: 500 }}
-              >
+              <Typography color="text.primary" sx={{ color: "red", fontWeight: 500 }}>
                 Wrong email or password.
               </Typography>
             ) : (
@@ -196,12 +175,7 @@ export default function Signin() {
             ) : (
               ""
             )} */}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               Sign In
             </Button>
             <Grid container>
