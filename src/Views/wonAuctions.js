@@ -8,7 +8,7 @@ import { Card } from "@mui/material";
 export default function WonAuctions() {
   const { email } = useParams();
   const [cardSelection, setCardSelection] = React.useState(false);
-  const [pid, setPid] = React.useState();
+  const [pid, setPid] = React.useState("");
 
   function popUp(data) {
     setCardSelection(!cardSelection);
@@ -17,8 +17,12 @@ export default function WonAuctions() {
     console.log(data);
   }
 
-  function close() {
+  function close(data) {
     setCardSelection(false);
+
+    if (data === "reload") {
+      // window.location.reload();
+    }
   }
 
   return (
@@ -26,7 +30,7 @@ export default function WonAuctions() {
       <AppBar></AppBar>
       <ListOpenItems popUp={popUp} email={email} active="false"></ListOpenItems>
       {cardSelection ? (
-        <CardSelection> close = {close} id = {pid} </CardSelection>
+        <CardSelection close={close} id={pid}></CardSelection>
       ) : ("")}
     </>
   );

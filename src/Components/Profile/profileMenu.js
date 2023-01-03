@@ -24,10 +24,14 @@ import {
 import FaceIcon from "@mui/icons-material/Face";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { UpdateService, DeleteService, AddressService } from "../../Service/UserService";
+import {
+  UpdateService,
+  DeleteService,
+  AddressService,
+} from "../../Service/UserService";
 import serverURI from "../../Constants/connection";
 import { Container } from "@mui/system";
-
+import CreditCard from "../Payment/creditCard";
 const theme = createTheme();
 
 export default function ProfileMenu(props) {
@@ -258,7 +262,12 @@ export default function ProfileMenu(props) {
                 <Typography component="h1" variant="h5">
                   {user.name} {user.lastname}
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                <Box
+                  component="form"
+                  noValidate
+                  onSubmit={handleSubmit}
+                  sx={{ mt: 1 }}
+                >
                   <TextField
                     size="small"
                     margin="normal"
@@ -291,9 +300,21 @@ export default function ProfileMenu(props) {
                     type="email"
                   />
 
-                  <Grid container spacing={2} direction="row" alignItems="center" justifyContent="center">
-                    <FormControl sx={{ m: 1, width: "45%", mt: 3 }} variant="outlined">
-                      <InputLabel style={{ textAlign: "left" }} htmlFor="outlined-adornment-password">
+                  <Grid
+                    container
+                    spacing={2}
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <FormControl
+                      sx={{ m: 1, width: "45%", mt: 3 }}
+                      variant="outlined"
+                    >
+                      <InputLabel
+                        style={{ textAlign: "left" }}
+                        htmlFor="outlined-adornment-password"
+                      >
                         Old Password
                       </InputLabel>
                       <OutlinedInput
@@ -309,15 +330,25 @@ export default function ProfileMenu(props) {
                               onClick={handleClickOldShowPassword}
                               edge="end"
                             >
-                              {values.oldShowPassword ? <VisibilityOff /> : <Visibility />}
+                              {values.oldShowPassword ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
                             </IconButton>
                           </InputAdornment>
                         }
                         label="Old Password"
                       />
                     </FormControl>
-                    <FormControl sx={{ m: 1, width: "45%", mt: 3 }} variant="outlined">
-                      <InputLabel style={{ textAlign: "left" }} htmlFor="outlined-adornment-password">
+                    <FormControl
+                      sx={{ m: 1, width: "45%", mt: 3 }}
+                      variant="outlined"
+                    >
+                      <InputLabel
+                        style={{ textAlign: "left" }}
+                        htmlFor="outlined-adornment-password"
+                      >
                         New Password
                       </InputLabel>
                       <OutlinedInput
@@ -333,7 +364,11 @@ export default function ProfileMenu(props) {
                               onClick={handleClickNewShowPassword}
                               edge="end"
                             >
-                              {values.newShowPassword ? <VisibilityOff /> : <Visibility />}
+                              {values.newShowPassword ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
                             </IconButton>
                           </InputAdornment>
                         }
@@ -342,21 +377,48 @@ export default function ProfileMenu(props) {
                     </FormControl>
                   </Grid>
 
-                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 1 }}>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 1 }}
+                  >
                     Update Profile
                   </Button>
                 </Box>
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
-                    <Box component="form" noValidate onSubmit={handleDelete} sx={{ mt: 1 }}>
-                      <Button type="submit" fullWidth variant="contained" sx={{ mt: 2, mb: 2 }} color="error">
+                    <Box
+                      component="form"
+                      noValidate
+                      onSubmit={handleDelete}
+                      sx={{ mt: 1 }}
+                    >
+                      <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 2, mb: 2 }}
+                        color="error"
+                      >
                         Delete Profile
                       </Button>
                     </Box>
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <Box component="form" noValidate onSubmit={handleLogout} sx={{ mt: 1 }}>
-                      <Button type="submit" fullWidth variant="contained" sx={{ mt: 2, mb: 2 }} color="primary">
+                    <Box
+                      component="form"
+                      noValidate
+                      onSubmit={handleLogout}
+                      sx={{ mt: 1 }}
+                    >
+                      <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 2, mb: 2 }}
+                        color="primary"
+                      >
                         Logout
                       </Button>
                     </Box>
@@ -369,7 +431,11 @@ export default function ProfileMenu(props) {
       </ThemeProvider>
     );
   } else if (props.menu === 1) {
-    return "bill";
+    return (
+      <Box sx={{ mt: 7 }}>
+        <CreditCard />
+      </Box>
+    );
   } else if (props.menu === 2) {
     return (
       <Box

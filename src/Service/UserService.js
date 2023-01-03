@@ -169,29 +169,55 @@ async function SignupService(props) {
 async function CardSelectionService(prop) {
   let card = prop[0];
   let address = prop[1];
+  let pid = prop[2];
 
-  console.log(card, address);
+  console.log(card);
 
-  // let uri = serverURI + "/products/getCertificate/" + pid;
-  // let result = {};
+  var data = JSON.stringify({
+    conversationId: card.conversationId,
+    userId: card.userId,
+    email: card.email,
+    cardUserKey: card.cardUserKey,
+    cardToken: card.cardToken,
+    cardHolderName: card.cardHolderName,
+    cardNumber: card.cardNumber,
+    lastFourDigits: card.lastFourDigits,
+    cvv: card.cvv,
+    expMonth: card.expMonth,
+    expYear: card.expYear,
+    cardType: card.cardType,
+    cardAssociation: card.cardAssociation,
+    cardFamily: card.cardFamily,
+    cardBankName: card.cardBankName,
+    address: address.address,
+    country: address.country,
+    city: address.city,
+    zip: address.zip,
+    pid: pid,
+  });
 
-  // var config = {
-  //   method: "post",
-  //   url: uri,
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // };
+  let uri = serverURI + "/users/payProduct";
+  var config = {
+    method: "post",
+    url: uri,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
 
-  // await axios(config)
-  //   .then(function (response) {
-  //     console.log(JSON.stringify(response.data));
-  //     result = response.data;
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
-  //   return result;
+  let result = {};
+  await axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      console.log("success");
+      result = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+      result = {}
+    });
+  return result;
 }
 
 async function AddCreditCard(props) {
@@ -218,16 +244,17 @@ async function AddCreditCard(props) {
     },
     data: data,
   };
+  let result = {};
 
-  axios(config)
+  await axios(config)
     .then(function (response) {
       console.log(JSON.stringify(response.data));
-      console.log("success");
-      return response.data;
+      result = response.data;
     })
     .catch(function (error) {
       console.log(error);
     });
+  return result;
 }
 
 export {
