@@ -16,9 +16,14 @@ export default function CreditCard(props) {
     cvv: "",
     name: "",
   });
-  const [form, setForm] = useState(true);
-  const [date, setDate] = useState({});
+  const [date, setDate] = React.useState([""]);
   let expDate = [date["$M"] + 1, date["$y"]];
+  const [exp, setexp] = useState(false);
+  const [exist, setexist] = useState(false);
+  const [cvv, setcvv] = useState(false);
+  const [num, setnum] = useState(false);
+  const [success, setsuccess] = useState(false);
+
   //   console.log(expDate);
 
   const cookie = new Cookies();
@@ -45,13 +50,37 @@ export default function CreditCard(props) {
     obj.expDate = expDate;
     obj.email = email;
     console.log(obj.cardNumber);
-    if (data.cvv.length !== 3 || data.cardNumber.length !== 19) {
+    if (data.cvv.length !== 3) {
       console.log(data.cvv.length);
+      setcvv(true);
+    }
+    if (data.cardNumber.length !== 19) {
       console.log(data.cardNumber.length);
+      setnum(true);
     } else {
-      AddCreditCard(obj).then((response) => {
-        console.log(response, "asdasdasd");
-      });
+      setnum(false);
+      setcvv(false);
+      AddCreditCard(obj)
+        .then((response) => {
+          console.log(response);
+          if (response.message === "exp") {
+            console.log(response.message);
+            setexp(true);
+          } else if (response.message === "exist") {
+            setexist(true);
+          } else {
+            setexist(false);
+            setexp(false);
+            setsuccess(true);
+          }
+          setData({ cardNumber: "", cvv: "", name: "" });
+          setDate({ date: "" });
+          console.log(exp, exist);
+        })
+        .catch((error) => {
+          setData({ cardNumber: "", cvv: "", name: "" });
+          console.log(error);
+        });
     }
   };
 
@@ -95,6 +124,8 @@ export default function CreditCard(props) {
               <DatePicker
                 views={["year", "month"]}
                 label="Year and Month"
+                name="date"
+                id="date"
                 value={date}
                 onChange={(newValue) => {
                   setDate(newValue);
@@ -131,6 +162,58 @@ export default function CreditCard(props) {
           onChange={handleChange("name")}
           // onChange={handleChange("bid")}
         />
+        <Box>
+          {exp ? (
+            <Typography
+              color="text.primary"
+              sx={{ color: "red", fontWeight: 500 }}
+            >
+              Invalid expiration date!
+            </Typography>
+          ) : (
+            ""
+          )}
+          {exist ? (
+            <Typography
+              color="text.primary"
+              sx={{ color: "red", fontWeight: 500 }}
+            >
+              Card already exists!
+            </Typography>
+          ) : (
+            ""
+          )}
+          {cvv ? (
+            <Typography
+              color="text.primary"
+              sx={{ color: "red", fontWeight: 500 }}
+            >
+              CVV must contain 3 digits.
+            </Typography>
+          ) : (
+            ""
+          )}
+          {num ? (
+            <Typography
+              color="text.primary"
+              sx={{ color: "red", fontWeight: 500 }}
+            >
+              Card number must contain 16 digits.
+            </Typography>
+          ) : (
+            ""
+          )}
+          {success ? (
+            <Typography
+              color="text.primary"
+              sx={{ color: "red", fontWeight: 500 }}
+            >
+              Card added successfully.
+            </Typography>
+          ) : (
+            ""
+          )}
+        </Box>
         <Button onClick={handleSubmit} sx={{ mt: 1 }} variant="contained">
           Add Card
         </Button>
