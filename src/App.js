@@ -14,6 +14,8 @@ import ActiveBids from "./Views/activebid";
 import FavoriteAuctions from "./Views/favoriteauctions";
 import WonAuctions from "./Views/wonAuctions";
 import Authenticate from "./Views/authenticate";
+import SalesStatistics from "./Views/salesstatistics";
+
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
         <Route path="/product/:id" element={<Product />} />
         <Route path="/team/:id" element={<AdminPage />} />
         <Route path="/authenticate" element={<Authenticate />} />
+        <Route path="/salesstatistics/:id" element={<SalesStatistics />} />
       </Routes>
     </BrowserRouter>
   );
