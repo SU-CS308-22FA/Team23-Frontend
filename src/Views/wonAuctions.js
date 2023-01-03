@@ -21,7 +21,7 @@ export default function WonAuctions() {
     setCardSelection(false);
 
     if (data === "reload") {
-      // window.location.reload();
+      window.location.reload();
     }
   }
 

@@ -222,41 +222,64 @@ export default function CardSelection(props) {
               </Typography>
             </Box>
 
-            <Box style={{ overflowY: "scroll", height: 150 }}>
-              {addressMessage.map((addresses, idx) => (
-                <Box onClick={() => selectDelivery(idx)} sx={{ display: "flex", height: 60, width: 420, mt: 2, flexDirection: "row", border: 1, borderRadius: '5px', borderColor: 'grey.500' }}>
-                  <IconButton onClick={() => selectDelivery(idx)}>
-                    {deliveryArray[idx] ? (
-                      <RadioButtonCheckedIcon sx={{ color: "black" }}></RadioButtonCheckedIcon>
-                    ) : (
-                      <RadioButtonUncheckedIcon></RadioButtonUncheckedIcon>
-                    )}
+            {addressMessage.length === 0 ? (
+              <Box style={{ overflowY: "scroll", height: 240 }}>
+                <Box sx={{ display: "flex", height: 60, width: 420, mt: 2, flexDirection: "row", border: 1, borderRadius: '5px', borderColor: 'grey.500' }}>
+                  <IconButton>
+                    <RadioButtonUncheckedIcon></RadioButtonUncheckedIcon>
                   </IconButton>
-                  {deliveryArray[idx] ?
-                    (<Box sx={{ dislay: "flex", flexDirection: "colum", ml: 0.5, mt: 0.5 }}>
-                      <Typography color='black' sx={{ fontWeight: 500 }}>
-                        {addresses.address}
-                      </Typography>
-                      <Box sx={{ display: "flex", flexDirection: "row" }}>
-                        <Typography color='black' sx={{ fontWeight: 500 }}>
-                          {addresses.city}, {" "} {addresses.country}, {" "} {addresses.zip}
-                        </Typography>
-                      </Box>
+                  <Box sx={{ display: "flex", flexDirection: "row" }}>
+                    <Box sx={{ dislay: "flex", width: 300, flexDirection: "colum", ml: 12, mt: 1.2 }}>
+                      <Link onClick={handleNavigate}>
+                        <Box sx={{ display: "flex", mr: 8 }}>
+                          <Button onClick={handleNavigate}>
+                            ADD NEW ADDRESS
+                          </Button>
+                        </Box>
+                      </Link>
                     </Box>
-                    ) :
-                    (<Box sx={{ dislay: "flex", flexDirection: "colum", ml: 0.5, mt: 0.5 }}>
-                      <Typography color='grey.700' sx={{ fontWeight: 500 }}>
-                        {addresses.address}
-                      </Typography>
-                      <Box sx={{ display: "flex", flexDirection: "row" }}>
-                        <Typography color='grey.700' sx={{ fontWeight: 500 }}>
-                          {addresses.city}, {" "} {addresses.country}, {" "} {addresses.zip}
-                        </Typography>
-                      </Box>
-                    </Box>)}
+                  </Box>
                 </Box>
-              ))}
-            </Box>
+              </Box>
+            ) : (
+              <Box style={{ overflowY: "scroll", height: 150 }}>
+                {addressMessage.map((addresses, idx) => (
+                  <Box onClick={() => selectDelivery(idx)} sx={{ display: "flex", height: 60, width: 420, mt: 2, flexDirection: "row", border: 1, borderRadius: '5px', borderColor: 'grey.500' }}>
+                    <IconButton onClick={() => selectDelivery(idx)}>
+                      {deliveryArray[idx] ? (
+                        <RadioButtonCheckedIcon sx={{ color: "black" }}></RadioButtonCheckedIcon>
+                      ) : (
+                        <RadioButtonUncheckedIcon></RadioButtonUncheckedIcon>
+                      )}
+                    </IconButton>
+                    {deliveryArray[idx] ?
+                      (<Box sx={{ dislay: "flex", flexDirection: "colum", ml: 0.5, mt: 0.5 }}>
+                        <Typography color='black' sx={{ fontWeight: 500 }}>
+                          {addresses.address}
+                        </Typography>
+                        <Box sx={{ display: "flex", flexDirection: "row" }}>
+                          <Typography color='black' sx={{ fontWeight: 500 }}>
+                            {addresses.city}, {" "} {addresses.country}, {" "} {addresses.zip}
+                          </Typography>
+                        </Box>
+                      </Box>
+                      ) :
+                      (<Box sx={{ dislay: "flex", flexDirection: "colum", ml: 0.5, mt: 0.5 }}>
+                        <Typography color='grey.700' sx={{ fontWeight: 500 }}>
+                          {addresses.address}
+                        </Typography>
+                        <Box sx={{ display: "flex", flexDirection: "row" }}>
+                          <Typography color='grey.700' sx={{ fontWeight: 500 }}>
+                            {addresses.city}, {" "} {addresses.country}, {" "} {addresses.zip}
+                          </Typography>
+                        </Box>
+                      </Box>)}
+                  </Box>
+                ))}
+              </Box>
+            )}
+
+
             <Link onClick={handleNavigate}>
               <Box sx={{ display: "flex", flexDirection: "row-reverse", mr: 6 }}>
                 <Typography color='grey.700' sx={{ fontWeight: 500 }}>

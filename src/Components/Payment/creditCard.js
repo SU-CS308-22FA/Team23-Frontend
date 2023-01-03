@@ -148,7 +148,7 @@ export default function CreditCard(props) {
         name="cardNumber"
         placeholder="Credit Card Number"
         onChange={handleChange("cardNumber")}
-        // onChange={handleChange("bid")}
+      // onChange={handleChange("bid")}
       />
       <Box sx={{ display: "flex", flexDirection: "row" }}>
         <Box sx={{ mt: 2, width: 300 }}>
@@ -180,7 +180,7 @@ export default function CreditCard(props) {
             name="bid"
             placeholder="CVV"
             onChange={handleChange("cvv")}
-            // onChange={handleChange("bid")}
+          // onChange={handleChange("bid")}
           />
         </Box>
       </Box>
@@ -193,7 +193,7 @@ export default function CreditCard(props) {
         name="name"
         placeholder="Cardholder Name"
         onChange={handleChange("name")}
-        // onChange={handleChange("bid")}
+      // onChange={handleChange("bid")}
       />
       <Box>
         {exp ? (
