@@ -167,29 +167,46 @@ async function SignupService(props) {
 async function CardSelectionService(prop) {
   let card = prop[0];
   let address = prop[1];
+  let pid = prop[2];
 
-  console.log(card, address)
+  var data = JSON.stringify({
+    conversationId: card.conversationId,
+    userId: card.userId,
+    email: card.email,
+    cardUserKey: card.cardUserKey,
+    cardToken: card.cardToken,
+    lastFourDigits: card.lastFourDigits,
+    cardType: card.cardType,
+    cardAssociation: card.cardAssociation,
+    cardFamily: card.cardFamily,
+    cardBankName: card.cardBankName,
+    address: address.address,
+    city: address.city,
+    pid: pid,
+  });
 
-  // let uri = serverURI + "/products/getCertificate/" + pid;
-  // let result = {};
+  let uri = serverURI + "/users/payProduct";
+  var config = {
+    method: "post",
+    url: uri,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
 
-  // var config = {
-  //   method: "post",
-  //   url: uri,
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // };
-
-  // await axios(config)
-  //   .then(function (response) {
-  //     console.log(JSON.stringify(response.data));
-  //     result = response.data;
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
-  //   return result;
+  let result = {};
+  await axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      console.log("success");
+      result = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+      result = {}
+    });
+  return result;
 }
 
 
