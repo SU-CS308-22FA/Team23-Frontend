@@ -151,16 +151,17 @@ async function AddCreditCard(props) {
     },
     data: data,
   };
+  let result = {};
 
-  axios(config)
+  await axios(config)
     .then(function (response) {
       console.log(JSON.stringify(response.data));
-      console.log("success");
-      return response.data;
+      result = response.data;
     })
     .catch(function (error) {
       console.log(error);
     });
+  return result;
 }
 
 export {
