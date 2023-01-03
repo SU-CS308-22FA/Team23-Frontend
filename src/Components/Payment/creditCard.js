@@ -98,14 +98,17 @@ export default function CreditCard(props) {
             console.log(response.message);
             setexp(true);
           } else if (response.message === "exist") {
+            setData({ cardNumber: "", cvv: "", name: "" });
+            setDate({ date: "" });
             setexist(true);
           } else {
             setexist(false);
             setexp(false);
             setsuccess(true);
+            window.location.reload();
           }
-          setData({ cardNumber: "", cvv: "", name: "" });
-          setDate({ date: "" });
+          // setData({ cardNumber: "", cvv: "", name: "" });
+          // setDate({ date: "" });
           console.log(exp, exist);
         })
         .catch((error) => {
