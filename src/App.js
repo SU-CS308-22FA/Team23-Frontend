@@ -1,5 +1,6 @@
 import "./App.css";
 import Signin from "./Views/signin";
+import CreditCard from "./Components/Payment/creditCard";
 import Signup from "./Views/signup";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Profile from "./Views/profile";
@@ -15,6 +16,7 @@ import WonAuctions from "./Views/wonAuctions";
 import Authenticate from "./Views/authenticate";
 import SalesStatistics from "./Views/salesstatistics";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -27,6 +29,7 @@ function App() {
         <Route path="/activebids/:email" element={<ActiveBids />} />
         <Route path="/favoriteauctions/:email" element={<FavoriteAuctions />} />
         <Route path="/wonAuctions/:email" element={<WonAuctions />} />
+        <Route path="/creditCard" element={<CreditCard />} />
         {/* <Route path="/test" element={<Test />} /> */}
         <Route path="/search/:searchQuery" element={<Search />} />
         <Route path="/product/:id" element={<Product />} />

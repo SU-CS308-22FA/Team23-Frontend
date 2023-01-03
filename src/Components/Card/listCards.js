@@ -12,14 +12,15 @@ export default function ListCards(props) {
   const isAdmin = props.isAdmin;
   const email = props.email;
   const cookie = new Cookies();
-  const newEmail = cookie.get("email");
+  let newEmail = cookie.get("email") || "guest@gmail.com";
+
+  const [firstTeamRender, setFirstTeamRender] = React.useState(true);
   const [myOption, setOption] = React.useState(0);
-  const [uri, setUri] = React.useState(
-    serverURI + "/products/option:0" + "&" + newEmail
-  );
+  const [uri, setUri] = React.useState(serverURI + "/products/option:0" + "&" + newEmail);
   const [products, setProducts] = React.useState([]);
   const [total, setTotal] = React.useState("option:0");
   const [loading, setLoading] = React.useState(true);
+  const [user, setUser] = React.useState(false);
 
   function func1(data) {
     setOption(data);
@@ -29,11 +30,11 @@ export default function ListCards(props) {
   }
 
   function func2(data) {
-    console.log(data);
     props.func(data);
   }
 
   const getFilterOptions = (options) => {
+    console.log("ananınamı");
     if (email) {
       console.log("email burda hovam", email);
       let name = email.substring(0, email.indexOf("@"));
@@ -82,64 +83,57 @@ export default function ListCards(props) {
     setTotal(total);
 
     setUri(serverURI + "/products/" + total + "&" + newEmail);
+
+    return serverURI + "/products/" + total + "&" + newEmail;
   };
 
-  // React.useEffect(() => {
-  //   if (email) {
-  //     console.log(props.email);
-  //     setLoading(false);
-  //     getFilterOptions({ status: [], teams: [email], priceRange: "", productType: [] });
-  //   }
-  // }, []);
-
   React.useEffect(() => {
-    console.log(uri);
-    if (props.email) {
-      console.log(props.email);
-      getFilterOptions({ status: [], teams: [email], priceRange: "", productType: [] });
+    if (newEmail === "guest@gmail.com") {
+      setUser(false);
     } else {
-      setLoading(false);
+      setUser(true);
     }
-    var config = {
-      method: "get",
-      url: uri,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+  }, []);
+
+  
+  React.useEffect(() => {
+    if (props.email && firstTeamRender) {
+      setFirstTeamRender(false);
+      let ur = serverURI + "/products/option:0" + "&" + newEmail;
+      console.log(props.email);
+      ur = getFilterOptions({
+        status: [],
+        teams: [email],
+        priceRange: "",
+        productType: [],
+      });
+      var config = {
+        method: "get",
+        url: ur,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+    } else {
+      var config = {
+        method: "get",
+        url: uri,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+    }
 
     axios(config)
       .then((response) => {
         console.log(response.data.message);
         setProducts(response.data.message);
         setLoading(false);
-
-        if (props.email) {
-          console.log(props.email);
-          getFilterOptions({ status: [], teams: [email], priceRange: "", productType: [] });
-          setProducts(response.data.message);
-          setLoading(false);
-        } else {
-          setProducts(response.data.message);
-          setLoading(false);
-        }
       })
       .catch((error) => {
         console.log(error);
       });
   }, [uri]);
-
-
-  React.useEffect(() => {
-    if (email) {
-      getFilterOptions({
-        status: [],
-        teams: [email],
-        priceRange: "",
-        productType: [],
-      });
-    }
-  }, []);
 
   return (
     <Container maxWidth="xl" sx={{ mt: 8, mb: 5, width: "100%" }}>
@@ -149,17 +143,12 @@ export default function ListCards(props) {
         </Box>
       ) : (
         <Box>
-          <Box
-            sx={{ display: "flex", flexDirection: "row-reverse", mb: 4, pr: 5 }}
-          >
+          <Box sx={{ display: "flex", flexDirection: "row-reverse", mb: 4, pr: 5 }}>
             <SortProduct func={func1}></SortProduct>
           </Box>
           <Box sx={{ display: "flex", alignItems: "flex-start" }}>
             <Box sx={{ width: "20%", pl: 5 }}>
-              <FilterCard
-                email={email}
-                getFilterOptions={getFilterOptions}
-              ></FilterCard>
+              <FilterCard email={email} getFilterOptions={getFilterOptions}></FilterCard>
             </Box>
             <Box
               sx={{
@@ -187,6 +176,7 @@ export default function ListCards(props) {
                   name={product.name}
                   owner={product.owner}
                   image={product.image}
+                  user={user}
                 ></Card>
               ))}
             </Box>

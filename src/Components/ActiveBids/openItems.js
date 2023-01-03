@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -24,6 +24,10 @@ export default function OpenItems(props) {
   const handleProductPage = () => {
     navigate(`/product/${pid}`);
   };
+
+  const handlePay = (data) => {
+    props.payCard(pid);
+  }
 
   React.useEffect(() => {
     const intervalId = setInterval(() => {
@@ -70,7 +74,6 @@ export default function OpenItems(props) {
             </Box>
           </Box>
           <Box
-            onClick={handleProductPage}
             sx={{ display: "flex", alignItems: "center" }}
           >
             {props.active === "true" ? (<Box>
@@ -87,16 +90,20 @@ export default function OpenItems(props) {
                 </Typography>
               )}
             </Box>) : (
-              <Box sx={{ display: "flex", width: 50, height: 100 }}>
-                <Typography sx={{ color: "black", fontWeight: 700, fontSize: "14px" }}>
-                  {`Authentication token: ${pid}`}
-                </Typography>
+              <Box sx={{ display: "flex", width: 50, flexDirection: "row" }}>
+                {props.paid ?
+                  (
+                    <Typography sx={{ color: "black", fontWeight: 700, fontSize: "14px" }}>
+                      {`Authentication token: ${pid}`}
+                    </Typography>
+                  ) :
+                  (<Box sx={{ display: "flex", ml: 2 }}>
+                    <Button variant="contained" onClick={handlePay}>Pay</Button>
+                  </Box>)}
               </Box>)}
-
-
           </Box>
         </Box>
       </Box>
-    </Container>
+    </Container >
   );
 }

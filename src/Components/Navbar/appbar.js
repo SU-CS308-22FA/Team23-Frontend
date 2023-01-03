@@ -35,7 +35,7 @@ const themeLight = createTheme();
 //   },
 // }
 
-const pages = ["Teams", "Open Auctions"];
+const pages = []; //["Teams", "Open Auctions"];
 const settings = ["Profile", "Logout"];
 const uriTeams = serverURI + "/teams/logos";
 
@@ -202,9 +202,9 @@ function ResponsiveAppBar(props) {
     navigate(`/favoriteauctions/${email}`);
   };
 
-  const handleTeams = () => {};
+  const handleTeams = () => { };
 
-  const handleOpenAuctions = () => {};
+  const handleOpenAuctions = () => { };
 
   const handleAuthenticate = () => {
     console.log("auth");
@@ -216,9 +216,15 @@ function ResponsiveAppBar(props) {
     navigate(`/wonAuctions/${email}`);
   };
 
-  const settingsFunctions = [handleProfile, handleLogOut, handleActiveBids, handleWonAuctions, handleFavoriteAuction];
+  const settingsFunctions = [
+    handleProfile,
+    handleLogOut,
+    handleActiveBids,
+    handleWonAuctions,
+    handleFavoriteAuction,
+  ];
 
-  const pagesFunctions = [handleTeams, handleOpenAuctions, handleAuthenticate];
+  const pagesFunctions = [handleAuthenticate]; //[handleTeams, handleOpenAuctions, handleAuthenticate];
 
   React.useEffect(() => {
     if (email !== undefined) {
@@ -310,7 +316,7 @@ function ResponsiveAppBar(props) {
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              <Box sx={{ flexGrow: 0 }}>
+              {/* <Box sx={{ flexGrow: 0 }}>
                 <Tooltip>
                   <Button
                     aria-controls={anchorElTeams ? "basic-menu" : undefined}
@@ -332,15 +338,21 @@ function ResponsiveAppBar(props) {
                     let name = el.team.substring(0, el.team.indexOf("@"));
                     return (
                       <MenuItem key={indx} onClick={() => handleClick(name)}>
-                        <Typography textAlign="center">{el.displayName}</Typography>
+                        <Typography textAlign="center">
+                          {el.displayName}
+                        </Typography>
                       </MenuItem>
                     );
                   })}
                 </Menu>
-              </Box>
+              </Box> */}
 
               {pages.map((page, idx) => (
-                <Button key={page} onClick={pagesFunctions[idx]} sx={{ my: 2, color: "black", display: "block" }}>
+                <Button
+                  key={page}
+                  onClick={pagesFunctions[idx]}
+                  sx={{ my: 2, color: "black", display: "block" }}
+                >
                   {page}
                 </Button>
               ))}
