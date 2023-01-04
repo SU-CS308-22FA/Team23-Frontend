@@ -217,6 +217,7 @@ export default function HotAuctions(prop) {
             <Typography
               variant="h4"
               color="text.primary"
+              id="hot"
               sx={{ fontWeight: 900 }}
             >
               HOT AUCTIONS

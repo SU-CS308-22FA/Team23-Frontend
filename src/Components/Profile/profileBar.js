@@ -84,6 +84,7 @@ export default function ProfileBar(props) {
             Billing
           </Button>
           <Button
+            id="adr"
             size="small"
             sx={{
               color: grey[700],

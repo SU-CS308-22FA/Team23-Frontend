@@ -106,29 +106,56 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <FormControl sx={{ width: 1 }} variant="outlined">
-                  <InputLabel style={{ textAlign: "left" }}>First Name</InputLabel>
-                  <OutlinedInput name="firstName" label="Password" id="firstName" required />
+                  <InputLabel style={{ textAlign: "left" }}>
+                    First Name
+                  </InputLabel>
+                  <OutlinedInput
+                    name="firstName"
+                    label="Password"
+                    id="firstName"
+                    required
+                  />
                 </FormControl>
               </Grid>
               <Grid item xs={12} sm={6}>
                 <FormControl sx={{ width: 1 }} variant="outlined">
-                  <InputLabel style={{ textAlign: "left" }}>Last Name</InputLabel>
-                  <OutlinedInput name="lastName" label="Password" id="lastName" required />
+                  <InputLabel style={{ textAlign: "left" }}>
+                    Last Name
+                  </InputLabel>
+                  <OutlinedInput
+                    name="lastName"
+                    label="Password"
+                    id="lastName"
+                    required
+                  />
                 </FormControl>
               </Grid>
               <Grid item xs={12}>
                 <FormControl sx={{ width: 1 }} variant="outlined">
                   <InputLabel style={{ textAlign: "left" }}>Email</InputLabel>
-                  <OutlinedInput name="email" id="email" label="Email" required />
+                  <OutlinedInput
+                    name="email"
+                    id="email"
+                    label="Email"
+                    required
+                  />
                 </FormControl>
               </Grid>
               <Grid item xs={12}>
                 <FormControl sx={{ width: 1 }} variant="outlined">
-                  <InputLabel style={{ textAlign: "left" }} htmlFor="outlined-adornment-password">
+                  <InputLabel
+                    style={{ textAlign: "left" }}
+                    htmlFor="outlined-adornment-password"
+                  >
                     Password
                   </InputLabel>
                   <OutlinedInput
@@ -148,7 +175,11 @@ export default function SignUp() {
                           onClick={handleClickShowPassword}
                           edge="end"
                         >
-                          {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                          {values.showPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
                         </IconButton>
                       </InputAdornment>
                     }
@@ -156,18 +187,30 @@ export default function SignUp() {
                 </FormControl>
               </Grid>
             </Grid>
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Button
+              id="sign-up"
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
               Sign Up
             </Button>
             {mail ? (
-              <Typography color="text.primary" sx={{ color: "red", fontWeight: 500 }}>
+              <Typography
+                color="text.primary"
+                sx={{ color: "red", fontWeight: 500 }}
+              >
                 Mail address must contain @.
               </Typography>
             ) : (
               ""
             )}
             {psw ? (
-              <Typography color="text.primary" sx={{ color: "red", fontWeight: 500 }}>
+              <Typography
+                color="text.primary"
+                sx={{ color: "red", fontWeight: 500 }}
+              >
                 Password length should be at least 6.
               </Typography>
             ) : (
