@@ -25,7 +25,11 @@ import {
 import FaceIcon from "@mui/icons-material/Face";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { UpdateService, DeleteService, AddressService } from "../../Service/UserService";
+import {
+  UpdateService,
+  DeleteService,
+  AddressService,
+} from "../../Service/UserService";
 import serverURI from "../../Constants/connection";
 import { Container } from "@mui/system";
 import CreditCard from "../Payment/creditCard";
@@ -37,7 +41,12 @@ export default function ProfileMenu(props) {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState([0, 0, 0, 0]);
-  const [helperText, setHelperTexts] = useState({ address: "", city: "", country: "", zip: "" });
+  const [helperText, setHelperTexts] = useState({
+    address: "",
+    city: "",
+    country: "",
+    zip: "",
+  });
   const [user, setUser] = useState({});
   const [res, setRes] = useState("Fail");
   const [countries, setCountries] = useState([{ name: { common: "Turkey" } }]);
@@ -94,7 +103,8 @@ export default function ProfileMenu(props) {
       help.zip = "Zip code should be 5 digit. Please enter a valid zip code!";
       err[3] = 1;
     } else if (isNaN(addressValues.zip)) {
-      help.zip = "Zip code should be consist of numbers. Please enter a valid zip code!";
+      help.zip =
+        "Zip code should be consist of numbers. Please enter a valid zip code!";
       err[3] = 1;
     } else {
       help.address = "";
@@ -216,25 +226,6 @@ export default function ProfileMenu(props) {
       });
   }, []);
 
-  useEffect(() => {
-    var config = {
-      method: "get",
-      url: "https://restcountries.com/v3.1/all",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: "",
-    };
-
-    axios(config)
-      .then((response) => {
-        setCountries(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   if (isLoading) {
     return (
       <Box sx={{ display: "flex", justifyContent: "center", mt: 30 }}>
@@ -265,7 +256,12 @@ export default function ProfileMenu(props) {
                 <Typography component="h1" variant="h5">
                   {user.name} {user.lastname}
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                <Box
+                  component="form"
+                  noValidate
+                  onSubmit={handleSubmit}
+                  sx={{ mt: 1 }}
+                >
                   <TextField
                     size="small"
                     margin="normal"
@@ -298,9 +294,21 @@ export default function ProfileMenu(props) {
                     type="email"
                   />
 
-                  <Grid container spacing={1} direction="row" alignItems="center" justifyContent="center">
-                    <FormControl sx={{ mr: 2, width: "47%", mt: 3 }} variant="outlined">
-                      <InputLabel style={{ textAlign: "left" }} htmlFor="outlined-adornment-password">
+                  <Grid
+                    container
+                    spacing={1}
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <FormControl
+                      sx={{ mr: 2, width: "47%", mt: 3 }}
+                      variant="outlined"
+                    >
+                      <InputLabel
+                        style={{ textAlign: "left" }}
+                        htmlFor="outlined-adornment-password"
+                      >
                         Old Password
                       </InputLabel>
                       <OutlinedInput
@@ -316,15 +324,25 @@ export default function ProfileMenu(props) {
                               onClick={handleClickOldShowPassword}
                               edge="end"
                             >
-                              {values.oldShowPassword ? <VisibilityOff /> : <Visibility />}
+                              {values.oldShowPassword ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
                             </IconButton>
                           </InputAdornment>
                         }
                         label="Old Password"
                       />
                     </FormControl>
-                    <FormControl sx={{ width: "47%", mt: 3 }} variant="outlined">
-                      <InputLabel style={{ textAlign: "left" }} htmlFor="outlined-adornment-password">
+                    <FormControl
+                      sx={{ width: "47%", mt: 3 }}
+                      variant="outlined"
+                    >
+                      <InputLabel
+                        style={{ textAlign: "left" }}
+                        htmlFor="outlined-adornment-password"
+                      >
                         New Password
                       </InputLabel>
                       <OutlinedInput
@@ -340,7 +358,11 @@ export default function ProfileMenu(props) {
                               onClick={handleClickNewShowPassword}
                               edge="end"
                             >
-                              {values.newShowPassword ? <VisibilityOff /> : <Visibility />}
+                              {values.newShowPassword ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
                             </IconButton>
                           </InputAdornment>
                         }
@@ -349,21 +371,48 @@ export default function ProfileMenu(props) {
                     </FormControl>
                   </Grid>
 
-                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 1 }}>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 1 }}
+                  >
                     Update Profile
                   </Button>
                 </Box>
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
-                    <Box component="form" noValidate onSubmit={handleDelete} sx={{ mt: 1 }}>
-                      <Button type="submit" fullWidth variant="contained" sx={{ mt: 2, mb: 2 }} color="error">
+                    <Box
+                      component="form"
+                      noValidate
+                      onSubmit={handleDelete}
+                      sx={{ mt: 1 }}
+                    >
+                      <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 2, mb: 2 }}
+                        color="error"
+                      >
                         Delete Profile
                       </Button>
                     </Box>
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <Box component="form" noValidate onSubmit={handleLogout} sx={{ mt: 1 }}>
-                      <Button type="submit" fullWidth variant="contained" sx={{ mt: 2, mb: 2 }} color="primary">
+                    <Box
+                      component="form"
+                      noValidate
+                      onSubmit={handleLogout}
+                      sx={{ mt: 1 }}
+                    >
+                      <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 2, mb: 2 }}
+                        color="primary"
+                      >
                         Logout
                       </Button>
                     </Box>
@@ -398,10 +447,10 @@ export default function ProfileMenu(props) {
               <TextField
                 value={addressValues.address}
                 name="address"
+                id="address"
                 error={error[0] === 1 ? true : false}
                 onChange={handleAddressChange("address")}
                 size="small"
-                id="outlined-textarea"
                 placeholder="Address"
                 multiline
                 helperText={helperText.address}
@@ -414,6 +463,7 @@ export default function ProfileMenu(props) {
                 error={error[1] === 1 ? true : false}
                 helperText={helperText.city}
                 name="city"
+                id="city"
                 onChange={handleAddressChange("city")}
                 size="small"
                 placeholder="City"
@@ -426,6 +476,7 @@ export default function ProfileMenu(props) {
                 error={error[2] === 1 ? true : false}
                 helperText={helperText.country}
                 name="country"
+                id="country"
                 onChange={handleAddressChange("country")}
                 size="small"
                 placeholder="Country"
@@ -455,6 +506,7 @@ export default function ProfileMenu(props) {
                 error={error[3] === 1 ? true : false}
                 helperText={helperText.zip}
                 name="zip"
+                id="zip"
                 onChange={handleAddressChange("zip")}
                 size="small"
                 placeholder="ZIP Code"
@@ -463,10 +515,17 @@ export default function ProfileMenu(props) {
 
             {res === "Success" && (
               <div>
-                <Typography color="#1DA33B">Address succesfully added!</Typography>
+                <Typography id="success" color="#1DA33B">
+                  Address succesfully added!
+                </Typography>
               </div>
             )}
-            <Button variant="contained" onClick={handleAddressSubmit} sx={{ mt: 3, mb: 1, ml: 1 }}>
+            <Button
+              id="address-btn"
+              variant="contained"
+              onClick={handleAddressSubmit}
+              sx={{ mt: 3, mb: 1, ml: 1 }}
+            >
               Add Address
             </Button>
           </Box>

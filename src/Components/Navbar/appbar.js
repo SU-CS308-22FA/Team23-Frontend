@@ -202,9 +202,9 @@ function ResponsiveAppBar(props) {
     navigate(`/favoriteauctions/${email}`);
   };
 
-  const handleTeams = () => { };
+  const handleTeams = () => {};
 
-  const handleOpenAuctions = () => { };
+  const handleOpenAuctions = () => {};
 
   const handleAuthenticate = () => {
     console.log("auth");
@@ -349,6 +349,7 @@ function ResponsiveAppBar(props) {
 
               {pages.map((page, idx) => (
                 <Button
+                  id="auth"
                   key={page}
                   onClick={pagesFunctions[idx]}
                   sx={{ my: 2, color: "black", display: "block" }}
@@ -376,7 +377,11 @@ function ResponsiveAppBar(props) {
               {logedIn ? (
                 <Box sx={{ flexGrow: 0 }}>
                   <Tooltip title="Open settings">
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <IconButton
+                      id="avatar"
+                      onClick={handleOpenUserMenu}
+                      sx={{ p: 0 }}
+                    >
                       <Avatar alt={email} src="/static/images/avatar/2.jpg" />
                     </IconButton>
                   </Tooltip>
@@ -397,14 +402,22 @@ function ResponsiveAppBar(props) {
                     onClose={handleCloseUserMenu}
                   >
                     {settings.map((setting, indx) => (
-                      <MenuItem key={setting} onClick={settingsFunctions[indx]}>
+                      <MenuItem
+                        id={setting}
+                        key={setting}
+                        onClick={settingsFunctions[indx]}
+                      >
                         <Typography textAlign="center">{setting}</Typography>
                       </MenuItem>
                     ))}
                   </Menu>
                 </Box>
               ) : (
-                <Button variant="contained" onClick={handleSignIn}>
+                <Button
+                  id="signin-nav"
+                  variant="contained"
+                  onClick={handleSignIn}
+                >
                   Sign in
                 </Button>
               )}
